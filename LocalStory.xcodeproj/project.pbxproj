@@ -15,6 +15,9 @@
 		16E08FBE1A16C36800579486 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16E08FBD1A16C36800579486 /* Images.xcassets */; };
 		16E08FC11A16C36800579486 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16E08FBF1A16C36800579486 /* LaunchScreen.xib */; };
 		16E08FCD1A16C36800579486 /* LocalStoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E08FCC1A16C36800579486 /* LocalStoryTests.m */; };
+		438564661A1947F100CE9413 /* Story.m in Sources */ = {isa = PBXBuildFile; fileRef = 438564651A1947F100CE9413 /* Story.m */; };
+		438564691A19483100CE9413 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438564681A19483100CE9413 /* NetworkController.m */; };
+		4385646C1A1948A700CE9413 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4385646B1A1948A700CE9413 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,12 @@
 		16E08FC61A16C36800579486 /* LocalStoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalStoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16E08FCB1A16C36800579486 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16E08FCC1A16C36800579486 /* LocalStoryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalStoryTests.m; sourceTree = "<group>"; };
+		438564641A1947F100CE9413 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Story.h; sourceTree = "<group>"; };
+		438564651A1947F100CE9413 /* Story.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Story.m; sourceTree = "<group>"; };
+		438564671A19483100CE9413 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
+		438564681A19483100CE9413 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
+		4385646A1A1948A700CE9413 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		4385646B1A1948A700CE9413 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,14 +92,9 @@
 		16E08FAC1A16C36800579486 /* LocalStory */ = {
 			isa = PBXGroup;
 			children = (
-				16E08FB11A16C36800579486 /* AppDelegate.h */,
-				16E08FB21A16C36800579486 /* AppDelegate.m */,
-				16E08FB71A16C36800579486 /* ViewController.h */,
-				16E08FB81A16C36800579486 /* ViewController.m */,
-				16E08FBA1A16C36800579486 /* Main.storyboard */,
-				16E08FBD1A16C36800579486 /* Images.xcassets */,
-				16E08FBF1A16C36800579486 /* LaunchScreen.xib */,
-				16E08FB41A16C36800579486 /* LocalStory.xcdatamodeld */,
+				438564631A19479200CE9413 /* Models */,
+				438564621A19478700CE9413 /* Views */,
+				438564611A19477C00CE9413 /* Controllers */,
 				16E08FAD1A16C36800579486 /* Supporting Files */,
 			);
 			path = LocalStory;
@@ -120,6 +124,41 @@
 				16E08FCB1A16C36800579486 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		438564611A19477C00CE9413 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				16E08FB11A16C36800579486 /* AppDelegate.h */,
+				16E08FB21A16C36800579486 /* AppDelegate.m */,
+				16E08FB71A16C36800579486 /* ViewController.h */,
+				16E08FB81A16C36800579486 /* ViewController.m */,
+				438564671A19483100CE9413 /* NetworkController.h */,
+				438564681A19483100CE9413 /* NetworkController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		438564621A19478700CE9413 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				16E08FBA1A16C36800579486 /* Main.storyboard */,
+				16E08FBF1A16C36800579486 /* LaunchScreen.xib */,
+				16E08FBD1A16C36800579486 /* Images.xcassets */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		438564631A19479200CE9413 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				16E08FB41A16C36800579486 /* LocalStory.xcdatamodeld */,
+				438564641A1947F100CE9413 /* Story.h */,
+				438564651A1947F100CE9413 /* Story.m */,
+				4385646A1A1948A700CE9413 /* User.h */,
+				4385646B1A1948A700CE9413 /* User.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,8 +262,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				16E08FB61A16C36800579486 /* LocalStory.xcdatamodeld in Sources */,
+				4385646C1A1948A700CE9413 /* User.m in Sources */,
 				16E08FB31A16C36800579486 /* AppDelegate.m in Sources */,
 				16E08FB91A16C36800579486 /* ViewController.m in Sources */,
+				438564661A1947F100CE9413 /* Story.m in Sources */,
+				438564691A19483100CE9413 /* NetworkController.m in Sources */,
 				16E08FB01A16C36800579486 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +460,7 @@
 				16E08FD21A16C36800579486 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		16E08FD31A16C36800579486 /* Build configuration list for PBXNativeTarget "LocalStoryTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +469,7 @@
 				16E08FD51A16C36800579486 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
