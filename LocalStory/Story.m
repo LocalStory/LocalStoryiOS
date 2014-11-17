@@ -28,7 +28,7 @@
   return self;
 }
 
-+ (NSArray *)parseJsonIntoUsers:(NSData *)rawJSONData {
++ (NSArray *)parseJsonIntoStories:(NSData *)rawJSONData {
   NSError *error;
   NSLog(@"Error is: %@", error.localizedDescription);
 

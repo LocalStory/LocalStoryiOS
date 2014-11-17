@@ -24,4 +24,6 @@
 @property (nonatomic) double lngVal;
 @property (nonatomic, strong) User *user;
 
++ (NSArray *)parseJsonIntoStories:(NSData *)rawJSONData;
+
 @end
