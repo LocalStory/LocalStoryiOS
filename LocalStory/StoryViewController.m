@@ -14,6 +14,7 @@
 
 @end
 
+
 @implementation StoryViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -32,12 +33,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.titleField.delegate = self;
+    self.descField.delegate = self;
     
     self.imageView.userInteractionEnabled = true;
     UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
     [self.imageView addGestureRecognizer:imageTap];
-
 }
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+
 
 -(void)imageTapped:(UITapGestureRecognizer *)sender {
     NSLog(@"IMAGE TAPPED");
@@ -74,6 +83,10 @@
 
 - (IBAction)done:(id)sender {
     NSLog(@"Done");
+    NSLog(@"%@", self.titleField.text);
+    NSLog(@"%@", self.descField.text);
+    [self.titleField resignFirstResponder];
+    [self.descField resignFirstResponder];
 }
 
 

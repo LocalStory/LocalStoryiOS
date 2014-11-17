@@ -7,8 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoryViewController">
             <connections>
+                <outlet property="descField" destination="jmF-JA-VrE" id="1ij-74-kEJ"/>
                 <outlet property="imageView" destination="2lM-a3-6Ey" id="F9D-gY-Pvh"/>
                 <outlet property="mapView" destination="QqQ-Q8-2G7" id="FPZ-mV-jno"/>
+                <outlet property="titleField" destination="Gfn-kR-lQU" id="vBP-mG-G4h"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -28,7 +30,7 @@
                             <items>
                                 <navigationItem title="My Story" id="3WC-S8-rhz">
                                     <barButtonItem key="leftBarButtonItem" title="Back" id="ufW-D0-4NE"/>
-                                    <barButtonItem key="rightBarButtonItem" title="Done" id="BCy-TZ-ajX">
+                                    <barButtonItem key="rightBarButtonItem" title="Post" id="BCy-TZ-ajX">
                                         <connections>
                                             <action selector="done:" destination="-1" id="pLT-Rg-DdS"/>
                                         </connections>
