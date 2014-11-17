@@ -6,8 +6,16 @@
 //  Copyright (c) 2014 Jacob Hawken. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Story.h"
+#import "User.h"
+#import <UIKit/UIKit.h>
 
-@interface NetworkController : NSObject
+@interface NetworkController : NSObject{
+  NSString *someProperty;
+}
+
+@property (nonatomic, retain) NSString *someProperty;
+
++ (id)sharedNetworkController;
 
 @end
