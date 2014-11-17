@@ -20,6 +20,7 @@
 		4385646C1A1948A700CE9413 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4385646B1A1948A700CE9413 /* User.m */; };
 		701150B51A1A70D9003F4F99 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 701150B31A1A70D9003F4F99 /* StoryViewController.m */; };
 		701150B61A1A70D9003F4F99 /* StoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 701150B41A1A70D9003F4F99 /* StoryViewController.xib */; };
+		701150B81A1A7B40003F4F99 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701150B71A1A7B40003F4F99 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		701150B21A1A70D9003F4F99 /* StoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
 		701150B31A1A70D9003F4F99 /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
 		701150B41A1A70D9003F4F99 /* StoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryViewController.xib; sourceTree = "<group>"; };
+		701150B71A1A7B40003F4F99 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				701150B81A1A7B40003F4F99 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +82,7 @@
 		16E08FA11A16C36800579486 = {
 			isa = PBXGroup;
 			children = (
+				701150B71A1A7B40003F4F99 /* MapKit.framework */,
 				16E08FAC1A16C36800579486 /* LocalStory */,
 				16E08FC91A16C36800579486 /* LocalStoryTests */,
 				16E08FAB1A16C36800579486 /* Products */,
@@ -218,6 +222,11 @@
 				TargetAttributes = {
 					16E08FA91A16C36800579486 = {
 						CreatedOnToolsVersion = 6.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					16E08FC51A16C36800579486 = {
 						CreatedOnToolsVersion = 6.1;

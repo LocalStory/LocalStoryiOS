@@ -72,6 +72,9 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
+- (IBAction)done:(id)sender {
+    NSLog(@"Done");
+}
 
 
 
