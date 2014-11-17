@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StoryViewController : UIViewController
+@interface StoryViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

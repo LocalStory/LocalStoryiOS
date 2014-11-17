@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoryViewController">
             <connections>
+                <outlet property="imageView" destination="2lM-a3-6Ey" id="F9D-gY-Pvh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,18 +15,22 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zkz-3B-JgN">
-                    <rect key="frame" x="279" y="290" width="42" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Plus" translatesAutoresizingMaskIntoConstraints="NO" id="2lM-a3-6Ey">
+                    <rect key="frame" x="0.0" y="400" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="eiu-BW-YtQ"/>
+                        <constraint firstAttribute="width" constant="200" id="jyI-c3-bgM"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="Zkz-3B-JgN" secondAttribute="centerY" id="2Gf-Uf-a27"/>
-                <constraint firstAttribute="centerX" secondItem="Zkz-3B-JgN" secondAttribute="centerX" id="Xdo-Ak-uta"/>
+                <constraint firstItem="2lM-a3-6Ey" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Gbc-p8-2Q1"/>
+                <constraint firstAttribute="bottom" secondItem="2lM-a3-6Ey" secondAttribute="bottom" id="cF1-5V-hKX"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="Plus" width="1024" height="768"/>
+    </resources>
 </document>
