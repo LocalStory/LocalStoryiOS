@@ -16,8 +16,14 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  // Override point for customization after application launch.
-  return YES;
+    
+    //Temporary onload - START
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.storyVC = [[StoryViewController alloc] initWithNibName:@"StoryViewController" bundle:nil];
+    self.window.rootViewController = self.storyVC;
+    //END
+    
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
