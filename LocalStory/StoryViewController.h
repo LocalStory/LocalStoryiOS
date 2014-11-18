@@ -18,5 +18,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *characterLabel;
 @property (strong, nonatomic) IBOutlet UILabel *locationLabel;
 
+@property CLLocationDegrees lat;
+@property CLLocationDegrees lon;
 
 @end

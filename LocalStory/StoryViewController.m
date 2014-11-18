@@ -17,6 +17,7 @@
 
 @implementation StoryViewController
 
+
 - (void)viewWillAppear:(BOOL)animated {
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.allowsEditing = true;
@@ -45,7 +46,6 @@
     [textField resignFirstResponder];
     return NO;
 }
-
 
 -(void)imageTapped:(UITapGestureRecognizer *)sender {
     NSLog(@"IMAGE TAPPED");
