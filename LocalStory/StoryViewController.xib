@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoryViewController">
             <connections>
+                <outlet property="contentView" destination="bSn-G7-sS4" id="Bvw-hs-SVV"/>
                 <outlet property="descField" destination="jmF-JA-VrE" id="1ij-74-kEJ"/>
                 <outlet property="imageView" destination="2lM-a3-6Ey" id="F9D-gY-Pvh"/>
                 <outlet property="mapView" destination="QqQ-Q8-2G7" id="FPZ-mV-jno"/>
@@ -19,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bSn-G7-sS4">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bSn-G7-sS4" userLabel="ContentView">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QqQ-Q8-2G7">

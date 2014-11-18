@@ -81,6 +81,20 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = CGRectMake(0,-40,self.view.frame.size.width,self.view.frame.size.height);
+    [UIView commitAnimations];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
+    [UIView commitAnimations];
+}
+
 - (IBAction)done:(id)sender {
     NSLog(@"Done");
     NSLog(@"%@", self.titleField.text);

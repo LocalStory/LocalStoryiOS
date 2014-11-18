@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UITextField *titleField;
 @property (strong, nonatomic) IBOutlet UITextField *descField;
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 
 
 @end
