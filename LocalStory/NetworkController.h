@@ -7,7 +7,7 @@
 //
 
 #import "Story.h"
-#import "User.h"
+#import "Location.h"
 #import <UIKit/UIKit.h>
 
 @interface NetworkController : NSObject{
@@ -25,5 +25,7 @@
 @property (nonatomic, strong) NSString *userAuthCreatePost;
 
 + (id)sharedNetworkController;
+
+- (void)saveTokenFromData:(NSData *)data;
 
 @end

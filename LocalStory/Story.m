@@ -17,10 +17,10 @@
     self.networkController = [NetworkController sharedNetworkController];
     self.storyDictionary = storyJSONDictionary;
     self.userId = (NSString *)storyJSONDictionary[@"userId"];
-    self.story = (NSString *)storyJSONDictionary[@"userId"];
-    self.title = (NSString *)storyJSONDictionary[@"userId"];
-    self.lat = (NSString *)storyJSONDictionary[@"userId"];
-    self.lng = (NSString *)storyJSONDictionary[@"userId"];
+    self.story = (NSString *)storyJSONDictionary[@"story"];
+    self.title = (NSString *)storyJSONDictionary[@"title"];
+    self.lat = (NSString *)storyJSONDictionary[@"lat"];
+    self.lng = (NSString *)storyJSONDictionary[@"lng"];
     self.latVal = [self.lat doubleValue];
     self.lngVal = [self.lng doubleValue];
 //    @property (nonatomic, strong) User *user;

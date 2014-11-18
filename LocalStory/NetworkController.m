@@ -75,6 +75,51 @@
   [request setHTTPBody:postdata];
   request.HTTPBody = postdata;
 
+  NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    if (error) {
+      NSLog(@"Error is: %@", error.localizedDescription);
+    } else if (response) {
+      if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        switch (httpResponse.statusCode) {
+          case 200: {
+          [self saveTokenFromData:data];
+            break;
+          }
+          case 403:
+            NSLog(@"NOT AUTHORIZED");
+            break;
+
+          case 500:
+            NSLog(@"SERVER FAILURE");
+            break;
+
+          default:
+            break;
+        }
+
+      } else {
+        NSLog(@"Response is not HTTP");
+      }
+    } else {
+      NSLog(@"Response is NIL");
+    }
+  }];
+  [dataTask resume];
 }
+
+- (void)saveTokenFromData:(NSData *)data {
+  NSString *tokenResponse = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+  NSArray *tokenComponents = [tokenResponse componentsSeparatedByString:@"="];
+  NSArray *tokenSeedArray = [[tokenComponents objectAtIndex:1] componentsSeparatedByString:@"&"];
+  NSString *tokenFor = (NSString *)[tokenSeedArray firstObject];
+  NSString *keyFor = @"AuthToken";
+  [[NSUserDefaults standardUserDefaults] setObject:tokenFor forKey:keyFor];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  NSLog(@"Saved a token value %@ to the key %@ in NSUserDefaults", tokenFor, keyFor);
+}
+
+
+
 
 @end
