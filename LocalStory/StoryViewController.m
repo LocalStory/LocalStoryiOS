@@ -17,6 +17,7 @@
 
 @implementation StoryViewController
 
+
 - (void)viewWillAppear:(BOOL)animated {
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.allowsEditing = true;
@@ -39,13 +40,41 @@
     self.imageView.userInteractionEnabled = true;
     UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
     [self.imageView addGestureRecognizer:imageTap];
+    
+    [self findLocationOnMap];
+    
 }
+
+#pragma mark - Location Functions
+
+-(void)findLocationOnMap {
+    CLLocationDegrees latDelta = 0.01;
+    CLLocationDegrees lonDelta = 0.01;
+    MKCoordinateSpan span = MKCoordinateSpanMake(latDelta, lonDelta);
+    CLLocationCoordinate2D loc2D = CLLocationCoordinate2DMake(self.lat, self.lon);
+    MKCoordinateRegion region = MKCoordinateRegionMake(loc2D, span);
+    [[self mapView] setRegion:region];
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    annotation.coordinate = loc2D;
+    [[self mapView] addAnnotation:annotation];
+}
+
+-(void)reverseGeoCode {
+    //Maybe do some geoCoding?
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:self.lat longitude:self.lon];
+    
+    CLGeocoder *geoCode = [[CLGeocoder alloc] init];
+    [geoCode reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        
+    }];
+}
+
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
 }
-
 
 -(void)imageTapped:(UITapGestureRecognizer *)sender {
     NSLog(@"IMAGE TAPPED");
@@ -141,11 +170,12 @@
 }
 
 - (IBAction)done:(id)sender {
+    //Send to Sever
     NSLog(@"Done");
     NSLog(@"%@", self.titleField.text);
     NSLog(@"%@", self.descTextView.text);
-    [self.titleField resignFirstResponder];
-    [self.descTextView resignFirstResponder];
+    NSLog(@"%f", self.lat);
+    NSLog(@"%f", self.lon);
 }
 
 

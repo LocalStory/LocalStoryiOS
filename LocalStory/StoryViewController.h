@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface StoryViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextFieldDelegate,UITextViewDelegate>
+@interface StoryViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextFieldDelegate,UITextViewDelegate, MKAnnotation, MKMapViewDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UITextField *titleField;
@@ -18,5 +18,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *characterLabel;
 @property (strong, nonatomic) IBOutlet UILabel *locationLabel;
 
+@property CLLocationDegrees lat;
+@property CLLocationDegrees lon;
 
 @end
