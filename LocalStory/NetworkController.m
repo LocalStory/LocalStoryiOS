@@ -72,7 +72,6 @@
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"POST URL goes here"]];
   [request setHTTPMethod:@"POST"];
   NSData *postdata = [urlQuery dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-  NSInteger length = [postdata length];
   [request addValue:@"TOKEN GOES HERE" forHTTPHeaderField:@"JWT"];
   [request setHTTPBody:postdata];
   request.HTTPBody = postdata;
