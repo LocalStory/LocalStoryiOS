@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		163ADF641A1AA70E00611B75 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 163ADF631A1AA70E00611B75 /* MapKit.framework */; };
+		163ADF661A1AAA2700611B75 /* add46.png in Resources */ = {isa = PBXBuildFile; fileRef = 163ADF651A1AAA2700611B75 /* add46.png */; };
+		163ADF681A1AAC8200611B75 /* add46 (512).png in Resources */ = {isa = PBXBuildFile; fileRef = 163ADF671A1AAC8200611B75 /* add46 (512).png */; };
+		163ADF6A1A1AAEE700611B75 /* addButton.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 163ADF691A1AAEE700611B75 /* addButton.pdf */; };
+		16C6AE711A1A996200BB21E1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6AE6F1A1A996200BB21E1 /* HomeViewController.m */; };
+		16C6AE761A1A9B1200BB21E1 /* typicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C6AE751A1A9B1200BB21E1 /* typicons.ttf */; };
 		16E08FB01A16C36800579486 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E08FAF1A16C36800579486 /* main.m */; };
 		16E08FB31A16C36800579486 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E08FB21A16C36800579486 /* AppDelegate.m */; };
 		16E08FB61A16C36800579486 /* LocalStory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 16E08FB41A16C36800579486 /* LocalStory.xcdatamodeld */; };
-		16E08FB91A16C36800579486 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E08FB81A16C36800579486 /* ViewController.m */; };
 		16E08FBC1A16C36800579486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16E08FBA1A16C36800579486 /* Main.storyboard */; };
 		16E08FBE1A16C36800579486 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16E08FBD1A16C36800579486 /* Images.xcassets */; };
 		16E08FC11A16C36800579486 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16E08FBF1A16C36800579486 /* LaunchScreen.xib */; };
@@ -32,14 +37,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		163ADF631A1AA70E00611B75 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		163ADF651A1AAA2700611B75 /* add46.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add46.png; sourceTree = "<group>"; };
+		163ADF671A1AAC8200611B75 /* add46 (512).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add46 (512).png"; sourceTree = "<group>"; };
+		163ADF691A1AAEE700611B75 /* addButton.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = addButton.pdf; sourceTree = "<group>"; };
+		16C6AE6E1A1A996200BB21E1 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		16C6AE6F1A1A996200BB21E1 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		16C6AE751A1A9B1200BB21E1 /* typicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = typicons.ttf; sourceTree = "<group>"; };
 		16E08FAA1A16C36800579486 /* LocalStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16E08FAE1A16C36800579486 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16E08FAF1A16C36800579486 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		16E08FB11A16C36800579486 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		16E08FB21A16C36800579486 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		16E08FB51A16C36800579486 /* LocalStory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalStory.xcdatamodel; sourceTree = "<group>"; };
-		16E08FB71A16C36800579486 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		16E08FB81A16C36800579486 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		16E08FBB1A16C36800579486 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		16E08FBD1A16C36800579486 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		16E08FC01A16C36800579486 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -61,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				163ADF641A1AA70E00611B75 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +88,7 @@
 		16E08FA11A16C36800579486 = {
 			isa = PBXGroup;
 			children = (
+				163ADF631A1AA70E00611B75 /* MapKit.framework */,
 				16E08FAC1A16C36800579486 /* LocalStory */,
 				16E08FC91A16C36800579486 /* LocalStoryTests */,
 				16E08FAB1A16C36800579486 /* Products */,
@@ -108,6 +120,10 @@
 			children = (
 				16E08FAE1A16C36800579486 /* Info.plist */,
 				16E08FAF1A16C36800579486 /* main.m */,
+				16C6AE751A1A9B1200BB21E1 /* typicons.ttf */,
+				163ADF651A1AAA2700611B75 /* add46.png */,
+				163ADF671A1AAC8200611B75 /* add46 (512).png */,
+				163ADF691A1AAEE700611B75 /* addButton.pdf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -134,10 +150,10 @@
 			children = (
 				16E08FB11A16C36800579486 /* AppDelegate.h */,
 				16E08FB21A16C36800579486 /* AppDelegate.m */,
-				16E08FB71A16C36800579486 /* ViewController.h */,
-				16E08FB81A16C36800579486 /* ViewController.m */,
 				438564671A19483100CE9413 /* NetworkController.h */,
 				438564681A19483100CE9413 /* NetworkController.m */,
+				16C6AE6E1A1A996200BB21E1 /* HomeViewController.h */,
+				16C6AE6F1A1A996200BB21E1 /* HomeViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -215,6 +231,11 @@
 				TargetAttributes = {
 					16E08FA91A16C36800579486 = {
 						CreatedOnToolsVersion = 6.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					16E08FC51A16C36800579486 = {
 						CreatedOnToolsVersion = 6.1;
@@ -246,9 +267,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				163ADF681A1AAC8200611B75 /* add46 (512).png in Resources */,
 				16E08FBC1A16C36800579486 /* Main.storyboard in Resources */,
 				16E08FC11A16C36800579486 /* LaunchScreen.xib in Resources */,
 				16E08FBE1A16C36800579486 /* Images.xcassets in Resources */,
+				163ADF6A1A1AAEE700611B75 /* addButton.pdf in Resources */,
+				16C6AE761A1A9B1200BB21E1 /* typicons.ttf in Resources */,
+				163ADF661A1AAA2700611B75 /* add46.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +293,6 @@
 			files = (
 				16E08FB61A16C36800579486 /* LocalStory.xcdatamodeld in Sources */,
 				16E08FB31A16C36800579486 /* AppDelegate.m in Sources */,
-				16E08FB91A16C36800579486 /* ViewController.m in Sources */,
 				438564661A1947F100CE9413 /* Story.m in Sources */,
 				438564691A19483100CE9413 /* NetworkController.m in Sources */,
 				436B308E1A1A80AE001AD904 /* Location.m in Sources */,
