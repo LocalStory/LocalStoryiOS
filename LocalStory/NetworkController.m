@@ -54,7 +54,11 @@
   return returnForNow;
 }
 
-- (void) stubForPostMethod {
+- (void)stubForGetMethod {
+  
+}
+
+- (void)stubForPostMethod {
   NSURL *callbackURL = [[NSURL alloc] init]; // will get callbackURL as a parameter eventually
   NSString *query = callbackURL.query;
 
@@ -69,9 +73,7 @@
   [request setHTTPMethod:@"POST"];
   NSData *postdata = [urlQuery dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
   NSInteger length = [postdata length];
-  NSString *lengthString = [NSString stringWithFormat:@"%ld", (long)length];
-  [request setValue:lengthString forHTTPHeaderField:@"content-length"];
-  [request setValue:@"TOKEN GOES HERE" forHTTPHeaderField:@"TOKEN HEADER"];
+  [request addValue:@"TOKEN GOES HERE" forHTTPHeaderField:@"JWT"];
   [request setHTTPBody:postdata];
   request.HTTPBody = postdata;
 
