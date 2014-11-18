@@ -1,26 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HJ5-6M-UsA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="typicons.ttf">
+            <string>typicons</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Home View Controller-->
+        <scene sceneID="ila-L3-fQQ">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="HJ5-6M-UsA" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="yHP-ja-bOf"/>
+                        <viewControllerLayoutGuide type="bottom" id="b0b-RC-8Sa"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="J3V-A6-QiH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hbe-yA-SoC">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </mapView>
+                            <button alpha="0.90000000000000002" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUP-BV-nxJ">
+                                <rect key="frame" x="524" y="524" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CUP-BV-nxJ" secondAttribute="height" multiplier="1:1" id="Wvg-A1-Rrf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="75"/>
+                                <state key="normal" image="add46 (512)">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addNewStory:" destination="HJ5-6M-UsA" eventType="touchUpInside" id="Zu8-Mc-L8q"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CUP-BV-nxJ" firstAttribute="trailing" secondItem="J3V-A6-QiH" secondAttribute="trailingMargin" id="0x9-R3-xI1"/>
+                            <constraint firstItem="hbe-yA-SoC" firstAttribute="top" secondItem="J3V-A6-QiH" secondAttribute="top" id="CsC-ln-gwa"/>
+                            <constraint firstItem="b0b-RC-8Sa" firstAttribute="top" secondItem="hbe-yA-SoC" secondAttribute="bottom" id="V5G-i8-JI5"/>
+                            <constraint firstItem="CUP-BV-nxJ" firstAttribute="height" secondItem="hbe-yA-SoC" secondAttribute="height" multiplier="0.1" id="d2l-Yl-du9"/>
+                            <constraint firstAttribute="trailing" secondItem="hbe-yA-SoC" secondAttribute="trailing" id="qkg-d0-0sh"/>
+                            <constraint firstItem="hbe-yA-SoC" firstAttribute="leading" secondItem="J3V-A6-QiH" secondAttribute="leading" id="tHY-iK-djj"/>
+                            <constraint firstItem="b0b-RC-8Sa" firstAttribute="top" secondItem="CUP-BV-nxJ" secondAttribute="bottom" constant="16" id="zJz-Cv-z5s"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addStoryButton" destination="CUP-BV-nxJ" id="3JN-1T-9bx"/>
+                        <outlet property="homeMapView" destination="hbe-yA-SoC" id="1a9-96-C26"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Fx-bf-S1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="231" y="319"/>
+            <point key="canvasLocation" x="735" y="-750"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add46 (512)" width="256" height="256"/>
+    </resources>
 </document>
