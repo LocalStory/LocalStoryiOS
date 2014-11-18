@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Jacob Hawken. All rights reserved.
 //
 
-#import "User.h"
 #import "NetworkController.h"
 #import <UIKit/UIKit.h>
 
