@@ -115,6 +115,11 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    NSString *characterCount = [NSString stringWithFormat:@"%lu", (unsigned long)self.descTextView.text.length];
+    
+    self.characterLabel.text = [NSString stringWithFormat:@"%@ /140",characterCount];
+    
     if([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;

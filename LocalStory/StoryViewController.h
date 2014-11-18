@@ -15,6 +15,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *titleField;
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) IBOutlet UITextView *descTextView;
+@property (strong, nonatomic) IBOutlet UILabel *characterLabel;
+@property (strong, nonatomic) IBOutlet UILabel *locationLabel;
 
 
 @end
