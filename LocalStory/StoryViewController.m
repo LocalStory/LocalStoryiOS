@@ -17,14 +17,6 @@
 
 @implementation StoryViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:@"StoryViewController" bundle:[NSBundle mainBundle]];
-    if (self) {
-        
-    }
-    return self;
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.allowsEditing = true;
@@ -33,6 +25,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    CGRect frameRect = self.descField.frame;
+    frameRect.size.height = 53;
+    self.descField.frame = frameRect;
 
     self.titleField.delegate = self;
     self.descField.delegate = self;
@@ -84,7 +80,7 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25];
-    self.view.frame = CGRectMake(0,-40,self.view.frame.size.width,self.view.frame.size.height);
+    self.view.frame = CGRectMake(0,-70,self.view.frame.size.width,self.view.frame.size.height);
     [UIView commitAnimations];
 }
 
