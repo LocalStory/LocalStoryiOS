@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoryViewController">
             <connections>
                 <outlet property="contentView" destination="bSn-G7-sS4" id="Bvw-hs-SVV"/>
-                <outlet property="descField" destination="jmF-JA-VrE" id="1ij-74-kEJ"/>
+                <outlet property="descTextView" destination="oE1-G4-BAg" id="ehe-Id-vht"/>
                 <outlet property="imageView" destination="2lM-a3-6Ey" id="F9D-gY-Pvh"/>
                 <outlet property="mapView" destination="QqQ-Q8-2G7" id="FPZ-mV-jno"/>
                 <outlet property="titleField" destination="Gfn-kR-lQU" id="vBP-mG-G4h"/>
@@ -52,7 +52,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/140" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUf-ds-3XH">
-                                    <rect key="frame" x="548" y="13" width="44" height="21"/>
+                                    <rect key="frame" x="548" y="13" width="44" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -67,29 +67,30 @@
                                 <constraint firstAttribute="trailing" secondItem="aUf-ds-3XH" secondAttribute="trailing" constant="8" id="yZY-Js-e8x"/>
                             </constraints>
                         </view>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jmF-JA-VrE">
-                            <rect key="frame" x="8" y="399" width="584" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gfn-kR-lQU">
-                            <rect key="frame" x="120" y="367" width="360" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <rect key="frame" x="120" y="367" width="360" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oE1-G4-BAg">
+                            <rect key="frame" x="10" y="393" width="580" height="84"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="jmF-JA-VrE" firstAttribute="leading" secondItem="bSn-G7-sS4" secondAttribute="leading" constant="8" id="0HI-ps-Ilg"/>
+                        <constraint firstItem="Gfn-kR-lQU" firstAttribute="width" secondItem="oE1-G4-BAg" secondAttribute="width" multiplier="1.2" id="4Jo-8J-dms"/>
                         <constraint firstAttribute="trailing" secondItem="Pup-Zj-33f" secondAttribute="trailing" id="5lu-EQ-2NU"/>
                         <constraint firstItem="Gfn-kR-lQU" firstAttribute="width" secondItem="bSn-G7-sS4" secondAttribute="width" multiplier="0.6" id="6Oj-eF-FDs"/>
                         <constraint firstAttribute="trailing" secondItem="QqQ-Q8-2G7" secondAttribute="trailing" constant="8" id="FRS-8B-6FW"/>
-                        <constraint firstAttribute="trailing" secondItem="jmF-JA-VrE" secondAttribute="trailing" constant="8" id="GEx-Ry-pCx"/>
                         <constraint firstItem="Gfn-kR-lQU" firstAttribute="top" secondItem="Tfb-np-LtG" secondAttribute="bottom" constant="15" id="J3o-fc-QbM"/>
                         <constraint firstItem="Pup-Zj-33f" firstAttribute="leading" secondItem="bSn-G7-sS4" secondAttribute="leading" id="KkA-Xp-7eD"/>
                         <constraint firstItem="QqQ-Q8-2G7" firstAttribute="height" secondItem="bSn-G7-sS4" secondAttribute="height" multiplier="0.2" id="OJG-ID-U8K"/>
                         <constraint firstItem="2lM-a3-6Ey" firstAttribute="top" secondItem="bSn-G7-sS4" secondAttribute="top" id="PQg-Ah-gf6"/>
                         <constraint firstItem="2lM-a3-6Ey" firstAttribute="top" secondItem="Pup-Zj-33f" secondAttribute="bottom" id="QJL-BN-yHx"/>
+                        <constraint firstItem="oE1-G4-BAg" firstAttribute="height" secondItem="bSn-G7-sS4" secondAttribute="height" multiplier="0.14" id="RTx-dK-lwJ"/>
                         <constraint firstAttribute="bottom" secondItem="QqQ-Q8-2G7" secondAttribute="bottom" constant="8" id="SFy-ah-2er"/>
                         <constraint firstItem="Tfb-np-LtG" firstAttribute="height" secondItem="2lM-a3-6Ey" secondAttribute="height" multiplier="0.2" id="V5R-O4-0ag"/>
                         <constraint firstItem="Tfb-np-LtG" firstAttribute="top" secondItem="2lM-a3-6Ey" secondAttribute="bottom" id="XNQ-nq-ftL"/>
@@ -100,14 +101,18 @@
                         <constraint firstItem="Pup-Zj-33f" firstAttribute="top" secondItem="bSn-G7-sS4" secondAttribute="top" constant="20" id="c1o-YM-xlf"/>
                         <constraint firstItem="Tfb-np-LtG" firstAttribute="leading" secondItem="bSn-G7-sS4" secondAttribute="leading" id="ce9-3v-sBn"/>
                         <constraint firstItem="2lM-a3-6Ey" firstAttribute="width" secondItem="bSn-G7-sS4" secondAttribute="width" id="eeO-Ss-5Sb"/>
+                        <constraint firstItem="oE1-G4-BAg" firstAttribute="leading" secondItem="bSn-G7-sS4" secondAttribute="leading" constant="10" id="kG9-tZ-REu"/>
+                        <constraint firstAttribute="centerX" secondItem="oE1-G4-BAg" secondAttribute="centerX" id="mKb-ji-Vad"/>
                         <constraint firstAttribute="trailing" secondItem="Tfb-np-LtG" secondAttribute="trailing" id="me8-MJ-Bsh"/>
+                        <constraint firstItem="oE1-G4-BAg" firstAttribute="top" secondItem="Gfn-kR-lQU" secondAttribute="bottom" constant="8" id="nbD-dV-hAt"/>
                         <constraint firstItem="2lM-a3-6Ey" firstAttribute="leading" secondItem="bSn-G7-sS4" secondAttribute="leading" id="sUB-BV-TuK"/>
-                        <constraint firstItem="jmF-JA-VrE" firstAttribute="top" secondItem="Gfn-kR-lQU" secondAttribute="bottom" constant="15" id="tVP-3Q-FqD"/>
+                        <constraint firstAttribute="trailing" secondItem="oE1-G4-BAg" secondAttribute="trailing" constant="10" id="vb1-nw-ymz"/>
                         <constraint firstItem="2lM-a3-6Ey" firstAttribute="height" secondItem="bSn-G7-sS4" secondAttribute="height" multiplier="0.4" id="wY9-s5-QUh"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="PQg-Ah-gf6"/>
+                            <exclude reference="4Jo-8J-dms"/>
                             <exclude reference="baf-u0-2K4"/>
                         </mask>
                     </variation>
