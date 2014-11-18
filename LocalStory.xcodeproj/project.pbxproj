@@ -164,6 +164,8 @@
 				438564681A19483100CE9413 /* NetworkController.m */,
 				701150B21A1A70D9003F4F99 /* StoryViewController.h */,
 				701150B31A1A70D9003F4F99 /* StoryViewController.m */,
+				16C6AE6E1A1A996200BB21E1 /* HomeViewController.h */,
+				16C6AE6F1A1A996200BB21E1 /* HomeViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -279,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				701150B61A1A70D9003F4F99 /* StoryViewController.xib in Resources */,
+				163ADF681A1AAC8200611B75 /* add46 (512).png in Resources */,
 				16E08FBC1A16C36800579486 /* Main.storyboard in Resources */,
 				16E08FC11A16C36800579486 /* LaunchScreen.xib in Resources */,
 				16E08FBE1A16C36800579486 /* Images.xcassets in Resources */,
