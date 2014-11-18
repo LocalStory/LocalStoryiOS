@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Jacob Hawken. All rights reserved.
 //
 
-#import "NetworkController.m"
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
