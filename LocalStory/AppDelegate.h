@@ -21,9 +21,6 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
-//Temporary onload
-@property (strong, nonatomic) StoryViewController *storyVC;
-
 
 @end
 
