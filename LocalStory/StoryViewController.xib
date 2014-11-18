@@ -51,8 +51,8 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0SK-1L-MgF">
-                                    <rect key="frame" x="545" y="13" width="47" height="20.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/140" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUf-ds-3XH">
+                                    <rect key="frame" x="548" y="13" width="44" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -60,12 +60,11 @@
                             </subviews>
                             <color key="backgroundColor" red="0.25611579269190282" green="0.32415447935049263" blue="0.49546286463737488" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="0SK-1L-MgF" secondAttribute="bottom" constant="14.5" id="DNo-2D-Gyy"/>
                                 <constraint firstItem="1aZ-Az-PiZ" firstAttribute="top" secondItem="Tfb-np-LtG" secondAttribute="top" constant="13" id="MyY-t0-z58"/>
-                                <constraint firstAttribute="trailing" secondItem="0SK-1L-MgF" secondAttribute="trailing" constant="8" id="bQz-KN-TUY"/>
-                                <constraint firstItem="0SK-1L-MgF" firstAttribute="top" secondItem="Tfb-np-LtG" secondAttribute="top" constant="13" id="ceb-PO-xIa"/>
                                 <constraint firstAttribute="bottom" secondItem="1aZ-Az-PiZ" secondAttribute="bottom" constant="14.5" id="kKK-dL-Qsm"/>
+                                <constraint firstItem="aUf-ds-3XH" firstAttribute="top" secondItem="Tfb-np-LtG" secondAttribute="top" constant="13" id="sEW-1t-wlb"/>
                                 <constraint firstItem="1aZ-Az-PiZ" firstAttribute="leading" secondItem="Tfb-np-LtG" secondAttribute="leading" constant="8" id="xnx-63-ZgF"/>
+                                <constraint firstAttribute="trailing" secondItem="aUf-ds-3XH" secondAttribute="trailing" constant="8" id="yZY-Js-e8x"/>
                             </constraints>
                         </view>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jmF-JA-VrE">

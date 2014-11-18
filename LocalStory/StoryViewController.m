@@ -84,6 +84,11 @@
     [UIView commitAnimations];
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSUInteger newLength = [self.descField.text length] + [string length] - range.length;
+    return (newLength >= 40) ? NO : YES;
+}
+
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25];
