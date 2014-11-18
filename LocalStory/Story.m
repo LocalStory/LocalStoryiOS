@@ -14,7 +14,6 @@
 {
   self = [super init];
   if (self) {
-    self.networkController = [NetworkController sharedNetworkController];
     self.storyDictionary = storyJSONDictionary;
     self.userId = (NSString *)storyJSONDictionary[@"userId"];
     self.story = (NSString *)storyJSONDictionary[@"story"];
@@ -23,7 +22,6 @@
     self.lng = (NSString *)storyJSONDictionary[@"lng"];
     self.latVal = [self.lat doubleValue];
     self.lngVal = [self.lng doubleValue];
-//    @property (nonatomic, strong) User *user;
   }
   return self;
 }
