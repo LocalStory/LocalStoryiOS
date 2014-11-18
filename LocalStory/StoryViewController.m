@@ -42,6 +42,7 @@
     [self.imageView addGestureRecognizer:imageTap];
     
     [self findLocationOnMap];
+    [self reverseGeoCode];
     
 }
 
@@ -66,10 +67,15 @@
     
     CLGeocoder *geoCode = [[CLGeocoder alloc] init];
     [geoCode reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
-        
+        if (error != nil) {
+            NSLog(@"%@", error);
+        } else {
+            CLPlacemark * p = [[CLPlacemark alloc] initWithPlacemark:placemarks[0]];
+            NSLog(@"%@", p);
+            self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", p.subAdministrativeArea, p.subLocality];
+        }
     }];
 }
-
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
