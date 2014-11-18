@@ -297,6 +297,7 @@
 				438564691A19483100CE9413 /* NetworkController.m in Sources */,
 				436B308E1A1A80AE001AD904 /* Location.m in Sources */,
 				4365772C1A1AD55600335FA4 /* SearchArea.m in Sources */,
+				16C6AE711A1A996200BB21E1 /* HomeViewController.m in Sources */,
 				16E08FB01A16C36800579486 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
