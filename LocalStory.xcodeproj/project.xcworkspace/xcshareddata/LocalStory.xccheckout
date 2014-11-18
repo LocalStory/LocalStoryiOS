@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>AA54F36F-3CC6-4A1C-AEC9-34FFD7F64A55</string>
+	<string>B805F9C5-0907-47A4-AF17-E07912D3C600</string>
 	<key>IDESourceControlProjectName</key>
 	<string>LocalStory</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>465CD9D8A23473D094B2DDD7A87FCA270F7A23CB</key>
-		<string>https://github.com/LocalStory/LocalStoryiOS.git</string>
+		<string>github.com:LocalStory/LocalStoryiOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>LocalStory.xcodeproj</string>
@@ -21,7 +21,7 @@
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/LocalStory/LocalStoryiOS.git</string>
+	<string>github.com:LocalStory/LocalStoryiOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>465CD9D8A23473D094B2DDD7A87FCA270F7A23CB</string>
 			<key>IDESourceControlWCCName</key>
-			<string>LocalStoryiOS</string>
+			<string>LocalStory</string>
 		</dict>
 	</array>
 </dict>

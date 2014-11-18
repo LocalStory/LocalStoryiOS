@@ -50,6 +50,7 @@
 
 - (IBAction)addNewStory:(id)sender {
   //TODO: Instantiate the StoryVC with current location data.
+  CGPoint* location = (__bridge CGPoint *)(self.locationManager.location);
 }
 
 - (void) statusSwitcher {
