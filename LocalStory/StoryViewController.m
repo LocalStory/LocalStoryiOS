@@ -111,6 +111,7 @@
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+
     self.imageView.image = info[UIImagePickerControllerEditedImage];
     [self dismissViewControllerAnimated:true completion:nil];
 }
