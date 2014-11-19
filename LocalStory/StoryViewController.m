@@ -175,8 +175,12 @@
     [self.descTextView resignFirstResponder];
 }
 
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
 - (IBAction)done:(id)sender {
-    //Send to Sever
+    //Network call to Sever
     NSLog(@"Done");
     NSLog(@"%@", self.titleField.text);
     NSLog(@"%@", self.descTextView.text);

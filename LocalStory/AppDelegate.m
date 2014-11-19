@@ -17,7 +17,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //Temporary onload - START
     self.loginVC = [[LogInViewController alloc] initWithNibName:@"LogInViewController" bundle:nil];
     self.window.rootViewController = self.loginVC;
   

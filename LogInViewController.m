@@ -7,6 +7,7 @@
 //
 
 #import "LogInViewController.h"
+#import "HomeViewController.h"
 
 @interface LogInViewController ()
 
@@ -43,7 +44,10 @@
 - (IBAction)signInButton:(id)sender {
     BOOL inputCorrect = [self checkInput];
     if (inputCorrect == YES) {
+        //DO NETWORK CALL HERE TO CREATE AN ACCOUNT
         
+        HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
+        [self presentViewController:homeVC animated:true completion:nil];
     }
 }
 

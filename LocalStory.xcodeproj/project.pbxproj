@@ -189,8 +189,8 @@
 		438564621A19478700CE9413 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				16E08FBA1A16C36800579486 /* Main.storyboard */,
 				16E08FBF1A16C36800579486 /* LaunchScreen.xib */,
+				16E08FBA1A16C36800579486 /* Main.storyboard */,
 				706428221A1D1D700023A4A6 /* LogInViewController.xib */,
 				706428271A1D30A50023A4A6 /* SignUpViewController.xib */,
 				701150B41A1A70D9003F4F99 /* StoryViewController.xib */,
