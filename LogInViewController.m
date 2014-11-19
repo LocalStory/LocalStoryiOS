@@ -16,22 +16,51 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.userNameField.delegate = self;
+    self.passwordField.delegate = self;
+    
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LoginBackground"]];
+    backgroundView.alpha = 0.5;
+    [self.view addSubview:backgroundView];
+    //[self.view insertSubview:backgroundView belowSubview:self.view];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    
 }
-*/
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (IBAction)signInButton:(id)sender {
+    [self checkInput];
+    
+}
+
+-(void)checkInput {
+    if ([self.userNameField.text isEqualToString:@""] && [self.passwordField.text  isEqualToString:@""]) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please create a new Username and Password" delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
+        [message show];
+    } else if ([self.userNameField.text isEqualToString:@""]) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please create a new Username" delegate:self cancelButtonTitle:@"Got IT" otherButtonTitles:nil];
+        [message show];
+    } else if ([self.passwordField.text isEqualToString:@""]) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please create a new password" delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
+        [message show];
+    }
+}
+
+- (IBAction)signUpButton:(id)sender {
+    
+}
+
 
 @end

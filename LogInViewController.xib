@@ -7,6 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LogInViewController">
             <connections>
+                <outlet property="contenView" destination="OjL-i7-UpM" id="qbP-Pa-nts"/>
+                <outlet property="passwordField" destination="ZQn-w7-stq" id="51B-8j-oNu"/>
+                <outlet property="userNameField" destination="6Q6-Lq-C6Y" id="430-4H-Ybg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -43,6 +46,9 @@
                             <state key="normal" title="SIGN IN">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="signInButton:" destination="-1" eventType="touchUpInside" id="GD9-MH-FoK"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="or" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHZ-jV-UT7">
                             <rect key="frame" x="294" y="448" width="11.5" height="14.5"/>
@@ -65,9 +71,11 @@
                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="signUpButton:" destination="-1" eventType="touchUpInside" id="Mej-nJ-WqK"/>
+                            </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="ZQn-w7-stq" firstAttribute="height" secondItem="xzW-xr-TKw" secondAttribute="height" id="0r3-Dp-vFq"/>
                         <constraint firstItem="ZQn-w7-stq" firstAttribute="width" secondItem="xzW-xr-TKw" secondAttribute="width" id="4aa-oZ-BSa"/>

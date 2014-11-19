@@ -28,7 +28,6 @@
 		701150B81A1A7B40003F4F99 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701150B71A1A7B40003F4F99 /* MapKit.framework */; };
 		706428231A1D1D700023A4A6 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 706428211A1D1D700023A4A6 /* LogInViewController.m */; };
 		706428241A1D1D700023A4A6 /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 706428221A1D1D700023A4A6 /* LogInViewController.xib */; };
-		706C9AEE1A1D1A4500FE9312 /* loginBackground.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 706C9AED1A1D1A4500FE9312 /* loginBackground.jpeg */; };
 		70DF14761A1C0FF2008436D6 /* ViewingStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DF14741A1C0FF2008436D6 /* ViewingStoryViewController.m */; };
 		70DF14771A1C0FF2008436D6 /* ViewingStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70DF14751A1C0FF2008436D6 /* ViewingStoryViewController.xib */; };
 /* End PBXBuildFile section */
@@ -77,7 +76,6 @@
 		706428201A1D1D700023A4A6 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ../LogInViewController.h; sourceTree = "<group>"; };
 		706428211A1D1D700023A4A6 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ../LogInViewController.m; sourceTree = "<group>"; };
 		706428221A1D1D700023A4A6 /* LogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LogInViewController.xib; path = ../LogInViewController.xib; sourceTree = "<group>"; };
-		706C9AED1A1D1A4500FE9312 /* loginBackground.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = loginBackground.jpeg; sourceTree = "<group>"; };
 		70DF14731A1C0FF2008436D6 /* ViewingStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewingStoryViewController.h; sourceTree = "<group>"; };
 		70DF14741A1C0FF2008436D6 /* ViewingStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewingStoryViewController.m; sourceTree = "<group>"; };
 		70DF14751A1C0FF2008436D6 /* ViewingStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewingStoryViewController.xib; sourceTree = "<group>"; };
@@ -189,7 +187,6 @@
 				706428221A1D1D700023A4A6 /* LogInViewController.xib */,
 				701150B41A1A70D9003F4F99 /* StoryViewController.xib */,
 				70DF14751A1C0FF2008436D6 /* ViewingStoryViewController.xib */,
-				706C9AED1A1D1A4500FE9312 /* loginBackground.jpeg */,
 				16E08FBD1A16C36800579486 /* Images.xcassets */,
 			);
 			name = Views;
@@ -299,7 +296,6 @@
 				163ADF681A1AAC8200611B75 /* add46 (512).png in Resources */,
 				16E08FBC1A16C36800579486 /* Main.storyboard in Resources */,
 				16E08FC11A16C36800579486 /* LaunchScreen.xib in Resources */,
-				706C9AEE1A1D1A4500FE9312 /* loginBackground.jpeg in Resources */,
 				706428241A1D1D700023A4A6 /* LogInViewController.xib in Resources */,
 				16E08FBE1A16C36800579486 /* Images.xcassets in Resources */,
 				163ADF6A1A1AAEE700611B75 /* addButton.pdf in Resources */,
