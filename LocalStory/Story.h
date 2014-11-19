@@ -3,7 +3,7 @@
 //  LocalStory
 //
 //  Created by Nathan Birkholz on 11/16/14.
-//  Copyright (c) 2014 Jacob Hawken. All rights reserved.
+//  Copyright (c) 2014 Jacob Hawken. All rights reserved
 //
 
 #import <UIKit/UIKit.h>
@@ -19,6 +19,8 @@
 @property (nonatomic, strong) NSString *lng;
 @property (nonatomic) double latVal;
 @property (nonatomic) double lngVal;
+
+- (instancetype)init:(NSDictionary *)storyJSONDictionary;
 
 + (NSArray *)parseJsonIntoStories:(NSData *)rawJSONData;
 

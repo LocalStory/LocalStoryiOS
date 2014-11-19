@@ -28,26 +28,27 @@
 
 + (NSArray *)parseJsonIntoStories:(NSData *)rawJSONData {
   NSError *error;
-  NSLog(@"Error is: %@", error.localizedDescription);
 
-  NSDictionary *topLevelObjectFromJSON = [NSJSONSerialization JSONObjectWithData:rawJSONData options:NSJSONReadingAllowFragments error:&error];
+  NSDictionary *topLevelItemFromJSON = [NSJSONSerialization JSONObjectWithData:rawJSONData options:NSJSONReadingAllowFragments error:&error];
+          NSLog(@"Error is: %@", error.localizedDescription);
 
-  if ([topLevelObjectFromJSON[@"items"] isKindOfClass: [NSArray class]]) {
-    NSArray *arrayOfStoryObjectsFromJSON = (NSArray *)topLevelObjectFromJSON[@"items"];
+  if ([topLevelItemFromJSON isKindOfClass: [NSArray class]]) {
+          NSLog(@"Found object as array");
+    NSArray *arrayOfStoryObjectsFromJSON = (NSArray *)topLevelItemFromJSON;
     NSMutableArray *storiesParsed = [[NSMutableArray alloc]init];
 
     for (NSDictionary *storyJSONDictionary in arrayOfStoryObjectsFromJSON) {
       Story *storyNew = [[Story alloc] init:storyJSONDictionary];
+          NSLog(@"The story title is %@", storyNew.title);
       [storiesParsed addObject:storyNew];
+          NSLog(@"Count is %lu", (unsigned long)storiesParsed.count);
     }
     return storiesParsed;
-
   } else { // Fail case ifJSON sturcture is not as expected {items key:[array of Stories]}
-    NSLog(@"FAIL: JSON Object item at key 'items' is not Array. Debug now.");
+          NSLog(@"FAIL: JSON Object item at key 'body' is not Array. Debug now.");
     NSArray *failArray = [[NSArray alloc] initWithObjects:@"FAIL CASE", @"FAIL CASE", @"FAIL CASE", nil];
     return failArray;
   }
-
 }
 
 @end
