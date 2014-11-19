@@ -71,8 +71,10 @@
 }
 
 - (IBAction)addNewStory:(id)sender {
-  //TODO: Instantiate the StoryVC with current location data.
-  CGPoint* location = (__bridge CGPoint *)(self.locationManager.location);
+  StoryViewController *storyVC = [[StoryViewController alloc] initWithNibName:@"StoryViewController" bundle:nil];
+  storyVC.lat = self.lat;
+  storyVC.lon = self.lon;
+  [self presentViewController:storyVC animated:true completion:nil];
 }
 
 - (void) statusSwitcher {
