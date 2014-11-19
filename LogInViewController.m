@@ -23,10 +23,8 @@
     self.passwordField.delegate = self;
     
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LoginBackground"]];
-    backgroundView.alpha = 0.5;
-    [self.view addSubview:backgroundView];
-    //[self.view insertSubview:backgroundView belowSubview:self.view];
-    
+    backgroundView.alpha = 0.8;
+    [self.view insertSubview:backgroundView atIndex:0];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {

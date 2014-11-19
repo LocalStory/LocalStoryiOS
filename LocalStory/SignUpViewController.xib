@@ -8,6 +8,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController">
             <connections>
                 <outlet property="confirmPasswordField" destination="kgx-2H-I9j" id="jMj-UQ-AyL"/>
+                <outlet property="contentView" destination="a7x-ww-r8u" id="mqH-As-x7s"/>
+                <outlet property="navigationBar" destination="6cM-mb-lim" id="W5s-Q1-NaV"/>
                 <outlet property="passwordField" destination="4uC-qE-plU" id="peP-hP-tJx"/>
                 <outlet property="userNameField" destination="JR2-Pj-gYx" id="hIS-lG-cMl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -18,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7x-ww-r8u">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7x-ww-r8u" userLabel="Content View">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
                         <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cM-mb-lim">

@@ -20,6 +20,12 @@
     self.userNameField.delegate = self;
     self.passwordField.delegate = self;
     self.confirmPasswordField.delegate = self;
+    
+    self.contentView.backgroundColor = [UIColor colorWithRed:0.878 green:0.878 blue:0.878 alpha:1];
+    
+    [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    self.navigationBar.shadowImage = [UIImage new];
+    self.navigationBar.translucent = YES;
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
