@@ -10,7 +10,6 @@
 
 @interface ViewingStoryViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic) IBOutlet UINavigationItem *titleButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (strong, nonatomic) IBOutlet UILabel *descLabel;
 
