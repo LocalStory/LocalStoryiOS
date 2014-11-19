@@ -16,6 +16,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.loginVC = [[LogInViewController alloc] initWithNibName:@"LogInViewController" bundle:nil];
+    self.window.rootViewController = self.loginVC;
 
 
 

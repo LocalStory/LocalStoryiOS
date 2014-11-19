@@ -17,4 +17,6 @@
 @property (nonatomic, strong) NSString *lngMin;
 @property (nonatomic, strong) NSString *lngMax;
 
+- (instancetype)init:(MKCoordinateRegion)coordinateRegion;
+
 @end
