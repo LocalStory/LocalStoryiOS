@@ -20,6 +20,8 @@
 @property (nonatomic) double latVal;
 @property (nonatomic) double lngVal;
 
+- (instancetype)init:(NSDictionary *)storyJSONDictionary;
+
 + (NSArray *)parseJsonIntoStories:(NSData *)rawJSONData;
 
 @end

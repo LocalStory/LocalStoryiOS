@@ -16,6 +16,27 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+
+
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+  NSString *keyOne = @"hasLaunched";
+  BOOL valueFor = [defaults boolForKey:keyOne];
+
+  if (valueFor == YES) {
+    NSLog(@"There should be a JWT");
+  } else {
+    NSString *key = @"jwt";
+    NSString *token = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsb2NhbHN0b3J5Iiwic3ViIjoiNTQ2YmRkNTZlNmI4Y2UwMjAwZDRhYzJkIn0.LGsDd4Ese7qe2f9zeoVDove892_dqs5jITqrAY0CMgg";
+    [defaults setBool:YES forKey:keyOne];
+    [defaults setObject:token forKey:key];
+    [defaults synchronize];
+  }
+
+
+
+
   
   return YES;
 }
