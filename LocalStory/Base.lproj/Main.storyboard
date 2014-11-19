@@ -27,7 +27,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hbe-yA-SoC">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
-                            <button alpha="0.90000000000000002" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUP-BV-nxJ">
+                            <button alpha="0.90000000000000002" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUP-BV-nxJ" userLabel="Add Story Button">
                                 <rect key="frame" x="524" y="524" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -42,12 +42,27 @@
                                     <action selector="addNewStory:" destination="HJ5-6M-UsA" eventType="touchUpInside" id="Zu8-Mc-L8q"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hnp-AC-w4q" userLabel="Location Button">
+                                <rect key="frame" x="16" y="524" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Hnp-AC-w4q" secondAttribute="height" multiplier="1:1" id="OOY-ZZ-8pb"/>
+                                </constraints>
+                                <state key="normal" title="" image="gps3">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="centerOnUser:" destination="HJ5-6M-UsA" eventType="touchUpInside" id="Nzj-uS-npT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Hnp-AC-w4q" firstAttribute="centerY" secondItem="CUP-BV-nxJ" secondAttribute="centerY" id="0Kj-wO-2Pd"/>
                             <constraint firstItem="CUP-BV-nxJ" firstAttribute="trailing" secondItem="J3V-A6-QiH" secondAttribute="trailingMargin" id="0x9-R3-xI1"/>
                             <constraint firstItem="hbe-yA-SoC" firstAttribute="top" secondItem="J3V-A6-QiH" secondAttribute="top" id="CsC-ln-gwa"/>
+                            <constraint firstItem="Hnp-AC-w4q" firstAttribute="height" secondItem="CUP-BV-nxJ" secondAttribute="height" id="OIb-sJ-Owj"/>
                             <constraint firstItem="b0b-RC-8Sa" firstAttribute="top" secondItem="hbe-yA-SoC" secondAttribute="bottom" id="V5G-i8-JI5"/>
+                            <constraint firstItem="Hnp-AC-w4q" firstAttribute="leading" secondItem="J3V-A6-QiH" secondAttribute="leadingMargin" id="akD-4b-oYD"/>
                             <constraint firstItem="CUP-BV-nxJ" firstAttribute="height" secondItem="hbe-yA-SoC" secondAttribute="height" multiplier="0.1" id="d2l-Yl-du9"/>
                             <constraint firstAttribute="trailing" secondItem="hbe-yA-SoC" secondAttribute="trailing" id="qkg-d0-0sh"/>
                             <constraint firstItem="hbe-yA-SoC" firstAttribute="leading" secondItem="J3V-A6-QiH" secondAttribute="leading" id="tHY-iK-djj"/>
@@ -66,5 +81,6 @@
     </scenes>
     <resources>
         <image name="add46 (512)" width="256" height="256"/>
+        <image name="gps3" width="512" height="512"/>
     </resources>
 </document>

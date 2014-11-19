@@ -106,29 +106,10 @@
 
 #pragma mark - other functions
 
-- (void) fetchStoriesForRegion {
-  SearchArea* searchArea = [[SearchArea alloc] init: self.homeMapView.region];
-  [self.networkController getStoriesInView:searchArea completionHandler:^(NSArray *stories) {
-    NSMutableArray* tempArray = [[NSMutableArray alloc] initWithArray:stories];
-    self.stories = tempArray;
-  }];
-}
-
-- (void) storyAdded {
-  
-}
-
-- (IBAction)addNewStory:(id)sender {
-  StoryViewController *storyVC = [[StoryViewController alloc] initWithNibName:@"StoryViewController" bundle:nil];
-  storyVC.lat = self.lat;
-  storyVC.lon = self.lon;
-  [self presentViewController:storyVC animated:true completion:nil];
-}
-
 - (void) statusSwitcher {
   switch ([CLLocationManager authorizationStatus]) {
     case kCLAuthorizationStatusAuthorizedAlways:
-          NSLog(@"Authorized");
+      NSLog(@"Authorized");
       [self.locationManager startUpdatingLocation];
       [self.homeMapView showsUserLocation];
       self.homeMapView.centerCoordinate = self.homeMapView.userLocation.coordinate;
@@ -143,6 +124,29 @@
     default:
       break;
   }
+}
+
+- (void) fetchStoriesForRegion {
+  SearchArea* searchArea = [[SearchArea alloc] init: self.homeMapView.region];
+  [self.networkController getStoriesInView:searchArea completionHandler:^(NSArray *stories) {
+    NSMutableArray* tempArray = [[NSMutableArray alloc] initWithArray:stories];
+    self.stories = tempArray;
+  }];
+}
+
+//- (void) storyAdded {
+//  
+//}
+
+- (IBAction)addNewStory:(id)sender {
+  StoryViewController *storyVC = [[StoryViewController alloc] initWithNibName:@"StoryViewController" bundle:nil];
+  storyVC.lat = self.lat;
+  storyVC.lon = self.lon;
+  [self presentViewController:storyVC animated:true completion:nil];
+}
+
+- (IBAction)centerOnUser:(id)sender {
+  [self.homeMapView setCenterCoordinate:self.homeMapView.userLocation.coordinate animated:true];
 }
 
 #pragma mark keeping this thing around just to be safe
