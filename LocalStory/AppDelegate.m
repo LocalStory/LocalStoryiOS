@@ -28,7 +28,7 @@
   BOOL valueFor = [defaults boolForKey:keyOne];
 
   if (valueFor == YES) {
-    NSLog(@"There should be a JWT");
+    NSLog(@"Has Launched is TRUE");
   } else {
     NSString *key = @"jwt";
     NSString *token = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsb2NhbHN0b3J5Iiwic3ViIjoiNTQ2YmRkNTZlNmI4Y2UwMjAwZDRhYzJkIn0.LGsDd4Ese7qe2f9zeoVDove892_dqs5jITqrAY0CMgg";

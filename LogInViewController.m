@@ -8,8 +8,12 @@
 
 #import "LogInViewController.h"
 #import "HomeViewController.h"
+#import "SignUpViewController.h"
+#import "NetworkController.h"
 
 @interface LogInViewController ()
+
+@property (nonatomic,weak) NetworkController *networkController;
 
 @end
 
@@ -18,14 +22,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.networkController = [NetworkController sharedNetworkController];
+    
     self.userNameField.delegate = self;
     self.passwordField.delegate = self;
     
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LoginBackground"]];
-    backgroundView.alpha = 0.5;
-    [self.view addSubview:backgroundView];
-    //[self.view insertSubview:backgroundView belowSubview:self.view];
-    
+    backgroundView.alpha = 0.8;
+    [self.view insertSubview:backgroundView atIndex:0];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -46,6 +50,8 @@
     if (inputCorrect == YES) {
         //DO NETWORK CALL HERE TO CREATE AN ACCOUNT
         
+        
+        
         HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
         [self presentViewController:homeVC animated:true completion:nil];
     }
@@ -53,15 +59,15 @@
 
 -(BOOL)checkInput {
     if ([self.userNameField.text isEqualToString:@""] && [self.passwordField.text  isEqualToString:@""]) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please create a new Username and Password" delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please enter your username and password" delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
         [message show];
         return NO;
     } else if ([self.userNameField.text isEqualToString:@""]) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please create a new Username" delegate:self cancelButtonTitle:@"Got IT" otherButtonTitles:nil];
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please enter you username" delegate:self cancelButtonTitle:@"Got IT" otherButtonTitles:nil];
         [message show];
         return NO;
     } else if ([self.passwordField.text isEqualToString:@""]) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please create a new password" delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please enter your password" delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
         [message show];
         return NO;
     }
@@ -69,7 +75,8 @@
 }
 
 - (IBAction)signUpButton:(id)sender {
-    
+    SignUpViewController *loginVC = [[SignUpViewController alloc] initWithNibName:@"SignUpViewController" bundle:nil];
+    [self presentViewController:loginVC animated:true completion:nil];
 }
 
 
