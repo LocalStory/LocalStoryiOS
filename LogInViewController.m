@@ -54,15 +54,15 @@
 
 -(BOOL)checkInput {
     if ([self.userNameField.text isEqualToString:@""] && [self.passwordField.text  isEqualToString:@""]) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please create a new Username and Password" delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please enter your username and password" delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
         [message show];
         return NO;
     } else if ([self.userNameField.text isEqualToString:@""]) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please create a new Username" delegate:self cancelButtonTitle:@"Got IT" otherButtonTitles:nil];
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please enter you username" delegate:self cancelButtonTitle:@"Got IT" otherButtonTitles:nil];
         [message show];
         return NO;
     } else if ([self.passwordField.text isEqualToString:@""]) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please create a new password" delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please enter your password" delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
         [message show];
         return NO;
     }
