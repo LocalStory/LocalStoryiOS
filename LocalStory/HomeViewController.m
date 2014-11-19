@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSOperationQueue* operationQueue;
 @property (nonatomic) BOOL isFirstLaunch;
 @property (nonatomic, weak) NetworkController* networkController;
+@property (nonatomic, strong) NSMutableArray* stories;
 
 @end
 
@@ -49,8 +50,8 @@
   self.homeMapView.showsUserLocation = true;
 }
 
-- (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+- (void)viewWillAppear:(BOOL)animated {
+  [self fetchStoriesForRegion];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -105,8 +106,12 @@
 
 #pragma mark - other functions
 
-- (void) fetchStoriesForSpan {
+- (void) fetchStoriesForRegion {
   SearchArea* searchArea = [[SearchArea alloc] init: self.homeMapView.region];
+  [self.networkController getStoriesInView:searchArea completionHandler:^(NSArray *stories) {
+    NSMutableArray* tempArray = [[NSMutableArray alloc] initWithArray:stories];
+    self.stories = tempArray;
+  }];
 }
 
 - (void) storyAdded {
