@@ -8,6 +8,7 @@
 
 #import "Story.h"
 #import "Location.h"
+#import "SearchArea.h"
 #import <UIKit/UIKit.h>
 
 @interface NetworkController : NSObject{
@@ -27,5 +28,11 @@
 + (id)sharedNetworkController;
 
 - (void)saveTokenFromData:(NSData *)data;
+- (NSString *) checkForAuthToken;
+- (void) getDataFromURL:(NSURL *)urlForGet withDictionary:(NSDictionary *)dictionaryForHeader completionHandler:(void (^)(NSData *dataFrom, NSError *networkError))completionHandler;
+- (void) getStoriesInView:(SearchArea *)searchAreaFor completionHandler:(void (^)(NSArray *stories))completionHandler ;
+- (void) getStoriesForUserWithCompletionHandler:(void (^)(NSArray *stories))completionHandler;
+
+
 
 @end

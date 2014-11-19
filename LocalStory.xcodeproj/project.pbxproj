@@ -22,6 +22,7 @@
 		4365772C1A1AD55600335FA4 /* SearchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 4365772B1A1AD55600335FA4 /* SearchArea.m */; };
 		438564661A1947F100CE9413 /* Story.m in Sources */ = {isa = PBXBuildFile; fileRef = 438564651A1947F100CE9413 /* Story.m */; };
 		438564691A19483100CE9413 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438564681A19483100CE9413 /* NetworkController.m */; };
+		43C2211D1A1C1F7300B0A81E /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43C2211C1A1C1F7300B0A81E /* avatar.jpg */; };
 		701150B51A1A70D9003F4F99 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 701150B31A1A70D9003F4F99 /* StoryViewController.m */; };
 		701150B61A1A70D9003F4F99 /* StoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 701150B41A1A70D9003F4F99 /* StoryViewController.xib */; };
 		701150B81A1A7B40003F4F99 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701150B71A1A7B40003F4F99 /* MapKit.framework */; };
@@ -64,6 +65,7 @@
 		438564651A1947F100CE9413 /* Story.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Story.m; sourceTree = "<group>"; };
 		438564671A19483100CE9413 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
 		438564681A19483100CE9413 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
+		43C2211C1A1C1F7300B0A81E /* avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = avatar.jpg; sourceTree = "<group>"; };
 		701150B21A1A70D9003F4F99 /* StoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
 		701150B31A1A70D9003F4F99 /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
 		701150B41A1A70D9003F4F99 /* StoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryViewController.xib; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		16E08FAD1A16C36800579486 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				43C2211C1A1C1F7300B0A81E /* avatar.jpg */,
 				16E08FAE1A16C36800579486 /* Info.plist */,
 				16E08FAF1A16C36800579486 /* main.m */,
 				16C6AE751A1A9B1200BB21E1 /* typicons.ttf */,
@@ -279,6 +282,7 @@
 				16E08FBC1A16C36800579486 /* Main.storyboard in Resources */,
 				16E08FC11A16C36800579486 /* LaunchScreen.xib in Resources */,
 				16E08FBE1A16C36800579486 /* Images.xcassets in Resources */,
+				43C2211D1A1C1F7300B0A81E /* avatar.jpg in Resources */,
 				163ADF6A1A1AAEE700611B75 /* addButton.pdf in Resources */,
 				16C6AE761A1A9B1200BB21E1 /* typicons.ttf in Resources */,
 				163ADF661A1AAA2700611B75 /* add46.png in Resources */,
