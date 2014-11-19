@@ -26,6 +26,12 @@
 		701150B51A1A70D9003F4F99 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 701150B31A1A70D9003F4F99 /* StoryViewController.m */; };
 		701150B61A1A70D9003F4F99 /* StoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 701150B41A1A70D9003F4F99 /* StoryViewController.xib */; };
 		701150B81A1A7B40003F4F99 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701150B71A1A7B40003F4F99 /* MapKit.framework */; };
+		706428231A1D1D700023A4A6 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 706428211A1D1D700023A4A6 /* LogInViewController.m */; };
+		706428241A1D1D700023A4A6 /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 706428221A1D1D700023A4A6 /* LogInViewController.xib */; };
+		706428281A1D30A50023A4A6 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 706428261A1D30A50023A4A6 /* SignUpViewController.m */; };
+		706428291A1D30A50023A4A6 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 706428271A1D30A50023A4A6 /* SignUpViewController.xib */; };
+		70DF14761A1C0FF2008436D6 /* ViewingStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DF14741A1C0FF2008436D6 /* ViewingStoryViewController.m */; };
+		70DF14771A1C0FF2008436D6 /* ViewingStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70DF14751A1C0FF2008436D6 /* ViewingStoryViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +76,15 @@
 		701150B31A1A70D9003F4F99 /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
 		701150B41A1A70D9003F4F99 /* StoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryViewController.xib; sourceTree = "<group>"; };
 		701150B71A1A7B40003F4F99 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		706428201A1D1D700023A4A6 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ../LogInViewController.h; sourceTree = "<group>"; };
+		706428211A1D1D700023A4A6 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ../LogInViewController.m; sourceTree = "<group>"; };
+		706428221A1D1D700023A4A6 /* LogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LogInViewController.xib; path = ../LogInViewController.xib; sourceTree = "<group>"; };
+		706428251A1D30A50023A4A6 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		706428261A1D30A50023A4A6 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		706428271A1D30A50023A4A6 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		70DF14731A1C0FF2008436D6 /* ViewingStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewingStoryViewController.h; sourceTree = "<group>"; };
+		70DF14741A1C0FF2008436D6 /* ViewingStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewingStoryViewController.m; sourceTree = "<group>"; };
+		70DF14751A1C0FF2008436D6 /* ViewingStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewingStoryViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,8 +176,14 @@
 				438564681A19483100CE9413 /* NetworkController.m */,
 				16C6AE6E1A1A996200BB21E1 /* HomeViewController.h */,
 				16C6AE6F1A1A996200BB21E1 /* HomeViewController.m */,
+				706428201A1D1D700023A4A6 /* LogInViewController.h */,
+				706428211A1D1D700023A4A6 /* LogInViewController.m */,
+				706428251A1D30A50023A4A6 /* SignUpViewController.h */,
+				706428261A1D30A50023A4A6 /* SignUpViewController.m */,
 				701150B21A1A70D9003F4F99 /* StoryViewController.h */,
 				701150B31A1A70D9003F4F99 /* StoryViewController.m */,
+				70DF14731A1C0FF2008436D6 /* ViewingStoryViewController.h */,
+				70DF14741A1C0FF2008436D6 /* ViewingStoryViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -170,9 +191,12 @@
 		438564621A19478700CE9413 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				16E08FBA1A16C36800579486 /* Main.storyboard */,
 				16E08FBF1A16C36800579486 /* LaunchScreen.xib */,
+				16E08FBA1A16C36800579486 /* Main.storyboard */,
+				706428221A1D1D700023A4A6 /* LogInViewController.xib */,
+				706428271A1D30A50023A4A6 /* SignUpViewController.xib */,
 				701150B41A1A70D9003F4F99 /* StoryViewController.xib */,
+				70DF14751A1C0FF2008436D6 /* ViewingStoryViewController.xib */,
 				16E08FBD1A16C36800579486 /* Images.xcassets */,
 			);
 			name = Views;
@@ -277,10 +301,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70DF14771A1C0FF2008436D6 /* ViewingStoryViewController.xib in Resources */,
 				701150B61A1A70D9003F4F99 /* StoryViewController.xib in Resources */,
 				163ADF681A1AAC8200611B75 /* add46 (512).png in Resources */,
 				16E08FBC1A16C36800579486 /* Main.storyboard in Resources */,
 				16E08FC11A16C36800579486 /* LaunchScreen.xib in Resources */,
+				706428291A1D30A50023A4A6 /* SignUpViewController.xib in Resources */,
+				706428241A1D1D700023A4A6 /* LogInViewController.xib in Resources */,
 				16E08FBE1A16C36800579486 /* Images.xcassets in Resources */,
 				43C2211D1A1C1F7300B0A81E /* avatar.jpg in Resources */,
 				163ADF6A1A1AAEE700611B75 /* addButton.pdf in Resources */,
@@ -305,11 +332,14 @@
 			files = (
 				701150B51A1A70D9003F4F99 /* StoryViewController.m in Sources */,
 				16E08FB61A16C36800579486 /* LocalStory.xcdatamodeld in Sources */,
+				706428281A1D30A50023A4A6 /* SignUpViewController.m in Sources */,
 				16E08FB31A16C36800579486 /* AppDelegate.m in Sources */,
 				438564661A1947F100CE9413 /* Story.m in Sources */,
 				438564691A19483100CE9413 /* NetworkController.m in Sources */,
 				4365772C1A1AD55600335FA4 /* SearchArea.m in Sources */,
+				706428231A1D1D700023A4A6 /* LogInViewController.m in Sources */,
 				16C6AE711A1A996200BB21E1 /* HomeViewController.m in Sources */,
+				70DF14761A1C0FF2008436D6 /* ViewingStoryViewController.m in Sources */,
 				16E08FB01A16C36800579486 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

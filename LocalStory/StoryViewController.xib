@@ -32,7 +32,11 @@
                             <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                             <items>
                                 <navigationItem title="My Story" id="3WC-S8-rhz">
-                                    <barButtonItem key="leftBarButtonItem" title="Back" id="ufW-D0-4NE"/>
+                                    <barButtonItem key="leftBarButtonItem" title="Back" id="ufW-D0-4NE">
+                                        <connections>
+                                            <action selector="back:" destination="-1" id="igT-3K-ZSQ"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem key="rightBarButtonItem" title="Post" id="BCy-TZ-ajX">
                                         <connections>
                                             <action selector="done:" destination="-1" id="pLT-Rg-DdS"/>
