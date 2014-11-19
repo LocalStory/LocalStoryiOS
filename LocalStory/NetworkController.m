@@ -420,13 +420,14 @@
 
 
 - (void) postAddNewUser:(NSString *)emailForUser withPassword:(NSString *)passwordForUser withConfirmedPassword:(NSString *)passwordConfirmForUser {
-
-  NSURL *url = [NSURL URLWithString:@"http://example.com/form/"]; // <<<< Replace
+    NSString *urlString = self.baseURL;
+    urlString = [urlString stringByAppendingString:@"/api/users"];
+  NSURL *url = [NSURL URLWithString:urlString]; // <<<< Replace
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
   [request setHTTPMethod:@"POST"];
 
-  NSString *boundary = [self generateBoundaryString];
-  NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+  NSString *boundary = @"--"; //[self generateBoundaryString];
+  NSString *contentType = [NSString stringWithFormat:@"multipart/form-data boundary=%@", boundary];
   [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
 
   NSMutableData *body = [NSMutableData data];
@@ -435,20 +436,29 @@
   // pattern is boundary string then form data with the key as the value of name
   // and the value at the end of the series
   // need to make this consistent
-//  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"email\"\r\n\r\n%@", emailForUser] dataUsingEncoding:NSUTF8StringEncoding]];
-//  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"password\"\r\n\r\n%@", passwordForUser] dataUsingEncoding:NSUTF8StringEncoding]];
-//  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"passwordConfirm\"\r\n\r\n%@", passwordConfirmForUser] dataUsingEncoding:NSUTF8StringEncoding]];
-//  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
 
   [request setHTTPBody:body];
 
   NSURLResponse *response;
   NSError *error;
+    
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSError *error1;
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error1];
+    if (returnData) {
+        NSString *json=[[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        NSLog(@"Resp string: %@",json);
+    } else {
+        NSLog(@"Error: %@", error1);
+    }
 
-  [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
   NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     if (error) {

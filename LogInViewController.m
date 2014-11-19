@@ -9,8 +9,11 @@
 #import "LogInViewController.h"
 #import "HomeViewController.h"
 #import "SignUpViewController.h"
+#import "NetworkController.h"
 
 @interface LogInViewController ()
+
+@property (nonatomic,weak) NetworkController *networkController;
 
 @end
 
@@ -18,6 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.networkController = [NetworkController sharedNetworkController];
     
     self.userNameField.delegate = self;
     self.passwordField.delegate = self;
@@ -44,6 +49,8 @@
     BOOL inputCorrect = [self checkInput];
     if (inputCorrect == YES) {
         //DO NETWORK CALL HERE TO CREATE AN ACCOUNT
+        
+        
         
         HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
         [self presentViewController:homeVC animated:true completion:nil];

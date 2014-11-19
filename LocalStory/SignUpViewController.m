@@ -7,8 +7,11 @@
 //
 
 #import "SignUpViewController.h"
+#import "NetworkController.h"
 
 @interface SignUpViewController () <UITextFieldDelegate>
+
+@property (nonatomic,weak) NetworkController *networkController;
 
 @end
 
@@ -16,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.networkController = [NetworkController sharedNetworkController];
     
     self.userNameField.delegate = self;
     self.passwordField.delegate = self;
@@ -46,6 +51,7 @@
     if (inputCorrect == YES) {
         //DO NETWORK CALL HERE TO CREATE AN ACCOUNT
         
+        [self.networkController postAddNewUser:self.userNameField.text withPassword:self.passwordField.text withConfirmedPassword:self.confirmPasswordField.text];
     }
 }
 
