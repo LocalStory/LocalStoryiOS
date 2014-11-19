@@ -15,7 +15,7 @@
         <!--Home View Controller-->
         <scene sceneID="ila-L3-fQQ">
             <objects>
-                <viewController id="HJ5-6M-UsA" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="HJ5-6M-UsA" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yHP-ja-bOf"/>
                         <viewControllerLayoutGuide type="bottom" id="b0b-RC-8Sa"/>
