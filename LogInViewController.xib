@@ -103,8 +103,8 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="kMc-53-Qu3"/>
                             <exclude reference="NPK-zU-O4q"/>
+                            <exclude reference="kMc-53-Qu3"/>
                         </mask>
                     </variation>
                 </view>

@@ -8,6 +8,7 @@
 
 #import "LogInViewController.h"
 #import "HomeViewController.h"
+#import "SignUpViewController.h"
 
 @interface LogInViewController ()
 
@@ -69,7 +70,8 @@
 }
 
 - (IBAction)signUpButton:(id)sender {
-    
+    SignUpViewController *loginVC = [[SignUpViewController alloc] initWithNibName:@"SignUpViewController" bundle:nil];
+    [self presentViewController:loginVC animated:true completion:nil];
 }
 
 
