@@ -11,15 +11,20 @@
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
 #import "StoryViewController.h"
+#import "NetworkController.h"
+#import "SearchArea.h"
 
 @interface HomeViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
-@property CLLocationManager* locationManager;
-@property NSFetchedResultsController* fetchedResultsController;
-@property NSManagedObjectContext* managedObjectContext;
-@property AppDelegate* appDelegate;
-@property CLLocationDegrees lat;
-@property CLLocationDegrees lon;
+@property (nonatomic, strong) CLLocationManager* locationManager;
+@property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
+@property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic, strong) AppDelegate* appDelegate;
+@property (nonatomic) CLLocationDegrees lat;
+@property (nonatomic) CLLocationDegrees lon;
+@property (nonatomic, strong) NSOperationQueue* operationQueue;
+@property (nonatomic) BOOL isFirstLaunch;
+@property (nonatomic, weak) NetworkController* networkController;
 
 @end
 
@@ -30,18 +35,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    self.homeMapView.delegate = self;
-    
-    self.appDelegate = [[UIApplication sharedApplication] delegate];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(storyAdded) name: @"STORY_ADDED" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createStory) name:@"CREATE_STORY" object:nil];
+  self.locationManager = [[CLLocationManager alloc] init];
+  self.locationManager.delegate = self;
+  self.homeMapView.delegate = self;
+  self.networkController = [NetworkController sharedNetworkController];
+  self.isFirstLaunch = YES;
+  
+  self.appDelegate = [[UIApplication sharedApplication] delegate];
 
-    [self.locationManager requestWhenInUseAuthorization];
-    [self statusSwitcher];
-    [self.locationManager startUpdatingLocation];
-    self.homeMapView.showsUserLocation = true;
+  [self.locationManager requestWhenInUseAuthorization];
+  [self statusSwitcher];
+  [self.locationManager startUpdatingLocation];
+  self.homeMapView.showsUserLocation = true;
 }
 
 - (void)dealloc {
@@ -56,18 +61,56 @@
     }
 }
 
+#pragma mark - mapview delegate methods
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+  if ([annotation isKindOfClass:[MKUserLocation class]]) {
+    return nil;
+  }
+  else {
+    MKPinAnnotationView* annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"STORY"];
+    annotationView.animatesDrop = true;
+    annotationView.canShowCallout = true;
+    //Customize annotation.
+    
+    return annotationView;
+  }
+}
+
+-(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+  for (MKPinAnnotationView* annotationView in views) {
+    MKPointAnnotation* thisView = annotationView.annotation;
+    if ([thisView isKindOfClass:[MKUserLocation class]]) {
+      [self.operationQueue addOperationWithBlock:^{
+        [NSThread sleepForTimeInterval:0.4];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+          [mapView selectAnnotation:thisView animated:true];
+        }];
+      }];
+    }  
+  }
+}
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+  if (self.isFirstLaunch) {
+    CLLocationDegrees startLat = self.homeMapView.region.span.latitudeDelta / 3000;
+    CLLocationDegrees startLong = self.homeMapView.region.span.longitudeDelta / 3000;
+    MKCoordinateSpan startSpan = MKCoordinateSpanMake(startLat, startLong);
+    MKCoordinateRegion startRegion = MKCoordinateRegionMake(self.homeMapView.userLocation.coordinate, startSpan);
+    [self.homeMapView setRegion: startRegion animated:true];
+    
+    self.isFirstLaunch = NO;
+  }
+}
+
 #pragma mark - other functions
 
 - (void) fetchStoriesForSpan {
-  //TODO: NetworkController call to fetch Stories, based on current map span.
+  SearchArea* searchArea = [[SearchArea alloc] init: self.homeMapView.region];
 }
 
 - (void) storyAdded {
-  //TODO: Add new annotation to map.
-}
-
--(void)createStory {
-    
+  
 }
 
 - (IBAction)addNewStory:(id)sender {
