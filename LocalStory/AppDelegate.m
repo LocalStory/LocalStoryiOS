@@ -17,8 +17,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    //If no token, show login screen.
     self.loginVC = [[LogInViewController alloc] initWithNibName:@"LogInViewController" bundle:nil];
     self.window.rootViewController = self.loginVC;
+    //else if have token, go directly to HomeViewController.
 
 
 

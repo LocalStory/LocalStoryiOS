@@ -51,9 +51,12 @@
         //DO NETWORK CALL HERE TO CREATE AN ACCOUNT
         
         
-        
+        //AFTER ACCOUNT, ROUTE TO HOMEVC
         HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
-        [self presentViewController:homeVC animated:true completion:nil];
+        [self presentViewController:homeVC animated:true completion:^{
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Welcome! Discover Stories around you." message:nil delegate:self cancelButtonTitle:@"Got It!" otherButtonTitles:nil];
+            [message show];
+        }];
     }
 }
 
@@ -72,6 +75,15 @@
         return NO;
     }
     return YES;
+}
+
+- (IBAction)justBrowseButton:(id)sender {
+    HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
+    
+    [self presentViewController:homeVC animated:true completion:^{
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Just Browsing ..." message:@"Be sure to sign up to post your stories!" delegate:self cancelButtonTitle:@"Got It!" otherButtonTitles:nil];
+        [message show];
+    }];
 }
 
 - (IBAction)signUpButton:(id)sender {
