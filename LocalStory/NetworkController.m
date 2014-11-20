@@ -60,9 +60,6 @@
   return self;
 }
 
-
-
-
 // ########################################
 #pragma mark AUTH Flow
 // ########################################
@@ -97,11 +94,9 @@
   }];
 }
 
-
 // ########################################
 #pragma mark Data Methods
 // ########################################
-
 
 - (void) getDataFromURL:(NSURL *)urlForGet withDictionary:(NSDictionary *)dictionaryForHeader completionHandler:(void (^)(NSData *dataFrom, NSError *networkError))completionHandler {
         NSLog(@"getDataFromURL");
@@ -142,11 +137,11 @@
           break;
         }
         case 403:
-          NSLog(@"NOT AUTHORIZED");
+          NSLog(@"Server code 403");
           break;
 
         case 500:
-          NSLog(@"SERVER FAILURE");
+          NSLog(@"Server code 500");
           break;
           
         default: {
@@ -185,18 +180,6 @@
     NSLog(@"Token found");
   }
 
-// -------------------------------------------------------------
-// -------------------------------------------------------------
-//             TEMPORARY TOKEN ASSIGNMENT
-// -------------------------------------------------------------
-// -------------------------------------------------------------
-    checkToken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsb2NhbHN0b3J5Iiwic3ViIjoiNTQ2ZDBjYmFhMjA4NzAwMjAwMmU1ZTkxIn0.dpafysYc_3FqrcH7PBJEOaObvkQYL-eWrtNwCTAVgXQ";
-// -------------------------------------------------------------
-// -------------------------------------------------------------
-//            END TEMPORARY TOKEN ASSIGNMENT
-// -------------------------------------------------------------
-// -------------------------------------------------------------
-
   NSDictionary *headersDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:checkToken, @"jwt", searchAreaFor.latMax, @"latMax", searchAreaFor.latMin, @"latMin", searchAreaFor.lngMax, @"lngMax", searchAreaFor.lngMin, @"lngMin",  nil];
 
   NSString *stringForGet = self.baseURL;
@@ -226,18 +209,6 @@
     NSLog(@"Token found");
   }
 
-// -------------------------------------------------------------
-// -------------------------------------------------------------
-//             TEMPORARY TOKEN ASSIGNMENT
-// -------------------------------------------------------------
-// -------------------------------------------------------------
-    checkToken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsb2NhbHN0b3J5Iiwic3ViIjoiNTQ2ZDBjYmFhMjA4NzAwMjAwMmU1ZTkxIn0.dpafysYc_3FqrcH7PBJEOaObvkQYL-eWrtNwCTAVgXQ";
-// -------------------------------------------------------------
-// -------------------------------------------------------------
-//            END TEMPORARY TOKEN ASSIGNMENT
-// -------------------------------------------------------------
-// -------------------------------------------------------------
-
   NSDictionary *headersDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:checkToken, @"jwt", nil];
 
   NSString *stringForGet = self.baseURL;
@@ -259,70 +230,38 @@
 }
 
 
+-(void) getUIImageForStory:(Story *)selectedStory withCompletionHandler:(void (^)(UIImage *imageForStory))completionHandler {
+
+  NSString *checkToken = self.checkForAuthToken;
+  if ([checkToken isEqual: @"none"]) {
+    NSLog(@"NO TOKEN FOUND");
+  } else {
+    NSLog(@"Token found");
+  }
+
+  NSDictionary *headersDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:checkToken, @"jwt", nil];
+
+  NSString *stringForGet = [NSString stringWithFormat:@"http://dry-atoll-3756.herokuapp.com/api/stories/single/image/%@", selectedStory.underscoreid];
+
+  NSLog(@"getStoriesInView url is %@", [stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+  NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
+  [self getDataFromURL:urlForGet withDictionary:headersDictionary completionHandler:^(NSData *dataFrom, NSError *networkError){
+    UIImage *imageFrom = [UIImage imageWithData:dataFrom];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+      completionHandler(imageFrom);
+
+    }];
+  }];
+}
+
+
 // ########################################
 #pragma mark POST Methods
 // ########################################
 
-- (void) postNewStory:(Story *)storyToPost {
-  NSURL *callbackURL = [[NSURL alloc] init]; // will get callbackURL as a parameter eventually
-  NSString *query = callbackURL.query;
-
-
-  NSArray *components = [query componentsSeparatedByString:@"code="];
-  NSString *code = [components lastObject];
-  NSString *urlQuery = @"CLIENTID element of query";
-  urlQuery = [urlQuery stringByAppendingString:(NSString *)@"&"];
-  urlQuery = [urlQuery stringByAppendingString:(NSString *)@"CLIENTSECRET element goes here"];
-  urlQuery = [urlQuery stringByAppendingString:(NSString *)@"&"];
-  urlQuery = [urlQuery stringByAppendingString:code];
-  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"POST URL goes here"]];
-  [request setHTTPMethod:@"POST"];
-
-  NSString *boundary = @"0xKhTmLbOuNdArY";
-  NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-  [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
-
-  NSData *postdata = [urlQuery dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-  [request addValue:@"TOKEN GOES HERE" forHTTPHeaderField:@"JWT"];
-  [request setHTTPBody:postdata];
-  request.HTTPBody = postdata;
-
-
-
-  NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-    if (error) {
-      NSLog(@"Error is: %@", error.localizedDescription);
-    } else if (response) {
-      if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-        switch (httpResponse.statusCode) {
-          case 200: {
-            [self saveTokenFromData:data];
-            break;
-          }
-          case 403:
-            NSLog(@"NOT AUTHORIZED");
-            break;
-
-          case 500:
-            NSLog(@"SERVER FAILURE");
-            break;
-
-          default:
-            break;
-        }
-      } else {
-        NSLog(@"Response is not HTTP");
-      }
-    } else {
-      NSLog(@"Response is NIL");
-    }
-  }];
-  [dataTask resume];
-  
-}
-
-- (void) postNewStoryToForm:(Story *)storyToPost {
+- (void) postNewStoryToForm:(Story *)storyToPost withImage:(UIImage *)imageToPost {
 
   NSString *checkToken = self.checkForAuthToken;
   if ([checkToken isEqual: @"none"]) {
@@ -357,11 +296,11 @@
   //         or I may need to briefly save the file to the drive(?)
   //         Photos Framework has some sort of filename getter
 
-  NSString *path = [[NSBundle mainBundle] pathForResource:@"avatar" ofType:@"jpg"];
-  NSArray *pathParse = [path componentsSeparatedByString:@".app/"];
-  NSString *filename = [pathParse lastObject];
-  UIImage *imageFor = [UIImage imageNamed:filename];
-  NSData *imageData = UIImageJPEGRepresentation(imageFor, 1.0);
+
+  NSString *filenameSeed = [storyToPost.title stringByReplacingOccurrencesOfString:@" " withString:@""];
+  NSString *filename = [filenameSeed stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+  NSData *imageData = UIImageJPEGRepresentation(imageToPost, 1.0);
 
   //         End of image section
 
