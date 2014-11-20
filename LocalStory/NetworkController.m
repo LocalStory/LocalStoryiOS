@@ -3,7 +3,7 @@
 //  LocalStory
 //
 //  Created by Nathan Birkholz on 11/16/14.
-//  Copyright (c) 2014 Jacob Hawken. All rights reserved
+//  Copyright (c) 2014 Jacob Hawken. All rights reserved.
 //
 
 // Lots of help from http://stackoverflow.com/questions/24250475/post-multipart-form-data-with-objective-c
@@ -287,20 +287,16 @@
 
   NSString *boundary = @"0xKhTmLbOuNdArY";
 
+  //        Begin Image section
+
   NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
   [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
 
-  // TO DO : We need to pass an image to this method to submit.
-  //         I am using a default image here to test.
-  //         It expects a filename so I may need to do some changes to that
-  //         or I may need to briefly save the file to the drive(?)
-  //         Photos Framework has some sort of filename getter
-
-
   NSString *filenameSeed = [storyToPost.title stringByReplacingOccurrencesOfString:@" " withString:@""];
+  filenameSeed = [filenameSeed stringByAppendingString:@"_img"];
   NSString *filename = [filenameSeed stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-  NSData *imageData = UIImageJPEGRepresentation(imageToPost, 1.0);
+  NSData *imageData = UIImageJPEGRepresentation(imageToPost, 0.8);
 
   //         End of image section
 
