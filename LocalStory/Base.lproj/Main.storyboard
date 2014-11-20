@@ -12,7 +12,7 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Home View Controller-->
+        <!--Item-->
         <scene sceneID="ila-L3-fQQ">
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" id="HJ5-6M-UsA" customClass="HomeViewController" sceneMemberID="viewController">
@@ -25,10 +25,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hbe-yA-SoC">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                             </mapView>
-                            <button alpha="0.90000000000000002" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUP-BV-nxJ">
-                                <rect key="frame" x="524" y="524" width="60" height="60"/>
+                            <button alpha="0.90000000000000002" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUP-BV-nxJ" userLabel="Add Story Button">
+                                <rect key="frame" x="529" y="480" width="55" height="55"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CUP-BV-nxJ" secondAttribute="height" multiplier="1:1" id="Wvg-A1-Rrf"/>
@@ -42,18 +42,34 @@
                                     <action selector="addNewStory:" destination="HJ5-6M-UsA" eventType="touchUpInside" id="Zu8-Mc-L8q"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hnp-AC-w4q" userLabel="Location Button">
+                                <rect key="frame" x="16" y="480" width="55" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Hnp-AC-w4q" secondAttribute="height" multiplier="1:1" id="OOY-ZZ-8pb"/>
+                                </constraints>
+                                <state key="normal" title="" image="gps3">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="centerOnUser:" destination="HJ5-6M-UsA" eventType="touchUpInside" id="Nzj-uS-npT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Hnp-AC-w4q" firstAttribute="centerY" secondItem="CUP-BV-nxJ" secondAttribute="centerY" id="0Kj-wO-2Pd"/>
                             <constraint firstItem="CUP-BV-nxJ" firstAttribute="trailing" secondItem="J3V-A6-QiH" secondAttribute="trailingMargin" id="0x9-R3-xI1"/>
                             <constraint firstItem="hbe-yA-SoC" firstAttribute="top" secondItem="J3V-A6-QiH" secondAttribute="top" id="CsC-ln-gwa"/>
+                            <constraint firstItem="Hnp-AC-w4q" firstAttribute="height" secondItem="CUP-BV-nxJ" secondAttribute="height" id="OIb-sJ-Owj"/>
                             <constraint firstItem="b0b-RC-8Sa" firstAttribute="top" secondItem="hbe-yA-SoC" secondAttribute="bottom" id="V5G-i8-JI5"/>
+                            <constraint firstItem="Hnp-AC-w4q" firstAttribute="leading" secondItem="J3V-A6-QiH" secondAttribute="leadingMargin" id="akD-4b-oYD"/>
                             <constraint firstItem="CUP-BV-nxJ" firstAttribute="height" secondItem="hbe-yA-SoC" secondAttribute="height" multiplier="0.1" id="d2l-Yl-du9"/>
                             <constraint firstAttribute="trailing" secondItem="hbe-yA-SoC" secondAttribute="trailing" id="qkg-d0-0sh"/>
                             <constraint firstItem="hbe-yA-SoC" firstAttribute="leading" secondItem="J3V-A6-QiH" secondAttribute="leading" id="tHY-iK-djj"/>
                             <constraint firstItem="b0b-RC-8Sa" firstAttribute="top" secondItem="CUP-BV-nxJ" secondAttribute="bottom" constant="16" id="zJz-Cv-z5s"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="DMH-k5-RUk"/>
                     <connections>
                         <outlet property="addStoryButton" destination="CUP-BV-nxJ" id="3JN-1T-9bx"/>
                         <outlet property="homeMapView" destination="hbe-yA-SoC" id="1a9-96-C26"/>
@@ -61,10 +77,49 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Fx-bf-S1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="735" y="-750"/>
+            <point key="canvasLocation" x="1547" y="-750"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="DQn-lE-3we">
+            <objects>
+                <viewController id="eoa-NQ-0wR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AkM-dl-CvS"/>
+                        <viewControllerLayoutGuide type="bottom" id="hyi-cd-Mux"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bjt-4w-yWb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="ZMW-xb-w9M"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KAb-19-kAQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1547" y="-83"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="uu1-Vd-6pX">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ZMq-Sl-xSZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="k0G-hu-vlT">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="HJ5-6M-UsA" kind="relationship" relationship="viewControllers" id="wG7-lS-OiZ"/>
+                        <segue destination="eoa-NQ-0wR" kind="relationship" relationship="viewControllers" id="wKV-9j-o7h"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ptn-rn-syJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="735" y="-417"/>
         </scene>
     </scenes>
     <resources>
         <image name="add46 (512)" width="256" height="256"/>
+        <image name="gps3" width="512" height="512"/>
     </resources>
 </document>
