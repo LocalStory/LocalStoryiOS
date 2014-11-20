@@ -159,7 +159,6 @@
 
 -(NSDate *)sortArray:(NSArray *)array
 {
-  NSMutableArray *newArray = [[NSMutableArray alloc] init];
   Story *tempStory = [[Story alloc] init];
   
   for (Story *placeholder in array) {

@@ -22,6 +22,7 @@
     self.lng = (NSString *)storyJSONDictionary[@"lng"];
     self.latVal = [self.lat doubleValue];
     self.lngVal = [self.lng doubleValue];
+    self.date = [NSDate date]; //Feel free to change the date format or whatever you wanted to do to this. -Jake
   }
   return self;
 }
