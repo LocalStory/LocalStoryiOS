@@ -3,7 +3,7 @@
 //  LocalStory
 //
 //  Created by Nathan Birkholz on 11/16/14.
-//  Copyright (c) 2014 Jacob Hawken. All rights reserved.
+//  Copyright (c) 2014 Jacob Hawken. All rights reserved
 //
 
 // Lots of help from http://stackoverflow.com/questions/24250475/post-multipart-form-data-with-objective-c
@@ -167,9 +167,6 @@
   [dataTask resume];
 }
 
-
-
-
 // ########################################
 #pragma mark GET Methods
 // ########################################
@@ -188,7 +185,7 @@
 //             TEMPORARY TOKEN ASSIGNMENT
 // -------------------------------------------------------------
 // -------------------------------------------------------------
-    checkToken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsb2NhbHN0b3J5Iiwic3ViIjoiNTQ2YmRkNTZlNmI4Y2UwMjAwZDRhYzJkIn0.LGsDd4Ese7qe2f9zeoVDove892_dqs5jITqrAY0CMgg";
+    checkToken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsb2NhbHN0b3J5Iiwic3ViIjoiNTQ2ZDBjYmFhMjA4NzAwMjAwMmU1ZTkxIn0.dpafysYc_3FqrcH7PBJEOaObvkQYL-eWrtNwCTAVgXQ";
 // -------------------------------------------------------------
 // -------------------------------------------------------------
 //            END TEMPORARY TOKEN ASSIGNMENT
@@ -207,6 +204,7 @@
     NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
       completionHandler(arrayFrom);
+
       for (Story *item in arrayFrom) {
         NSLog(@"Title is %@ and latitude is %@", item.title, item.lat);
       }
@@ -228,7 +226,7 @@
 //             TEMPORARY TOKEN ASSIGNMENT
 // -------------------------------------------------------------
 // -------------------------------------------------------------
-    checkToken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsb2NhbHN0b3J5Iiwic3ViIjoiNTQ2YmRkNTZlNmI4Y2UwMjAwZDRhYzJkIn0.LGsDd4Ese7qe2f9zeoVDove892_dqs5jITqrAY0CMgg";
+    checkToken = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsb2NhbHN0b3J5Iiwic3ViIjoiNTQ2ZDBjYmFhMjA4NzAwMjAwMmU1ZTkxIn0.dpafysYc_3FqrcH7PBJEOaObvkQYL-eWrtNwCTAVgXQ";
 // -------------------------------------------------------------
 // -------------------------------------------------------------
 //            END TEMPORARY TOKEN ASSIGNMENT
@@ -308,7 +306,6 @@
           default:
             break;
         }
-
       } else {
         NSLog(@"Response is not HTTP");
       }
@@ -358,16 +355,16 @@
   // pattern is boundary string then form data with the key as the value of name
   // and the value at the end of the series
   // need to make this consistent
-  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+//  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"title\"\r\n\r\n%@", storyToPost.title] dataUsingEncoding:NSUTF8StringEncoding]];
-  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+//  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"story\"\r\n\r\n%@", storyToPost.story] dataUsingEncoding:NSUTF8StringEncoding]];
-  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+//  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"lat\"\r\n\r\n%@", storyToPost.lat] dataUsingEncoding:NSUTF8StringEncoding]];
-  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+//  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"lng\"\r\n\r\n%@", storyToPost.lng] dataUsingEncoding:NSUTF8StringEncoding]];
 
-  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+//  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
 
   [request setHTTPBody:body];
 
@@ -422,8 +419,79 @@
 }
 
 
+- (void) postAddNewUser:(NSString *)emailForUser withPassword:(NSString *)passwordForUser withConfirmedPassword:(NSString *)passwordConfirmForUser {
+    NSString *urlString = self.baseURL;
+    urlString = [urlString stringByAppendingString:@"/api/users"];
+  NSURL *url = [NSURL URLWithString:urlString]; // <<<< Replace
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+  [request setHTTPMethod:@"POST"];
+
+  NSString *boundary = @"--"; //[self generateBoundaryString];
+  NSString *contentType = [NSString stringWithFormat:@"multipart/form-data boundary=%@", boundary];
+  [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+
+  NSMutableData *body = [NSMutableData data];
+
+  // email, password, passwordConfirm
+  // pattern is boundary string then form data with the key as the value of name
+  // and the value at the end of the series
+  // need to make this consistent
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"email\"\r\n\r\n%@", emailForUser] dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"password\"\r\n\r\n%@", passwordForUser] dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"passwordConfirm\"\r\n\r\n%@", passwordConfirmForUser] dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+
+  [request setHTTPBody:body];
+
+  NSURLResponse *response;
+  NSError *error;
+    
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSError *error1;
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error1];
+    if (returnData) {
+        NSString *json=[[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        NSLog(@"Resp string: %@",json);
+    } else {
+        NSLog(@"Error: %@", error1);
+    }
 
 
+  NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    if (error) {
+      NSLog(@"Error is: %@", error.localizedDescription);
+    } else if (response) {
+      if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        switch (httpResponse.statusCode) {
+          case 200: {
+            [self saveTokenFromData:data];
+            break;
+          }
+          case 403:
+            NSLog(@"NOT AUTHORIZED");
+            break;
+
+          case 500:
+            NSLog(@"SERVER FAILURE");
+            break;
+
+          default:
+            break;
+        }
+
+      } else {
+        NSLog(@"Response is not HTTP");
+      }
+    } else {
+      NSLog(@"Response is NIL");
+    }
+  }];
+  [dataTask resume];
+}
 
 // ########################################
 #pragma mark DEPRECATED
@@ -434,10 +502,6 @@
 
   return returnForNow;
 }
-
-
-
-
 
 
 - (void)stubForPostMethod {
