@@ -21,6 +21,7 @@
 		16E08FCD1A16C36800579486 /* LocalStoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E08FCC1A16C36800579486 /* LocalStoryTests.m */; };
 		16E713F41A1D4B0900026285 /* gps3.png in Resources */ = {isa = PBXBuildFile; fileRef = 16E713F31A1D4B0900026285 /* gps3.png */; };
 		4365772C1A1AD55600335FA4 /* SearchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 4365772B1A1AD55600335FA4 /* SearchArea.m */; };
+		4365D63C1A1E749800D92E69 /* ICHObjectPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4365D63B1A1E749800D92E69 /* ICHObjectPrinter.m */; };
 		438564661A1947F100CE9413 /* Story.m in Sources */ = {isa = PBXBuildFile; fileRef = 438564651A1947F100CE9413 /* Story.m */; };
 		438564691A19483100CE9413 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438564681A19483100CE9413 /* NetworkController.m */; };
 		43C2211D1A1C1F7300B0A81E /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43C2211C1A1C1F7300B0A81E /* avatar.jpg */; };
@@ -67,6 +68,8 @@
 		16E713F31A1D4B0900026285 /* gps3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps3.png; sourceTree = "<group>"; };
 		4365772A1A1AD55600335FA4 /* SearchArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchArea.h; sourceTree = "<group>"; };
 		4365772B1A1AD55600335FA4 /* SearchArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchArea.m; sourceTree = "<group>"; };
+		4365D63A1A1E749800D92E69 /* ICHObjectPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICHObjectPrinter.h; sourceTree = "<group>"; };
+		4365D63B1A1E749800D92E69 /* ICHObjectPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICHObjectPrinter.m; sourceTree = "<group>"; };
 		436B308C1A1A80AE001AD904 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		436B308D1A1A80AE001AD904 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		438564641A1947F100CE9413 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Story.h; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 		438564631A19479200CE9413 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4365D63A1A1E749800D92E69 /* ICHObjectPrinter.h */,
+				4365D63B1A1E749800D92E69 /* ICHObjectPrinter.m */,
 				16E08FB41A16C36800579486 /* LocalStory.xcdatamodeld */,
 				438564641A1947F100CE9413 /* Story.h */,
 				438564651A1947F100CE9413 /* Story.m */,
@@ -342,6 +347,7 @@
 				438564691A19483100CE9413 /* NetworkController.m in Sources */,
 				4365772C1A1AD55600335FA4 /* SearchArea.m in Sources */,
 				706428231A1D1D700023A4A6 /* LogInViewController.m in Sources */,
+				4365D63C1A1E749800D92E69 /* ICHObjectPrinter.m in Sources */,
 				16C6AE711A1A996200BB21E1 /* HomeViewController.m in Sources */,
 				70DF14761A1C0FF2008436D6 /* ViewingStoryViewController.m in Sources */,
 				16E08FB01A16C36800579486 /* main.m in Sources */,
