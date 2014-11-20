@@ -266,7 +266,6 @@
   NSURL *callbackURL = [[NSURL alloc] init]; // will get callbackURL as a parameter eventually
   NSString *query = callbackURL.query;
 
-  NSString *boundary = [self generateBoundaryString];
 
   NSArray *components = [query componentsSeparatedByString:@"code="];
   NSString *code = [components lastObject];
@@ -278,6 +277,7 @@
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"POST URL goes here"]];
   [request setHTTPMethod:@"POST"];
 
+  NSString *boundary = @"0xKhTmLbOuNdArY";
   NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
   [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
 
@@ -327,7 +327,7 @@
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
   [request setHTTPMethod:@"POST"];
 
-  NSString *boundary = [self generateBoundaryString];
+  NSString *boundary = @"0xKhTmLbOuNdArY";
   NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
   [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
 
