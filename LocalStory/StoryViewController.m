@@ -7,15 +7,18 @@
 //
 
 #import "StoryViewController.h"
+#import "NetworkController.h"
 
 @interface StoryViewController ()
 
 @property (nonatomic,strong) UIImagePickerController *imagePicker;
+@property (nonatomic,weak) NetworkController *networkController;
 
 @end
 
 
 @implementation StoryViewController
+@synthesize coordinate;
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -27,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.networkController = [NetworkController sharedNetworkController];
+    
     CGRect frameRect = self.descTextView.frame;
     frameRect.size.height = 53;
     self.descTextView.frame = frameRect;
@@ -37,13 +42,16 @@
     self.descTextView.text = @"Description";
     self.descTextView.textColor = [UIColor lightGrayColor];
     
-    self.imageView.userInteractionEnabled = true;
-    UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+    self.imageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer * imageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTouched:)];
     [self.imageView addGestureRecognizer:imageTap];
+    
+    self.cameraImage.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cameraTouched:)];
+    [self.cameraImage addGestureRecognizer:tgr];
     
     [self findLocationOnMap];
     [self reverseGeoCode];
-    
 }
 
 #pragma mark - Location Functions
@@ -82,8 +90,13 @@
     return NO;
 }
 
--(void)imageTapped:(UITapGestureRecognizer *)sender {
+-(void)imageTouched:(UITapGestureRecognizer *)tapGestureRecongizer {
     NSLog(@"IMAGE TAPPED");
+    [self openAlertController];
+}
+
+-(void)cameraTouched:(UITapGestureRecognizer *)tapGestureRecongizer {
+    NSLog(@"CAMERA TAPPED");
     [self openAlertController];
 }
 
@@ -111,8 +124,12 @@
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-
+    
     self.imageView.image = info[UIImagePickerControllerEditedImage];
+    if (self.imageView.image == info[UIImagePickerControllerEditedImage]) {
+        self.mapView.hidden = true;
+    }
+    
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
@@ -121,7 +138,7 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25];
-    self.view.frame = CGRectMake(0,-70,self.view.frame.size.width,self.view.frame.size.height);
+    self.view.frame = CGRectMake(0,-130,self.view.frame.size.width,self.view.frame.size.height);
     [UIView commitAnimations];
 }
 
@@ -140,7 +157,7 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25];
-    self.view.frame = CGRectMake(0,-70,self.view.frame.size.width,self.view.frame.size.height);
+    self.view.frame = CGRectMake(0,-130,self.view.frame.size.width,self.view.frame.size.height);
     [UIView commitAnimations];
     
     if ([self.descTextView.text isEqualToString:@"Description"]) {
@@ -183,10 +200,10 @@
 - (IBAction)done:(id)sender {
     //Network call to Sever
     NSLog(@"Done");
-    NSLog(@"%@", self.titleField.text);
-    NSLog(@"%@", self.descTextView.text);
-    NSLog(@"%f", self.lat);
-    NSLog(@"%f", self.lon);
+    NSLog(@"TITLE: %@", self.titleField.text);
+    NSLog(@"DESCRIPTION: %@", self.descTextView.text);
+    NSLog(@"LAT: %f", self.lat);
+    NSLog(@"LONG: %f", self.lon);
 }
 
 

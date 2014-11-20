@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UITextView *descTextView;
 @property (strong, nonatomic) IBOutlet UILabel *characterLabel;
 @property (strong, nonatomic) IBOutlet UILabel *locationLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *cameraImage;
 
 @property CLLocationDegrees lat;
 @property CLLocationDegrees lon;
