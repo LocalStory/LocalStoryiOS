@@ -48,10 +48,11 @@
   [self statusSwitcher];
   [self.locationManager startUpdatingLocation];
   self.homeMapView.showsUserLocation = true;
+  [self fetchStoriesForRegion];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  [self fetchStoriesForRegion];
+  [self fetchStoriesSinceLastLoaded];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -134,9 +135,10 @@
   }];
 }
 
-//- (void) storyAdded {
-//  
-//}
+- (void) fetchStoriesSinceLastLoaded {
+  NSDate* date = [self findLatestStoryDate];
+  //TODO: Talk to JS guys about this.
+}
 
 - (IBAction)addNewStory:(id)sender {
   StoryViewController *storyVC = [[StoryViewController alloc] initWithNibName:@"StoryViewController" bundle:nil];
@@ -157,11 +159,10 @@
 }
 
 
--(NSDate *)sortArray:(NSArray *)array
-{
+-(NSDate *)findLatestStoryDate {
   Story *tempStory = [[Story alloc] init];
   
-  for (Story *placeholder in array) {
+  for (Story *placeholder in self.stories) {
     if (![tempStory.date laterDate:placeholder.date]) {
       tempStory = placeholder;
     }
