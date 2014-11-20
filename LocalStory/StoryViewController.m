@@ -8,6 +8,7 @@
 
 #import "StoryViewController.h"
 #import "NetworkController.h"
+#import "Story.h"
 
 @interface StoryViewController ()
 
@@ -198,14 +199,26 @@
 }
 
 - (IBAction)done:(id)sender {
-    //Network call to Sever
     NSLog(@"Done");
     NSLog(@"TITLE: %@", self.titleField.text);
     NSLog(@"DESCRIPTION: %@", self.descTextView.text);
     NSLog(@"LAT: %f", self.lat);
     NSLog(@"LONG: %f", self.lon);
+    
+    //NEED USERID
+    
+    NSDictionary *newStoryDict = @{
+                                   @"userId": [NSNumber numberWithInteger:self.userId],
+                                   @"storyBody": self.descTextView.text,
+                                   @"title": self.titleField.text,
+                                   @"lat": [[NSNumber alloc] initWithDouble:self.lat],
+                                   @"lng": [[NSNumber alloc] initWithDouble:self.lon]
+                                   };
+    
+    Story *newStory = [[Story alloc] init:newStoryDict];
+    //[self.networkController postNewStory:newStory];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
-
 
 
 
