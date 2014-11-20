@@ -97,13 +97,6 @@
 }
 
 
-- (NSString *)generateBoundaryString
-{
-  return [NSString stringWithFormat:@"Boundary-%@", [[NSUUID UUID] UUIDString]];
-}
-
-
-
 // ########################################
 #pragma mark Data Methods
 // ########################################
@@ -165,6 +158,17 @@
   }];
 
   [dataTask resume];
+}
+
+- (void)saveTokenFromData:(NSData *)data {
+  NSString *tokenResponse = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+  NSArray *tokenComponents = [tokenResponse componentsSeparatedByString:@":"];
+  NSString *tokenFor = [NSString stringWithString:[tokenComponents objectAtIndex:1]];
+  NSString *keyFor = @"jwt";
+  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasLaunched"];
+  [[NSUserDefaults standardUserDefaults] setObject:tokenFor forKey:keyFor];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  NSLog(@"Saved a token value %@ to the key %@ in NSUserDefaults", tokenFor, keyFor);
 }
 
 // ########################################
@@ -420,17 +424,20 @@
 
 
 - (void) postAddNewUser:(NSString *)emailForUser withPassword:(NSString *)passwordForUser withConfirmedPassword:(NSString *)passwordConfirmForUser {
-    NSString *urlString = self.baseURL;
-    urlString = [urlString stringByAppendingString:@"/api/users"];
-  NSURL *url = [NSURL URLWithString:urlString]; // <<<< Replace
-  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+
+  NSString *urlString = [[NSString alloc]initWithString:[NSString stringWithFormat:@"%@/api/users",self.baseURL]];
+
+  NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+  [request setURL:[NSURL URLWithString:urlString]];
   [request setHTTPMethod:@"POST"];
 
-  NSString *boundary = @"--"; //[self generateBoundaryString];
-  NSString *contentType = [NSString stringWithFormat:@"multipart/form-data boundary=%@", boundary];
-  [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+  NSString *boundary = @"0xKhTmLbOuNdArY";
+//  NSString *kNewLine = @"\r\n";
 
-  NSMutableData *body = [NSMutableData data];
+  NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+  [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+
+  NSMutableData *body = [[NSMutableData alloc] init];
 
   // email, password, passwordConfirm
   // pattern is boundary string then form data with the key as the value of name
@@ -442,23 +449,9 @@
   [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"password\"\r\n\r\n%@", passwordForUser] dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"passwordConfirm\"\r\n\r\n%@", passwordConfirmForUser] dataUsingEncoding:NSUTF8StringEncoding]];
-  [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
 
   [request setHTTPBody:body];
-
-  NSURLResponse *response;
-  NSError *error;
-    
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSError *error1;
-    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error1];
-    if (returnData) {
-        NSString *json=[[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        NSLog(@"Resp string: %@",json);
-    } else {
-        NSLog(@"Error: %@", error1);
-    }
-
 
   NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     if (error) {
@@ -476,7 +469,7 @@
             break;
 
           case 500:
-            NSLog(@"SERVER FAILURE");
+            NSLog(@"Server response : 500");
             break;
 
           default:
@@ -555,16 +548,8 @@
   [dataTask resume];
 }
 
-- (void)saveTokenFromData:(NSData *)data {
-  NSString *tokenResponse = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-  NSArray *tokenComponents = [tokenResponse componentsSeparatedByString:@"="];
-  NSArray *tokenSeedArray = [[tokenComponents objectAtIndex:1] componentsSeparatedByString:@"&"];
-  NSString *tokenFor = (NSString *)[tokenSeedArray firstObject];
-  NSString *keyFor = @"AuthToken";
-  [[NSUserDefaults standardUserDefaults] setObject:tokenFor forKey:keyFor];
-  [[NSUserDefaults standardUserDefaults] synchronize];
-  NSLog(@"Saved a token value %@ to the key %@ in NSUserDefaults", tokenFor, keyFor);
-}
+
+
 
 
 

@@ -22,6 +22,11 @@
     self.lng = (NSString *)storyJSONDictionary[@"lng"];
     self.latVal = [self.lat doubleValue];
     self.lngVal = [self.lng doubleValue];
+    NSString *dateStr = (NSString *)storyJSONDictionary[@"date"];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    NSDate *date = [dateFormat dateFromString:dateStr];
+    self.date = date;
   }
   return self;
 }
