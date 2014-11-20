@@ -16,13 +16,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    //If no token, show login screen.
-    self.loginVC = [[LogInViewController alloc] initWithNibName:@"LogInViewController" bundle:nil];
-    self.window.rootViewController = self.loginVC;
-    //else if have token, go directly to HomeViewController.
-
-
 
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
@@ -38,11 +31,16 @@
     [defaults setObject:token forKey:key];
     [defaults synchronize];
   }
-
-
-
-
-  
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"jwt"] == nil) {
+        //If no token, show login screen.
+        self.loginVC = [[LogInViewController alloc] initWithNibName:@"LogInViewController" bundle:nil];
+        self.window.rootViewController = self.loginVC;
+    } else {
+        //else if have token, go directly to HomeViewController.
+        return YES;
+    }
+    
   return YES;
 }
 
