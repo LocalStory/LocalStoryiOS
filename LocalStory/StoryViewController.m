@@ -37,13 +37,12 @@
     self.descTextView.text = @"Description";
     self.descTextView.textColor = [UIColor lightGrayColor];
     
-    self.imageView.userInteractionEnabled = true;
-    UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
-    [self.imageView addGestureRecognizer:imageTap];
+    self.cameraImage.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cameraTouched:)];
+    [self.cameraImage addGestureRecognizer:tgr];
     
     [self findLocationOnMap];
     [self reverseGeoCode];
-    
 }
 
 #pragma mark - Location Functions
@@ -82,8 +81,8 @@
     return NO;
 }
 
--(void)imageTapped:(UITapGestureRecognizer *)sender {
-    NSLog(@"IMAGE TAPPED");
+-(void)cameraTouched:(UITapGestureRecognizer *)tapGestureRecongizer {
+    NSLog(@"CAMERA TAPPED");
     [self openAlertController];
 }
 
@@ -111,8 +110,12 @@
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-
+    
     self.imageView.image = info[UIImagePickerControllerEditedImage];
+    if (self.imageView.image == info[UIImagePickerControllerEditedImage]) {
+        self.mapView.hidden = true;
+    }
+    
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
