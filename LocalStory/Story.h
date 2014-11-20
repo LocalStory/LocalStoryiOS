@@ -19,7 +19,8 @@
 @property (nonatomic, strong) NSString *lng;
 @property (nonatomic) double latVal;
 @property (nonatomic) double lngVal;
-@property (nonatomic, strong) NSDate *date;  //Do with this what you will. -Jake
+@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSString *underscoreid;
 
 - (instancetype)init:(NSDictionary *)storyJSONDictionary;
 

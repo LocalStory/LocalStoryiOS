@@ -30,6 +30,9 @@
     [defaults setBool:YES forKey:keyOne];
     [defaults setObject:token forKey:key];
     [defaults synchronize];
+
+
+    
   }
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"jwt"] == nil) {
