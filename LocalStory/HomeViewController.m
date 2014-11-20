@@ -155,4 +155,22 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+-(NSDate *)sortArray:(NSArray *)array
+{
+  NSMutableArray *newArray = [[NSMutableArray alloc] init];
+  Story *tempStory = [[Story alloc] init];
+  
+  for (Story *placeholder in array) {
+    if (![tempStory.date laterDate:placeholder.date]) {
+      tempStory = placeholder;
+    }
+  }
+  return tempStory.date;
+}
+
+
+
+
 @end
