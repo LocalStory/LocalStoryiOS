@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "LogInViewController.h"
+#import "SignUpViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -22,7 +22,7 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 //TEMP
-@property (strong, nonatomic) LogInViewController *loginVC;
+@property (strong, nonatomic) SignUpViewController *signupVC;
 
 @end
 

@@ -9,7 +9,6 @@
             <connections>
                 <outlet property="confirmPasswordField" destination="kgx-2H-I9j" id="jMj-UQ-AyL"/>
                 <outlet property="contentView" destination="a7x-ww-r8u" id="mqH-As-x7s"/>
-                <outlet property="navigationBar" destination="6cM-mb-lim" id="W5s-Q1-NaV"/>
                 <outlet property="passwordField" destination="4uC-qE-plU" id="peP-hP-tJx"/>
                 <outlet property="userNameField" destination="JR2-Pj-gYx" id="hIS-lG-cMl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,25 +22,9 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7x-ww-r8u" userLabel="Content View">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
-                        <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cM-mb-lim">
-                            <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                            <textAttributes key="titleTextAttributes">
-                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                            </textAttributes>
-                            <items>
-                                <navigationItem title="Sign Up" id="Z76-A7-fsV">
-                                    <barButtonItem key="leftBarButtonItem" title="Back" id="Pkb-ao-OcU">
-                                        <connections>
-                                            <action selector="back:" destination="-1" id="D4o-yW-BAI"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover Local Stories" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cwg-L4-9eV">
                             <rect key="frame" x="201" y="104" width="197" height="24"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JR2-Pj-gYx">
@@ -77,18 +60,15 @@
                         <constraint firstAttribute="centerX" secondItem="dor-hg-Fcr" secondAttribute="centerX" id="D4K-eB-WTa"/>
                         <constraint firstItem="kgx-2H-I9j" firstAttribute="width" secondItem="dor-hg-Fcr" secondAttribute="width" id="GEA-hJ-i7T"/>
                         <constraint firstItem="4uC-qE-plU" firstAttribute="width" secondItem="a7x-ww-r8u" secondAttribute="width" multiplier="0.75" id="GbT-Fc-XWM"/>
-                        <constraint firstAttribute="trailing" secondItem="6cM-mb-lim" secondAttribute="trailing" id="GnZ-fj-pYf"/>
-                        <constraint firstItem="6cM-mb-lim" firstAttribute="top" secondItem="a7x-ww-r8u" secondAttribute="top" constant="20" id="Gr8-5v-e2f"/>
                         <constraint firstItem="dor-hg-Fcr" firstAttribute="height" secondItem="kgx-2H-I9j" secondAttribute="height" id="OJo-v2-IRr"/>
                         <constraint firstItem="4uC-qE-plU" firstAttribute="top" secondItem="JR2-Pj-gYx" secondAttribute="bottom" constant="8" id="RTC-wf-dqF"/>
                         <constraint firstAttribute="centerX" secondItem="kgx-2H-I9j" secondAttribute="centerX" id="Wep-H3-pPW"/>
+                        <constraint firstItem="JR2-Pj-gYx" firstAttribute="top" secondItem="Cwg-L4-9eV" secondAttribute="bottom" constant="92" id="Zsm-0H-1ZA"/>
                         <constraint firstAttribute="bottom" secondItem="dor-hg-Fcr" secondAttribute="bottom" constant="20" id="alo-ms-ZgN"/>
                         <constraint firstItem="kgx-2H-I9j" firstAttribute="top" secondItem="4uC-qE-plU" secondAttribute="bottom" constant="8" id="drY-9F-rQs"/>
                         <constraint firstAttribute="centerX" secondItem="JR2-Pj-gYx" secondAttribute="centerX" id="eu2-e9-Xdn"/>
-                        <constraint firstItem="6cM-mb-lim" firstAttribute="leading" secondItem="a7x-ww-r8u" secondAttribute="leading" id="gCa-Yf-o9c"/>
                         <constraint firstItem="JR2-Pj-gYx" firstAttribute="height" secondItem="4uC-qE-plU" secondAttribute="height" id="kkN-Uh-rbL"/>
                         <constraint firstAttribute="centerX" secondItem="Cwg-L4-9eV" secondAttribute="centerX" id="lRb-nt-Ec0"/>
-                        <constraint firstItem="Cwg-L4-9eV" firstAttribute="top" secondItem="6cM-mb-lim" secondAttribute="bottom" constant="40" id="nQC-eB-4sS"/>
                         <constraint firstItem="JR2-Pj-gYx" firstAttribute="width" secondItem="4uC-qE-plU" secondAttribute="width" id="q5Z-d3-tK7"/>
                         <constraint firstItem="kgx-2H-I9j" firstAttribute="height" secondItem="4uC-qE-plU" secondAttribute="height" id="tFT-ho-3VT"/>
                         <constraint firstAttribute="centerX" secondItem="4uC-qE-plU" secondAttribute="centerX" id="uIa-vh-0pW"/>

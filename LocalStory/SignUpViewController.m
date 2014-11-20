@@ -8,6 +8,8 @@
 
 #import "SignUpViewController.h"
 #import "NetworkController.h"
+#import "Story.h"
+#import "HomeViewController.h"
 
 @interface SignUpViewController () <UITextFieldDelegate>
 
@@ -26,7 +28,7 @@
     self.passwordField.delegate = self;
     self.confirmPasswordField.delegate = self;
     
-    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SignupBackground"]];
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LoginBackground"]];
     backgroundView.alpha = 0.8;
     [self.contentView insertSubview:backgroundView atIndex:0];
     
@@ -47,6 +49,8 @@
         //DO NETWORK CALL HERE TO CREATE AN ACCOUNT
         
         [self.networkController postAddNewUser:self.userNameField.text withPassword:self.passwordField.text withConfirmedPassword:self.confirmPasswordField.text];
+        HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
+        [self presentViewController:homeVC animated:true completion:nil];
     }
 }
 

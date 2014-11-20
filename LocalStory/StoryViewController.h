@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *locationLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *cameraImage;
 
+@property NSInteger userId;
 @property CLLocationDegrees lat;
 @property CLLocationDegrees lon;
 
