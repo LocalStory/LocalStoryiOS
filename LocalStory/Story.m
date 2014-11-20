@@ -16,7 +16,7 @@
   if (self) {
     self.storyDictionary = storyJSONDictionary;
     self.userId = (NSString *)storyJSONDictionary[@"userId"];
-    self.story = (NSString *)storyJSONDictionary[@"story"];
+    self.story = (NSString *)storyJSONDictionary[@"storyBody"];
     self.title = (NSString *)storyJSONDictionary[@"title"];
     self.lat = (NSString *)storyJSONDictionary[@"lat"];
     self.lng = (NSString *)storyJSONDictionary[@"lng"];
@@ -27,6 +27,7 @@
     [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
     NSDate *date = [dateFormat dateFromString:dateStr];
     self.date = date;
+    self.underscoreid = (NSString *)storyJSONDictionary[@"_id"];
   }
   return self;
 }

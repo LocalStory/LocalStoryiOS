@@ -20,6 +20,7 @@
 @property (nonatomic) double latVal;
 @property (nonatomic) double lngVal;
 @property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSString *underscoreid;
 
 - (instancetype)init:(NSDictionary *)storyJSONDictionary;
 
