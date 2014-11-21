@@ -30,6 +30,7 @@
 @property (nonatomic, strong) NSMutableArray* stories;
 @property (weak, nonatomic) IBOutlet UILabel *howToAddStoryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *signInToAddStoriesLabel;
+@property (nonatomic, strong) NSTimer* refreshTimer;
 
 @end
 
@@ -55,12 +56,13 @@
   [self statusSwitcher];
   [self.locationManager startUpdatingLocation];
   self.homeMapView.showsUserLocation = true;
+  
+  self.refreshTimer = [[NSTimer alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
   if (self.isFirstLaunch == NO) {
     [self fetchStoriesForCurrentRegion];
-    [self addStoryAnnotationsToMapForDate: [NSDate date] andOnlyLoadStoriesAfterDate:false];
   }
 }
 
@@ -118,7 +120,6 @@
       self.howToAddStoryLabel.alpha = 1;
     }];
     [self fetchStoriesForCurrentRegion];
-    [self addStoryAnnotationsToMapForDate: [NSDate date] andOnlyLoadStoriesAfterDate: false];
     self.isFirstLaunch = NO;
   }
 }
@@ -130,7 +131,23 @@
   [self presentViewController: storyDetailVC animated:true completion:nil];
 }
 
-//panning stuff
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+  [self.refreshTimer invalidate];
+  self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval: 1.5
+                                   target: self
+                                 selector: @selector(fetchStoriesForCurrentRegion)
+                                 userInfo: nil
+                                  repeats: NO];
+}
+
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+  MKCircleRenderer* renderer = [[MKCircleRenderer alloc] initWithOverlay: overlay];
+  renderer.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.15];
+  renderer.strokeColor = [UIColor redColor];
+  renderer.lineWidth = 1.0;
+  
+  return renderer;
+}
 
 #pragma mark - other functions
 
@@ -155,11 +172,13 @@
 }
 
 - (void) fetchStoriesForCurrentRegion {
+  self.refreshTimer = nil;
   SearchArea* searchArea = [[SearchArea alloc] init: self.homeMapView.region];
   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
   [self.networkController getStoriesInView:searchArea completionHandler:^(NSArray *stories) {
     if ([[stories firstObject]  isEqual: @"tooMany"]) {
       //TODO: Show some sort of overlay or label which informs the user that there are too many stories to show and they need to zoom in to see individual stories.
+      [self.stories removeAllObjects];
       [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }
     else {
@@ -169,6 +188,7 @@
       [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }
   }];
+  [self addStoryAnnotationsToMapForDate: [NSDate date] andOnlyLoadStoriesAfterDate: false];
 }
 
 - (void) fetchStoriesSinceLastLoaded {
@@ -194,6 +214,7 @@
 
 - (void) addStoryAnnotationsToMapForDate: (NSDate*) date andOnlyLoadStoriesAfterDate: (BOOL) isRestricted {
   NSMutableArray* storiesForAnnotations = [[NSMutableArray alloc] init];
+  [self.homeMapView removeOverlays:self.homeMapView.overlays];
   if (isRestricted) {
     for (Story* story in self.stories) {
       if (![story.date laterDate:date]) {
@@ -205,15 +226,23 @@
     [self removeAllPinsButUserLocation];
     storiesForAnnotations = self.stories;
   }
-  for (Story* story in storiesForAnnotations) {
-    StoryPin* newPin = [[StoryPin alloc] init];
-    double latVal = story.latVal;
-    double lngVal = story.lngVal;
-    CLLocationCoordinate2D pinCoordinate = CLLocationCoordinate2DMake(latVal, lngVal);
-    newPin.coordinate = pinCoordinate;
-    newPin.title = [NSString stringWithFormat:@"%@", story.title];
-    newPin.story = story;
-    [self.homeMapView addAnnotation: newPin];
+  
+  if (self.stories.count == 0) {
+    MKCircle* tooManyStories = [MKCircle circleWithCenterCoordinate:self.homeMapView.centerCoordinate radius:self.homeMapView.region.span.longitudeDelta];
+    tooManyStories.title = @"Too many stories to view. Zoom in to view individual stories.";
+    [self.homeMapView addOverlay: tooManyStories];
+  }
+  else {
+    for (Story* story in storiesForAnnotations) {
+      StoryPin* newPin = [[StoryPin alloc] init];
+      double latVal = story.latVal;
+      double lngVal = story.lngVal;
+      CLLocationCoordinate2D pinCoordinate = CLLocationCoordinate2DMake(latVal, lngVal);
+      newPin.coordinate = pinCoordinate;
+      newPin.title = [NSString stringWithFormat:@"%@", story.title];
+      newPin.story = story;
+      [self.homeMapView addAnnotation: newPin];
+    }
   }
 }
 
