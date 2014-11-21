@@ -177,7 +177,6 @@
   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
   [self.networkController getStoriesInView:searchArea completionHandler:^(NSArray *stories) {
     if ([[stories firstObject]  isEqual: @"tooMany"]) {
-      //TODO: Show some sort of overlay or label which informs the user that there are too many stories to show and they need to zoom in to see individual stories.
       [self.stories removeAllObjects];
       [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }

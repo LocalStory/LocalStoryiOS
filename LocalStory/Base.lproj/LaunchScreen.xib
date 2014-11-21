@@ -10,27 +10,28 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2014 Jacob Hawken. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
-                    <rect key="frame" x="20" y="439" width="441" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="local story plain.png" translatesAutoresizingMaskIntoConstraints="NO" id="g3O-5M-axB">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GwO-RA-rwh">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
-                </imageView>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="spX-Ch-4lj">
+                            <rect key="frame" x="72" y="120" width="336" height="240"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="centerX" secondItem="spX-Ch-4lj" secondAttribute="centerX" id="UD5-4F-jG0"/>
+                        <constraint firstItem="spX-Ch-4lj" firstAttribute="height" secondItem="GwO-RA-rwh" secondAttribute="height" multiplier="0.5" id="YKr-XB-BdL"/>
+                        <constraint firstAttribute="centerY" secondItem="spX-Ch-4lj" secondAttribute="centerY" id="dNu-Pq-vTN"/>
+                        <constraint firstItem="spX-Ch-4lj" firstAttribute="width" secondItem="GwO-RA-rwh" secondAttribute="width" multiplier="0.7" id="eIJ-hF-Qu6"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="g3O-5M-axB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5f7-WE-pTd"/>
-                <constraint firstAttribute="bottom" secondItem="g3O-5M-axB" secondAttribute="bottom" id="Hgp-zX-1tb"/>
-                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
-                <constraint firstItem="g3O-5M-axB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LOo-Pf-mks"/>
-                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
-                <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
-                <constraint firstAttribute="trailing" secondItem="g3O-5M-axB" secondAttribute="trailing" id="dGg-gw-CSl"/>
-                <constraint firstAttribute="centerX" secondItem="g3O-5M-axB" secondAttribute="centerX" id="k1L-s2-mLs"/>
-                <constraint firstAttribute="centerY" secondItem="g3O-5M-axB" secondAttribute="centerY" id="wFd-5U-ijc"/>
+                <constraint firstItem="GwO-RA-rwh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="e5X-OV-56w"/>
+                <constraint firstAttribute="bottom" secondItem="GwO-RA-rwh" secondAttribute="bottom" id="iXZ-sA-WOl"/>
+                <constraint firstItem="GwO-RA-rwh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="iha-ct-qjY"/>
+                <constraint firstAttribute="trailing" secondItem="GwO-RA-rwh" secondAttribute="trailing" id="tZj-MN-zei"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -38,6 +39,6 @@
         </view>
     </objects>
     <resources>
-        <image name="local story plain.png" width="1024" height="1024"/>
+        <image name="launchScreen" width="1024" height="1024"/>
     </resources>
 </document>
