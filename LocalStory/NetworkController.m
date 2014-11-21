@@ -192,14 +192,27 @@
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
   [self getDataFromURL:urlForGet withDictionary:headersDictionary completionHandler:^(NSData *dataFrom, NSError *networkError){
-    NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-      completionHandler(arrayFrom);
 
-      for (Story *item in arrayFrom) {
-        NSLog(@"Title is %@ and latitude is %@", item.title, item.lat);
-      }
-    }];
+
+    NSLog(@"%@", [[NSJSONSerialization JSONObjectWithData:dataFrom options:kNilOptions error:&networkError] class]);
+
+    id dataGeneric = [NSJSONSerialization JSONObjectWithData:dataFrom options:NSJSONReadingAllowFragments error:&networkError];
+    if([dataGeneric isKindOfClass:[NSDictionary class]]) {
+      NSArray *oversizeArray = [[NSArray alloc] initWithObjects:@"tooMany", nil];
+      completionHandler(oversizeArray);
+
+    } else {
+      NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
+      [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        completionHandler(arrayFrom);
+
+        for (Story *item in arrayFrom) {
+          NSLog(@"Title is %@ and latitude is %@", item.title, item.lat);
+        }
+      }];
+    }
+
+
   }];
 }
 
