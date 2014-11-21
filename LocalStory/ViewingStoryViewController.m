@@ -21,16 +21,23 @@
     [super viewDidLoad];
     
     self.networkController = [NetworkController sharedNetworkController];
-    self.title = self.storyObject.title;
+    self.storyTitle.text = self.storyObject.title;
     self.descLabel.text = self.storyObject.story;
     [self downloadImage];
 }
 
 -(void)downloadImage {
     [self.networkController getUIImageForStory:self.storyObject withCompletionHandler:^(UIImage *imageForStory) {
+        [self.activityIndicator startAnimating];
         self.imageView.image = imageForStory;
+        [self.activityIndicator stopAnimating];
+        self.activityIndicator.hidden = true;
     }];
     
+}
+
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 
