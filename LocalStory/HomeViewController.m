@@ -258,7 +258,7 @@
 }
 
 - (IBAction)refreshStoriesButtonPressed:(id)sender {
-  [self fetchStoriesSinceLastLoaded];
+  [self fetchStoriesForCurrentRegion];
 }
 
 #pragma mark - keeping this thing around just to be safe
