@@ -36,8 +36,8 @@
 
       NSLog(@"halfLat = %f", halfLat);
 
-      latMaxVal = [NSNumber numberWithDouble:(midLat - halfLat)];
-      latMinVal = [NSNumber numberWithDouble:(midLat + halfLat)];
+      latMaxVal = [NSNumber numberWithDouble:(midLat + halfLat)];
+      latMinVal = [NSNumber numberWithDouble:(midLat - halfLat)];
 
       if (latMinVal < latMaxVal) {
         NSLog(@"VALID VALUE CHECK: %@ < %@", latMinVal, latMaxVal);
