@@ -16,11 +16,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    self.loginVC = [[LogInViewController alloc] initWithNibName:@"LogInViewController" bundle:nil];
-    self.window.rootViewController = self.loginVC;
-
-
 
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
@@ -29,18 +24,18 @@
 
   if (valueFor == YES) {
     NSLog(@"Has Launched is TRUE");
-  } else {
-    NSString *key = @"jwt";
-    NSString *token = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsb2NhbHN0b3J5Iiwic3ViIjoiNTQ2YmRkNTZlNmI4Y2UwMjAwZDRhYzJkIn0.LGsDd4Ese7qe2f9zeoVDove892_dqs5jITqrAY0CMgg";
-    [defaults setBool:YES forKey:keyOne];
-    [defaults setObject:token forKey:key];
-    [defaults synchronize];
   }
 
 
-
-
-  
+ if ([[NSUserDefaults standardUserDefaults] objectForKey:@"jwt"] == nil) {
+        //If no token, show login screen.
+        self.signupVC = [[SignUpViewController alloc] initWithNibName:@"SignUpViewController" bundle:nil];
+        self.window.rootViewController = self.signupVC;
+    } else {
+        //else if have token, go directly to HomeViewController.
+        return YES;
+    }
+    
   return YES;
 }
 

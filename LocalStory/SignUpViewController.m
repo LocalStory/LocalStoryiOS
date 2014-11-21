@@ -8,6 +8,8 @@
 
 #import "SignUpViewController.h"
 #import "NetworkController.h"
+#import "Story.h"
+#import "HomeViewController.h"
 
 @interface SignUpViewController () <UITextFieldDelegate>
 
@@ -26,19 +28,14 @@
     self.passwordField.delegate = self;
     self.confirmPasswordField.delegate = self;
     
-    self.contentView.backgroundColor = [UIColor colorWithRed:0.878 green:0.878 blue:0.878 alpha:1];
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LoginBackground"]];
+    backgroundView.alpha = 0.8;
+    [self.contentView insertSubview:backgroundView atIndex:0];
     
     [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     self.navigationBar.shadowImage = [UIImage new];
     self.navigationBar.translucent = YES;
-}
 
--(void)textFieldDidBeginEditing:(UITextField *)textField {
-    
-}
-
--(void)textFieldDidEndEditing:(UITextField *)textField {
-    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField*)textField {
@@ -48,10 +45,10 @@
 
 - (IBAction)createAccountButton:(id)sender {
     BOOL inputCorrect = [self checkInput];
-    if (inputCorrect == YES) {
-        //DO NETWORK CALL HERE TO CREATE AN ACCOUNT
-        
+    if (inputCorrect == YES) {        
         [self.networkController postAddNewUser:self.userNameField.text withPassword:self.passwordField.text withConfirmedPassword:self.confirmPasswordField.text];
+        HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
+        [self presentViewController:homeVC animated:true completion:nil];
     }
 }
 

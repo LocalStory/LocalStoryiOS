@@ -33,6 +33,6 @@
 - (void) getStoriesInView:(SearchArea *)searchAreaFor completionHandler:(void (^)(NSArray *stories))completionHandler ;
 - (void) getStoriesForUserWithCompletionHandler:(void (^)(NSArray *stories))completionHandler;
 - (void) postAddNewUser:(NSString *)emailForUser withPassword:(NSString *)passwordForUser withConfirmedPassword:(NSString *)passwordConfirmForUser;
-
+- (void) postNewStoryToForm:(Story *)storyToPost withImage:(UIImage *)imageToPost;
 
 @end

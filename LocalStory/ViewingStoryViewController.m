@@ -7,8 +7,11 @@
 //
 
 #import "ViewingStoryViewController.h"
+#import "NetworkController.h"
 
 @interface ViewingStoryViewController ()
+
+@property (nonatomic,weak) NetworkController *networkController;
 
 @end
 
@@ -16,22 +19,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    //CALL NETWORK TO POPULATE THE INFORMATION
+    self.networkController = [NetworkController sharedNetworkController];
+    
+
+    [self populateInfo];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)populateInfo {
+//    self.title =
+//    self.descLabel.text =
+//    check if image exists, then downloadimage
+//    self.imageView.image = storyImage;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)downloadImageForStory:(NSString *)url completionHandler:(void(^)(UIImage *image))completionHandler {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *contentsOfURL = [[NSURL alloc] initWithString:url];
+        NSData *imageData = [[NSData alloc] initWithContentsOfURL:contentsOfURL];
+        UIImage *storyImage = [[UIImage alloc] initWithData:imageData];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionHandler(storyImage);
+        });
+    });
+    
 }
-*/
+
 
 @end
