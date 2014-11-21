@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16164D471A1F16D7001F23C5 /* local story.png in Resources */ = {isa = PBXBuildFile; fileRef = 16164D461A1F16D7001F23C5 /* local story.png */; };
+		16164D491A1F1CFC001F23C5 /* local story plain.png in Resources */ = {isa = PBXBuildFile; fileRef = 16164D481A1F1CFC001F23C5 /* local story plain.png */; };
 		163ADF661A1AAA2700611B75 /* add46.png in Resources */ = {isa = PBXBuildFile; fileRef = 163ADF651A1AAA2700611B75 /* add46.png */; };
 		163ADF681A1AAC8200611B75 /* add46 (512).png in Resources */ = {isa = PBXBuildFile; fileRef = 163ADF671A1AAC8200611B75 /* add46 (512).png */; };
 		163ADF6A1A1AAEE700611B75 /* addButton.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 163ADF691A1AAEE700611B75 /* addButton.pdf */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16164D461A1F16D7001F23C5 /* local story.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "local story.png"; sourceTree = "<group>"; };
+		16164D481A1F1CFC001F23C5 /* local story plain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "local story plain.png"; sourceTree = "<group>"; };
 		163ADF651A1AAA2700611B75 /* add46.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add46.png; sourceTree = "<group>"; };
 		163ADF671A1AAC8200611B75 /* add46 (512).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add46 (512).png"; sourceTree = "<group>"; };
 		163ADF691A1AAEE700611B75 /* addButton.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = addButton.pdf; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 		16E08FAD1A16C36800579486 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				16164D461A1F16D7001F23C5 /* local story.png */,
+				16164D481A1F1CFC001F23C5 /* local story plain.png */,
 				16E713F31A1D4B0900026285 /* gps3.png */,
 				43C2211C1A1C1F7300B0A81E /* avatar.jpg */,
 				16E08FAE1A16C36800579486 /* Info.plist */,
@@ -317,6 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16164D471A1F16D7001F23C5 /* local story.png in Resources */,
 				70DF14771A1C0FF2008436D6 /* ViewingStoryViewController.xib in Resources */,
 				701150B61A1A70D9003F4F99 /* StoryViewController.xib in Resources */,
 				163ADF681A1AAC8200611B75 /* add46 (512).png in Resources */,
@@ -326,6 +333,7 @@
 				706428241A1D1D700023A4A6 /* LogInViewController.xib in Resources */,
 				16E08FBE1A16C36800579486 /* Images.xcassets in Resources */,
 				43C2211D1A1C1F7300B0A81E /* avatar.jpg in Resources */,
+				16164D491A1F1CFC001F23C5 /* local story plain.png in Resources */,
 				16E713F41A1D4B0900026285 /* gps3.png in Resources */,
 				163ADF6A1A1AAEE700611B75 /* addButton.pdf in Resources */,
 				16C6AE761A1A9B1200BB21E1 /* typicons.ttf in Resources */,
