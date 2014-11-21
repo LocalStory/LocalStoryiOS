@@ -224,7 +224,6 @@
     [self generateThumbnail];
     
     NSDictionary *newStoryDict = @{
-                                   @"userId": [NSNumber numberWithInteger:self.userId],
                                    @"storyBody": self.descTextView.text,
                                    @"title": self.titleField.text,
                                    @"lat": [[NSNumber alloc] initWithDouble:self.lat],

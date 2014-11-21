@@ -157,9 +157,12 @@
 }
 
 - (void)saveTokenFromData:(NSData *)data {
-  NSString *tokenResponse = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-  NSArray *tokenComponents = [tokenResponse componentsSeparatedByString:@":"];
-  NSString *tokenFor = [NSString stringWithString:[tokenComponents objectAtIndex:1]];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSString *tokenFor = [[NSString alloc] initWithString:json[@"jwt"]];
+    
+//  NSArray *tokenComponents = [tokenResponse componentsSeparatedByString:@":"];
+//  NSString *tokenFor = [NSString stringWithString:[tokenComponents objectAtIndex:1]];
+
   NSString *keyFor = @"jwt";
   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasLaunched"];
   [[NSUserDefaults standardUserDefaults] setObject:tokenFor forKey:keyFor];
@@ -269,12 +272,18 @@
   } else {
     NSLog(@"Token found");
   }
-
+    
+    
   NSDictionary *headersDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:checkToken, @"jwt", nil];
 
-  NSString *urlString = [[NSString alloc]initWithString:[NSString stringWithFormat:@"%@/api/users",self.baseURL]];
+//  NSString *urlString = [[NSString alloc]initWithString:[NSString stringWithFormat:@"%@/api/stories",self.baseURL]];
+    
+    NSString *urlString = @"http://dry-atoll-3756.herokuapp.com";
+    urlString = [urlString stringByAppendingString:@"/api/stories/"];
+    
+    NSLog(@"HEREEEEE: %@", headersDictionary[@"jwt"]);
 
-  NSLog(@"getStoriesInView url is %@", [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+  NSLog(@"postNewStoryToForm url is %@", [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
   NSURL *urlForGet = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:urlForGet];
@@ -370,6 +379,7 @@
 
   NSString *urlString = [[NSString alloc]initWithString:[NSString stringWithFormat:@"%@/api/users",self.baseURL]];
 
+    
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
   [request setURL:[NSURL URLWithString:urlString]];
   [request setHTTPMethod:@"POST"];
