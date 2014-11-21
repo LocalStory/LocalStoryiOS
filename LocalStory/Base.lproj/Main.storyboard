@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HJ5-6M-UsA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HJ5-6M-UsA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -53,10 +53,10 @@
                                     <action selector="refreshStoriesButtonPressed:" destination="HJ5-6M-UsA" eventType="touchUpInside" id="5K6-Ho-2HJ"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To add a new story, at your current location, long press on the map..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNO-5y-MoW">
-                                <rect key="frame" x="16" y="20" width="568" height="20.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To add a new story, at your current location, press long anywhere on the map..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNO-5y-MoW">
+                                <rect key="frame" x="8" y="20" width="584" height="16"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in or sign up in order to add stories. Don't worry: Your stories are still anonymous." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OM1-7G-ePR">
@@ -73,10 +73,10 @@
                             <constraint firstItem="ZNO-5y-MoW" firstAttribute="top" secondItem="yHP-ja-bOf" secondAttribute="bottom" id="7qV-bx-YQs"/>
                             <constraint firstItem="OM1-7G-ePR" firstAttribute="trailing" secondItem="J3V-A6-QiH" secondAttribute="trailingMargin" id="BkR-jN-ntu"/>
                             <constraint firstItem="hbe-yA-SoC" firstAttribute="top" secondItem="J3V-A6-QiH" secondAttribute="top" id="CsC-ln-gwa"/>
-                            <constraint firstItem="ZNO-5y-MoW" firstAttribute="leading" secondItem="J3V-A6-QiH" secondAttribute="leadingMargin" id="DXV-XZ-5kB"/>
+                            <constraint firstItem="ZNO-5y-MoW" firstAttribute="leading" secondItem="J3V-A6-QiH" secondAttribute="leadingMargin" constant="-8" id="DXV-XZ-5kB"/>
                             <constraint firstItem="b0b-RC-8Sa" firstAttribute="top" secondItem="hbe-yA-SoC" secondAttribute="bottom" id="V5G-i8-JI5"/>
                             <constraint firstItem="Hnp-AC-w4q" firstAttribute="leading" secondItem="J3V-A6-QiH" secondAttribute="leadingMargin" id="akD-4b-oYD"/>
-                            <constraint firstItem="ZNO-5y-MoW" firstAttribute="trailing" secondItem="J3V-A6-QiH" secondAttribute="trailingMargin" id="e2Y-82-8AS"/>
+                            <constraint firstItem="ZNO-5y-MoW" firstAttribute="trailing" secondItem="J3V-A6-QiH" secondAttribute="trailingMargin" constant="8" id="e2Y-82-8AS"/>
                             <constraint firstItem="OM1-7G-ePR" firstAttribute="leading" secondItem="J3V-A6-QiH" secondAttribute="leadingMargin" id="eag-KR-MZj"/>
                             <constraint firstItem="Hnp-AC-w4q" firstAttribute="height" secondItem="J3V-A6-QiH" secondAttribute="height" multiplier="0.1" id="hof-4n-8OZ"/>
                             <constraint firstItem="Hnp-AC-w4q" firstAttribute="centerY" secondItem="xjz-cy-sLL" secondAttribute="centerY" id="kLe-MQ-yOP"/>
@@ -86,6 +86,11 @@
                             <constraint firstItem="hbe-yA-SoC" firstAttribute="leading" secondItem="J3V-A6-QiH" secondAttribute="leading" id="tHY-iK-djj"/>
                             <constraint firstItem="b0b-RC-8Sa" firstAttribute="top" secondItem="Hnp-AC-w4q" secondAttribute="bottom" constant="14" id="xWp-78-bos"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="p6H-Zj-YuG"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="DMH-k5-RUk"/>
                     <connections>
