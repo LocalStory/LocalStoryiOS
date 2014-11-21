@@ -28,7 +28,10 @@
 
 -(void)downloadImage {
     [self.networkController getUIImageForStory:self.storyObject withCompletionHandler:^(UIImage *imageForStory) {
+        [self.activityIndicator startAnimating];
         self.imageView.image = imageForStory;
+        [self.activityIndicator stopAnimating];
+        self.activityIndicator.hidden = true;
     }];
     
 }
