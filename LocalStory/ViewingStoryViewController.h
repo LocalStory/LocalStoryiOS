@@ -16,6 +16,5 @@
 
 @property (strong,nonatomic) Story *storyObject;
 
--(void)downloadImageForStory:(NSString *)url completionHandler:(void(^)(UIImage *image))completionHandler;
 
 @end

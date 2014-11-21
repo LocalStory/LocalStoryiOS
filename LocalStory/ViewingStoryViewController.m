@@ -20,33 +20,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //CALL NETWORK TO POPULATE THE INFORMATION
     self.networkController = [NetworkController sharedNetworkController];
-    
-
-    [self populateInfo];
-    
+    self.title = self.storyObject.title;
+    self.descLabel.text = self.storyObject.story;
+    [self downloadImage];
 }
 
--(void)populateInfo {
-//    self.title =
-//    self.descLabel.text =
-//    check if image exists, then downloadimage
-//    self.imageView.image = storyImage;
-}
-
--(void)downloadImageForStory:(NSString *)url completionHandler:(void(^)(UIImage *image))completionHandler {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSURL *contentsOfURL = [[NSURL alloc] initWithString:url];
-        NSData *imageData = [[NSData alloc] initWithContentsOfURL:contentsOfURL];
-        UIImage *storyImage = [[UIImage alloc] initWithData:imageData];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completionHandler(storyImage);
-        });
-    });
+-(void)downloadImage {
+    [self.networkController getUIImageForStory:self.storyObject withCompletionHandler:^(UIImage *imageForStory) {
+        self.imageView.image = imageForStory;
+    }];
     
 }
+
 
 
 @end
