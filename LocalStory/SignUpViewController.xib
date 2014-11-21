@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="confirmPasswordField" destination="kgx-2H-I9j" id="jMj-UQ-AyL"/>
                 <outlet property="contentView" destination="a7x-ww-r8u" id="mqH-As-x7s"/>
+                <outlet property="logo" destination="YFj-ag-wCr" id="g4N-0L-O1b"/>
                 <outlet property="passwordField" destination="4uC-qE-plU" id="peP-hP-tJx"/>
                 <outlet property="userNameField" destination="JR2-Pj-gYx" id="hIS-lG-cMl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -22,11 +23,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7x-ww-r8u" userLabel="Content View">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover Local Stories" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cwg-L4-9eV">
-                            <rect key="frame" x="201" y="104" width="197" height="24"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JR2-Pj-gYx">
                             <rect key="frame" x="75" y="220" width="450" height="48"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -53,28 +49,39 @@
                                 <action selector="createAccountButton:" destination="-1" eventType="touchUpInside" id="9uc-oS-FPh"/>
                             </connections>
                         </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="local story plain.png" translatesAutoresizingMaskIntoConstraints="NO" id="YFj-ag-wCr">
+                            <rect key="frame" x="210.5" y="84" width="180" height="96"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="YFj-ag-wCr" firstAttribute="width" secondItem="a7x-ww-r8u" secondAttribute="width" multiplier="0.3" id="0eM-fE-TP3"/>
+                        <constraint firstItem="YFj-ag-wCr" firstAttribute="height" secondItem="JR2-Pj-gYx" secondAttribute="height" multiplier="2" id="2JV-aR-jLV"/>
                         <constraint firstAttribute="centerY" secondItem="4uC-qE-plU" secondAttribute="centerY" id="AQl-kZ-ljm"/>
+                        <constraint firstAttribute="centerX" secondItem="YFj-ag-wCr" secondAttribute="centerX" id="CVN-gG-k0T"/>
                         <constraint firstAttribute="centerX" secondItem="dor-hg-Fcr" secondAttribute="centerX" id="D4K-eB-WTa"/>
                         <constraint firstItem="kgx-2H-I9j" firstAttribute="width" secondItem="dor-hg-Fcr" secondAttribute="width" id="GEA-hJ-i7T"/>
                         <constraint firstItem="4uC-qE-plU" firstAttribute="width" secondItem="a7x-ww-r8u" secondAttribute="width" multiplier="0.75" id="GbT-Fc-XWM"/>
                         <constraint firstItem="dor-hg-Fcr" firstAttribute="height" secondItem="kgx-2H-I9j" secondAttribute="height" id="OJo-v2-IRr"/>
                         <constraint firstItem="4uC-qE-plU" firstAttribute="top" secondItem="JR2-Pj-gYx" secondAttribute="bottom" constant="8" id="RTC-wf-dqF"/>
                         <constraint firstAttribute="centerX" secondItem="kgx-2H-I9j" secondAttribute="centerX" id="Wep-H3-pPW"/>
-                        <constraint firstItem="JR2-Pj-gYx" firstAttribute="top" secondItem="Cwg-L4-9eV" secondAttribute="bottom" constant="92" id="Zsm-0H-1ZA"/>
+                        <constraint firstItem="YFj-ag-wCr" firstAttribute="top" secondItem="a7x-ww-r8u" secondAttribute="top" constant="40" id="ZEJ-mn-CjH"/>
                         <constraint firstAttribute="bottom" secondItem="dor-hg-Fcr" secondAttribute="bottom" constant="20" id="alo-ms-ZgN"/>
                         <constraint firstItem="kgx-2H-I9j" firstAttribute="top" secondItem="4uC-qE-plU" secondAttribute="bottom" constant="8" id="drY-9F-rQs"/>
                         <constraint firstAttribute="centerX" secondItem="JR2-Pj-gYx" secondAttribute="centerX" id="eu2-e9-Xdn"/>
                         <constraint firstItem="JR2-Pj-gYx" firstAttribute="height" secondItem="4uC-qE-plU" secondAttribute="height" id="kkN-Uh-rbL"/>
-                        <constraint firstAttribute="centerX" secondItem="Cwg-L4-9eV" secondAttribute="centerX" id="lRb-nt-Ec0"/>
+                        <constraint firstItem="JR2-Pj-gYx" firstAttribute="top" secondItem="YFj-ag-wCr" secondAttribute="bottom" constant="40" id="nxt-2Q-7WT"/>
                         <constraint firstItem="JR2-Pj-gYx" firstAttribute="width" secondItem="4uC-qE-plU" secondAttribute="width" id="q5Z-d3-tK7"/>
                         <constraint firstItem="kgx-2H-I9j" firstAttribute="height" secondItem="4uC-qE-plU" secondAttribute="height" id="tFT-ho-3VT"/>
                         <constraint firstAttribute="centerX" secondItem="4uC-qE-plU" secondAttribute="centerX" id="uIa-vh-0pW"/>
                         <constraint firstItem="kgx-2H-I9j" firstAttribute="width" secondItem="4uC-qE-plU" secondAttribute="width" id="wOF-to-Edo"/>
                         <constraint firstItem="4uC-qE-plU" firstAttribute="height" secondItem="a7x-ww-r8u" secondAttribute="height" multiplier="0.08" id="xz1-XW-d7U"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="ZEJ-mn-CjH"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -89,4 +96,7 @@
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="local story plain.png" width="1024" height="1024"/>
+    </resources>
 </document>
