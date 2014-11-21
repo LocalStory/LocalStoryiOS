@@ -21,7 +21,7 @@
     [super viewDidLoad];
     
     self.networkController = [NetworkController sharedNetworkController];
-    self.title = self.storyObject.title;
+    self.storyTitle.text = self.storyObject.title;
     self.descLabel.text = self.storyObject.story;
     [self downloadImage];
 }
@@ -31,6 +31,10 @@
         self.imageView.image = imageForStory;
     }];
     
+}
+
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 
