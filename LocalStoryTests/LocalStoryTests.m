@@ -61,7 +61,7 @@
   self.pwd2 = @"DD";
   self.pwd3 = @"D!";
 
-  self.story.underscoreid = @"546e845e280300020054cd6a";
+  self.story.underscoreid = @"546ebc0a2506590200dc0269";
   self.story.title = [NSString stringWithFormat:@"TEST STORY TITLE %@", dateVal];
   self.story.story = [NSString stringWithFormat:@"TEST STORY BODY %@", dateVal];
   self.story.lat = [NSString stringWithFormat:@"47.62224566262243"];
@@ -77,6 +77,11 @@
 - (void)testExample {
     // This is an example of a functional test case.
     XCTAssert(YES, @"Pass");
+}
+
+- (void)testMakeUserWithImage {
+  NSLog(@"testMakeUserWithImage");
+  XCTAssertNoThrow([self.networkController postAddNewUser:self.username withPassword:self.pwd1 withConfirmedPassword:self.pwd2]);
 }
 
 - (void)testUserList {
@@ -96,17 +101,9 @@
   
 }
 
-- (void)testGetImage {
-    NSLog(@"TESTING USER IMAGE");
-  [self.networkController getUIImageForStory:self.story withCompletionHandler:^(UIImage *imageForStory) {
-    XCTAssertTrue(imageForStory);
-  }];
-}
 
-- (void)testMakeUserWithImage {
-  NSLog(@"testMakeUserWithImage");
-  XCTAssertNoThrow([self.networkController postAddNewUser:self.username withPassword:self.pwd1 withConfirmedPassword:self.pwd2]);
-}
+
+
 
 - (void)testMakeStoryWithImage {
   NSLog(@"testMakeStoryWithImage");
@@ -118,6 +115,24 @@
   XCTAssertNoThrow([self.networkController postNewStoryToForm:self.story withImage:nil]);
 }
 
+//- (void)testExpectation {
+//  XCTestExpectation *expectation = [self expectationWithDescription:@"expctedExpected"];
+//
+//
+//  [self waitForExpectationsWithTimeout:5 handler: ^(NSError *error) {
+//    [self stopMeasuring];
+//  }];
+//}
+
+- (void)testGetImage {
+  NSLog(@"TESTING USER IMAGE");
+
+  [self.networkController getUIImageForStory:self.story withCompletionHandler:^(UIImage *imageForStory) {
+    UIImage *imageFrom = imageForStory;
+    NSLog(@"Length is %@", imageFrom.imageAsset.description);
+    XCTAssertTrue(imageForStory);
+  }];
+}
 
 
 
