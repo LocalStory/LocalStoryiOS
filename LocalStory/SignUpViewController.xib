@@ -23,21 +23,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7x-ww-r8u" userLabel="Content View">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JR2-Pj-gYx">
-                            <rect key="frame" x="75" y="220" width="450" height="48"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                        </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4uC-qE-plU">
-                            <rect key="frame" x="75" y="276" width="450" height="48"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                        </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kgx-2H-I9j">
-                            <rect key="frame" x="75" y="332" width="450" height="48"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                        </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dor-hg-Fcr">
                             <rect key="frame" x="75" y="532" width="450" height="48"/>
                             <color key="backgroundColor" red="0.2819828895" green="0.38251774249999998" blue="0.4954628646" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,12 +37,27 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="local story plain.png" translatesAutoresizingMaskIntoConstraints="NO" id="YFj-ag-wCr">
                             <rect key="frame" x="210.5" y="84" width="180" height="96"/>
                         </imageView>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JR2-Pj-gYx">
+                            <rect key="frame" x="75" y="276" width="450" height="48"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4uC-qE-plU">
+                            <rect key="frame" x="75" y="332" width="450" height="48"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kgx-2H-I9j">
+                            <rect key="frame" x="75" y="388" width="450" height="48"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="YFj-ag-wCr" firstAttribute="width" secondItem="a7x-ww-r8u" secondAttribute="width" multiplier="0.3" id="0eM-fE-TP3"/>
                         <constraint firstItem="YFj-ag-wCr" firstAttribute="height" secondItem="JR2-Pj-gYx" secondAttribute="height" multiplier="2" id="2JV-aR-jLV"/>
-                        <constraint firstAttribute="centerY" secondItem="4uC-qE-plU" secondAttribute="centerY" id="AQl-kZ-ljm"/>
+                        <constraint firstAttribute="centerY" secondItem="4uC-qE-plU" secondAttribute="centerY" constant="-56" id="AQl-kZ-ljm"/>
                         <constraint firstAttribute="centerX" secondItem="YFj-ag-wCr" secondAttribute="centerX" id="CVN-gG-k0T"/>
                         <constraint firstAttribute="centerX" secondItem="dor-hg-Fcr" secondAttribute="centerX" id="D4K-eB-WTa"/>
                         <constraint firstItem="kgx-2H-I9j" firstAttribute="width" secondItem="dor-hg-Fcr" secondAttribute="width" id="GEA-hJ-i7T"/>
@@ -70,7 +70,7 @@
                         <constraint firstItem="kgx-2H-I9j" firstAttribute="top" secondItem="4uC-qE-plU" secondAttribute="bottom" constant="8" id="drY-9F-rQs"/>
                         <constraint firstAttribute="centerX" secondItem="JR2-Pj-gYx" secondAttribute="centerX" id="eu2-e9-Xdn"/>
                         <constraint firstItem="JR2-Pj-gYx" firstAttribute="height" secondItem="4uC-qE-plU" secondAttribute="height" id="kkN-Uh-rbL"/>
-                        <constraint firstItem="JR2-Pj-gYx" firstAttribute="top" secondItem="YFj-ag-wCr" secondAttribute="bottom" constant="40" id="nxt-2Q-7WT"/>
+                        <constraint firstItem="JR2-Pj-gYx" firstAttribute="top" secondItem="YFj-ag-wCr" secondAttribute="bottom" constant="96" id="nxt-2Q-7WT"/>
                         <constraint firstItem="JR2-Pj-gYx" firstAttribute="width" secondItem="4uC-qE-plU" secondAttribute="width" id="q5Z-d3-tK7"/>
                         <constraint firstItem="kgx-2H-I9j" firstAttribute="height" secondItem="4uC-qE-plU" secondAttribute="height" id="tFT-ho-3VT"/>
                         <constraint firstAttribute="centerX" secondItem="4uC-qE-plU" secondAttribute="centerX" id="uIa-vh-0pW"/>

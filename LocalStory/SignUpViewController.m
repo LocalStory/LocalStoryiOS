@@ -36,7 +36,8 @@
     self.navigationBar.shadowImage = [UIImage new];
     self.navigationBar.translucent = YES;
     
-    self.logo.layer.cornerRadius = 100;
+    self.logo.layer.cornerRadius = 50;
+    self.logo.clipsToBounds = YES;
 
 }
 
@@ -70,11 +71,28 @@
     } else if ([self.confirmPasswordField.text isEqualToString:@""]){
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Please confirm your password" delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
         [message show];
+        return NO;
     } else if (![self.confirmPasswordField.text isEqual:self.passwordField.text]){
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Uh-Oh" message:@"Your passwords do not match" delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
         [message show];
+        return NO;
     }
     return YES;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = CGRectMake(0,-65,self.view.frame.size.width,self.view.frame.size.height);
+    [UIView commitAnimations];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
+    [UIView commitAnimations];
+    
 }
 
 - (IBAction)back:(id)sender {
