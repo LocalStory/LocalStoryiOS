@@ -3,7 +3,7 @@
 //  LocalStory
 //
 //  Created by Jacob Hawken on 11/17/14.
-//  Copyright (c) 2014 Jacob Hawken. All rights reserved
+//  Copyright (c) 2014 Jacob Hawken. All rights reserved.
 //
 
 #import "HomeViewController.h"
