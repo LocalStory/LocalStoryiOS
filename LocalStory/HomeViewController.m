@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *howToAddStoryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *signInToAddStoriesLabel;
 @property (nonatomic, strong) NSTimer* refreshTimer;
+@property (nonatomic) BOOL mapIsFollowingUser;
 
 @end
 
@@ -46,6 +47,8 @@
   self.homeMapView.delegate = self;
   self.networkController = [NetworkController sharedNetworkController];
   self.isFirstLaunch = YES;
+  self.mapIsFollowingUser = NO;
+  self.centeringButton.titleLabel.text = @"\uE0D8";
   
   UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action: @selector(didLongPressOnMap)];
   [self.homeMapView addGestureRecognizer: longPress];
@@ -128,6 +131,18 @@
     }];
     [self fetchStoriesForCurrentRegion];
     self.isFirstLaunch = NO;
+  } else {
+    
+  }
+  //set character for centering button based on map position
+  if (self.homeMapView.centerCoordinate.latitude == self.homeMapView.userLocation.coordinate.latitude && self.homeMapView.centerCoordinate.longitude == self.homeMapView.userLocation.coordinate.longitude) {
+    self.centeringButton.titleLabel.text = @"\uE0D8";
+  } else {
+    self.centeringButton.titleLabel.text = @"\uE09D";
+  }
+  //conditionally turn on map following user
+  if (self.mapIsFollowingUser) {
+    [self.homeMapView setCenterCoordinate: self.homeMapView.userLocation.coordinate animated:true];
   }
 }
 
@@ -289,7 +304,13 @@
 #pragma mark - IBActions
 
 - (IBAction)centeringButtonPressed:(id)sender {
+  //toggle whether or not map follows user based on map position
   [self.homeMapView setCenterCoordinate: self.homeMapView.userLocation.coordinate animated:true];
+  if (self.homeMapView.centerCoordinate.latitude == self.homeMapView.userLocation.coordinate.latitude && self.homeMapView.centerCoordinate.longitude == self.homeMapView.userLocation.coordinate.longitude) {
+    self.mapIsFollowingUser = true;
+  } else {
+    self.mapIsFollowingUser = false;
+  }
 }
 
 - (IBAction)refreshStoriesButtonPressed:(id)sender {

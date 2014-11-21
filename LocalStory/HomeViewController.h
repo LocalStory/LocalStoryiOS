@@ -12,7 +12,7 @@
 
 @interface HomeViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIButton *addStoryButton;
+//@property (weak, nonatomic) IBOutlet UIButton *addStoryButton;
 @property (weak, nonatomic) IBOutlet MKMapView *homeMapView;
 @property (weak, nonatomic) IBOutlet UIButton *centeringButton;
 
