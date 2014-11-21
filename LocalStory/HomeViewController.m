@@ -121,7 +121,7 @@
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
   ViewingStoryViewController* storyDetailVC = [[ViewingStoryViewController alloc] initWithNibName:@"ViewingStoryViewController" bundle:nil];
   StoryPin* myPin = (StoryPin*)view.annotation;
-  storyDetailVC.story = myPin.story;
+  storyDetailVC.storyObject = myPin.story;
   [self presentViewController: storyDetailVC animated:true completion:nil];
 }
 
