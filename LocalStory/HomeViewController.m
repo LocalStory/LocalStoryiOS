@@ -55,19 +55,23 @@
   [self statusSwitcher];
   [self.locationManager startUpdatingLocation];
   self.homeMapView.showsUserLocation = true;
-  [self fetchStoriesForRegion];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  [self fetchStoriesSinceLastLoaded];
+  if (self.isFirstLaunch == NO) {
+    [self fetchStoriesForCurrentRegion];
+    [self addStoryAnnotationsToMapForDate: [NSDate date] andOnlyLoadStoriesAfterDate:false];
+  }
 }
 
+#pragma mark - location manager delegate methods
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    if (locations.lastObject != nil) {
-        CLLocation *newLoc = locations.lastObject;
-        self.lat = newLoc.coordinate.latitude;
-        self.lon = newLoc.coordinate.longitude;
-    }
+  if (locations.lastObject != nil) {
+    CLLocation *newLoc = locations.lastObject;
+    self.lat = newLoc.coordinate.latitude;
+    self.lon = newLoc.coordinate.longitude;
+  }
 }
 
 #pragma mark - mapview delegate methods
@@ -113,6 +117,7 @@
     [UIView animateWithDuration: 1 animations:^{
       self.howToAddStoryLabel.alpha = 1;
     }];
+    [self fetchStoriesForCurrentRegion];
     [self addStoryAnnotationsToMapForDate: [NSDate date] andOnlyLoadStoriesAfterDate: false];
     self.isFirstLaunch = NO;
   }
@@ -149,13 +154,20 @@
   }
 }
 
-- (void) fetchStoriesForRegion {
+- (void) fetchStoriesForCurrentRegion {
   SearchArea* searchArea = [[SearchArea alloc] init: self.homeMapView.region];
   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
   [self.networkController getStoriesInView:searchArea completionHandler:^(NSArray *stories) {
-    NSMutableArray* tempArray = [[NSMutableArray alloc] initWithArray:stories];
-    self.stories = tempArray;
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    if ([[stories firstObject]  isEqual: @"tooMany"]) {
+      //TODO: Show some sort of overlay or label which informs the user that there are too many stories to show and they need to zoom in to see individual stories.
+      [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }
+    else {
+      NSMutableArray* tempArray = [[NSMutableArray alloc] initWithArray:stories];
+      [self.stories removeAllObjects];
+      self.stories = tempArray;
+      [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }
   }];
 }
 
@@ -163,7 +175,7 @@
   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
   NSDate* date = [self findLatestStoryDate];
   
-  //TODO: Work with JS guys and Nate to get this implemented.
+  //TODO: Work with JS guys and Nate to get this implemented. THIS IS A STRETCH GOAL. NOT NECESSARY FOR MVP.
   //Remember to turn off network activity indicator.
   
   [self addStoryAnnotationsToMapForDate: date andOnlyLoadStoriesAfterDate: true];
@@ -246,7 +258,7 @@
 }
 
 - (IBAction)refreshStoriesButtonPressed:(id)sender {
-  [self fetchStoriesSinceLastLoaded];
+  [self fetchStoriesForCurrentRegion];
 }
 
 #pragma mark - keeping this thing around just to be safe
