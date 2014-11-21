@@ -126,6 +126,8 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
+    [self.imageView setClipsToBounds:YES];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.image = info[UIImagePickerControllerEditedImage];
     if (self.imageView.image == info[UIImagePickerControllerEditedImage]) {
         self.mapView.hidden = true;
