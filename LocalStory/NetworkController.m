@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Jacob Hawken. All rights reserved.
 //
 
-// Lots of help from http://stackoverflow.com/questions/24250475/post-multipart-form-data-with-objective-c
-// Even more help from http://nthn.me/posts/2012/objc-multipart-forms.html
+// Lots of help from http://nthn.me/posts/2012/objc-multipart-forms.html
 
 #import "NetworkController.h"
 #import "ICHObjectPrinter.h"
@@ -192,14 +191,27 @@
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
   [self getDataFromURL:urlForGet withDictionary:headersDictionary completionHandler:^(NSData *dataFrom, NSError *networkError){
-    NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-      completionHandler(arrayFrom);
 
-      for (Story *item in arrayFrom) {
-        NSLog(@"Title is %@ and latitude is %@", item.title, item.lat);
-      }
-    }];
+
+    NSLog(@"%@", [[NSJSONSerialization JSONObjectWithData:dataFrom options:kNilOptions error:&networkError] class]);
+
+    id dataGeneric = [NSJSONSerialization JSONObjectWithData:dataFrom options:NSJSONReadingAllowFragments error:&networkError];
+    if([dataGeneric isKindOfClass:[NSDictionary class]]) {
+      NSArray *oversizeArray = [[NSArray alloc] initWithObjects:@"tooMany", nil];
+      completionHandler(oversizeArray);
+
+    } else {
+      NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
+      [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        completionHandler(arrayFrom);
+
+        for (Story *item in arrayFrom) {
+          NSLog(@"Title is %@ and latitude is %@", item.title, item.lat);
+        }
+      }];
+    }
+
+
   }];
 }
 
@@ -233,7 +245,7 @@
 }
 
 
--(void) getUIImageForStory:(Story *)selectedStory withCompletionHandler:(void (^)(UIImage *imageForStory))completionHandler {
+- (void) getUIImageForStory:(Story *)selectedStory withCompletionHandler:(void (^)(UIImage *imageForStory))completionHandler {
 
   NSString *checkToken = self.checkForAuthToken;
   if ([checkToken isEqual: @"none"]) {
@@ -295,17 +307,18 @@
   }
 
   NSString *boundary = @"0xKhTmLbOuNdArY";
+  NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+  [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
 
   //        Begin Image section
 
-  NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-  [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+
 
   NSString *filenameSeed = [storyToPost.title stringByReplacingOccurrencesOfString:@" " withString:@""];
   filenameSeed = [filenameSeed stringByAppendingString:@"_img"];
   NSString *filename = [filenameSeed stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-  NSData *imageData = UIImageJPEGRepresentation(imageToPost, 0.8);
+
 
   //         End of image section
 
@@ -313,8 +326,12 @@
 
   [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"image\"; filename=\"%@\"\r\n", filename] dataUsingEncoding:NSUTF8StringEncoding]];
-  [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]]; // Move up?
-  [body appendData:[NSData dataWithData:imageData]];
+  [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+  
+    if (imageToPost) {
+      NSData *imageData = UIImageJPEGRepresentation(imageToPost, 0.8);
+      [body appendData:[NSData dataWithData:imageData]];
+    }
 
 
   // storyBody, title, lat, lng
