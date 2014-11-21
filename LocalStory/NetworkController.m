@@ -3,11 +3,10 @@
 //  LocalStory
 //
 //  Created by Nathan Birkholz on 11/16/14.
-//  Copyright (c) 2014 Jacob Hawken. All rights reserved.
+//  Copyright (c) 2014 Jacob Hawken. All rights reserved
 //
 
-// Lots of help from http://stackoverflow.com/questions/24250475/post-multipart-form-data-with-objective-c
-// Even more help from http://nthn.me/posts/2012/objc-multipart-forms.html
+// Lots of help from http://nthn.me/posts/2012/objc-multipart-forms.html
 
 #import "NetworkController.h"
 #import "ICHObjectPrinter.h"
@@ -83,7 +82,7 @@
   NSDictionary *headersDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:checkToken, @"jwt",  nil];
   NSString *stringForGet = self.baseURL;
   stringForGet = [stringForGet stringByAppendingString:@"/api/users"];
-  NSLog(@"signInToServer url is %@", [stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+//    NSLog(@"signInToServer url is %@", [stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
   [self getDataFromURL:urlForGet withDictionary:headersDictionary completionHandler:^(NSData *dataFrom, NSError *networkError){
     NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
@@ -99,12 +98,12 @@
 // ########################################
 
 - (void) getDataFromURL:(NSURL *)urlForGet withDictionary:(NSDictionary *)dictionaryForHeader completionHandler:(void (^)(NSData *dataFrom, NSError *networkError))completionHandler {
-        NSLog(@"getDataFromURL");
+//        NSLog(@"getDataFromURL");
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:urlForGet];
   [request setHTTPMethod:@"GET"];
 
   for (id key in dictionaryForHeader) {
-          NSLog(@"key=%@ value=%@", key, dictionaryForHeader[key]);
+//          NSLog(@"key=%@ value=%@", key, dictionaryForHeader[key]);
     [request addValue:dictionaryForHeader[key] forHTTPHeaderField:key];
           NSLog(@"Values are %@", [dictionaryForHeader allValues]);
   }
@@ -113,19 +112,19 @@
   NSURLSessionDataTask *dataTask = [sessionForGet dataTaskWithRequest:request completionHandler:^(NSData *dataFrom, NSURLResponse *responseFrom, NSError *error) {
 
     if (error != nil) {
-            NSLog(@"ERROR RIGHT HERE: %@", [error localizedDescription]);
+//            NSLog(@"ERROR RIGHT HERE: %@", [error localizedDescription]);
       completionHandler(nil, error);
     } else {
-            NSLog(@"No Error");
+//            NSLog(@"No Error");
       NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)responseFrom;
       NSDictionary *strongStrings = [httpResponse allHeaderFields];
       for (NSString *item in strongStrings) {
-            NSLog(@"Header item is %@", item);
+//            NSLog(@"Header item is %@", item);
       }
 
       [strongStrings enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
-              NSLog(@"The key is %@", key);
-              NSLog(@"The value is %@", object);
+//              NSLog(@"The key is %@", key);
+//              NSLog(@"The value is %@", object);
       }];
 
       NSInteger statusCode = [httpResponse statusCode];
@@ -146,7 +145,6 @@
           
         default: {
                 NSLog(@"Fell through to default");
-                NSLog(@"The code is %@", dataFrom);
           completionHandler(dataFrom, nil);
         }
       }
@@ -167,7 +165,7 @@
   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasLaunched"];
   [[NSUserDefaults standardUserDefaults] setObject:tokenFor forKey:keyFor];
   [[NSUserDefaults standardUserDefaults] synchronize];
-  NSLog(@"Saved a token value %@ to the key %@ in NSUserDefaults", tokenFor, keyFor);
+//  NSLog(@"Saved a token value %@ to the key %@ in NSUserDefaults", tokenFor, keyFor);
 }
 
 // ########################################
@@ -192,14 +190,29 @@
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
   [self getDataFromURL:urlForGet withDictionary:headersDictionary completionHandler:^(NSData *dataFrom, NSError *networkError){
-    NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-      completionHandler(arrayFrom);
 
-      for (Story *item in arrayFrom) {
-        NSLog(@"Title is %@ and latitude is %@", item.title, item.lat);
-      }
-    }];
+
+//    NSLog(@"%@", [[NSJSONSerialization JSONObjectWithData:dataFrom options:kNilOptions error:&networkError] class]);
+
+    id dataGeneric = [NSJSONSerialization JSONObjectWithData:dataFrom options:NSJSONReadingAllowFragments error:&networkError];
+    if([dataGeneric isKindOfClass:[NSDictionary class]]) {
+      NSArray *oversizeArray = [[NSArray alloc] initWithObjects:@"tooMany", nil];
+      completionHandler(oversizeArray);
+
+    } else {
+      NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
+      NSLog(@"here");
+      [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        NSLog(@"ADDING");
+        completionHandler(arrayFrom);
+
+        for (Story *item in arrayFrom) {
+          NSLog(@"Title is %@ and latitude is %@", item.title, item.lat);
+        }
+      }];
+    }
+
+
   }];
 }
 
@@ -217,7 +230,7 @@
   NSString *stringForGet = self.baseURL;
   stringForGet = [stringForGet stringByAppendingString:@"/api/stories/user/"];
 
-  NSLog(@"getStoriesInView url is %@", [stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+//  NSLog(@"getStoriesInView url is %@", [stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
   [self getDataFromURL:urlForGet withDictionary:headersDictionary completionHandler:^(NSData *dataFrom, NSError *networkError) {
@@ -226,14 +239,14 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
       completionHandler(arrayFrom);
       for (Story *item in arrayFrom) {
-        NSLog(@"Title is %@ and latitude is %@", item.title, item.lat);
+//        NSLog(@"Title is %@ and latitude is %@", item.title, item.lat);
       }
     }];
   }];
 }
 
 
--(void) getUIImageForStory:(Story *)selectedStory withCompletionHandler:(void (^)(UIImage *imageForStory))completionHandler {
+- (void) getUIImageForStory:(Story *)selectedStory withCompletionHandler:(void (^)(UIImage *imageForStory))completionHandler {
 
   NSString *checkToken = self.checkForAuthToken;
   if ([checkToken isEqual: @"none"]) {
@@ -246,7 +259,7 @@
 
   NSString *stringForGet = [NSString stringWithFormat:@"http://dry-atoll-3756.herokuapp.com/api/stories/single/image/%@", selectedStory.underscoreid];
 
-  NSLog(@"getStoriesInView url is %@", [stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+//  NSLog(@"getStoriesInView url is %@", [stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
   [self getDataFromURL:urlForGet withDictionary:headersDictionary completionHandler:^(NSData *dataFrom, NSError *networkError){
@@ -281,40 +294,47 @@
     NSString *urlString = @"http://dry-atoll-3756.herokuapp.com";
     urlString = [urlString stringByAppendingString:@"/api/stories/"];
     
-    NSLog(@"HEREEEEE: %@", headersDictionary[@"jwt"]);
+//    NSLog(@"HEREEEEE: %@", headersDictionary[@"jwt"]);
 
-  NSLog(@"postNewStoryToForm url is %@", [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+//  NSLog(@"postNewStoryToForm url is %@", [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
   NSURL *urlForGet = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:urlForGet];
   [request setHTTPMethod:@"POST"];
   for (id key in headersDictionary) {
-    NSLog(@"key=%@ value=%@", key, headersDictionary[key]);
+//    NSLog(@"key=%@ value=%@", key, headersDictionary[key]);
     [request addValue:headersDictionary[key] forHTTPHeaderField:key];
-    NSLog(@"Values are %@", [headersDictionary allValues]);
+//    NSLog(@"Values are %@", [headersDictionary allValues]);
   }
 
   NSString *boundary = @"0xKhTmLbOuNdArY";
+  NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+  [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
 
   //        Begin Image section
 
-  NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-  [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+
 
   NSString *filenameSeed = [storyToPost.title stringByReplacingOccurrencesOfString:@" " withString:@""];
   filenameSeed = [filenameSeed stringByAppendingString:@"_img"];
   NSString *filename = [filenameSeed stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-  NSData *imageData = UIImageJPEGRepresentation(imageToPost, 0.8);
+
 
   //         End of image section
 
   NSMutableData *body = [[NSMutableData alloc] init];
 
   [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+
+      if (imageToPost) {
   [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"image\"; filename=\"%@\"\r\n", filename] dataUsingEncoding:NSUTF8StringEncoding]];
-  [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]]; // Move up?
-  [body appendData:[NSData dataWithData:imageData]];
+  [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+  
+
+      NSData *imageData = UIImageJPEGRepresentation(imageToPost, 0.8);
+      [body appendData:[NSData dataWithData:imageData]];
+    }
 
 
   // storyBody, title, lat, lng
@@ -335,13 +355,13 @@
 
   [request setHTTPBody:body];
 
-  NSLog(@"----------Object description is %@",[ICHObjectPrinter descriptionForObject:request]);
+//  NSLog(@"----------Object description is %@",[ICHObjectPrinter descriptionForObject:request]);
 
   NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     if (error) {
       NSLog(@"Error is: %@", error.localizedDescription);
     } else if (response) {
-      NSLog(@"\n\n\n\n\n\n\n\r----------response description is %@",[ICHObjectPrinter descriptionForObject:response]);
+//      NSLog(@"\n\n\n\n\n\n\n\r----------response description is %@",[ICHObjectPrinter descriptionForObject:response]);
       if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
         switch (httpResponse.statusCode) {
