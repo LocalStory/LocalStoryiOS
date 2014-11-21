@@ -34,5 +34,6 @@
 - (void) getStoriesForUserWithCompletionHandler:(void (^)(NSArray *stories))completionHandler;
 - (void) postAddNewUser:(NSString *)emailForUser withPassword:(NSString *)passwordForUser withConfirmedPassword:(NSString *)passwordConfirmForUser;
 - (void) postNewStoryToForm:(Story *)storyToPost withImage:(UIImage *)imageToPost;
+- (void) getUIImageForStory:(Story *)selectedStory withCompletionHandler:(void (^)(UIImage *imageForStory))completionHandler;
 
 @end

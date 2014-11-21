@@ -17,13 +17,40 @@
     MKCoordinateRegion regionFor = coordinateRegion;
     CLLocationCoordinate2D regionCenter = regionFor.center;
 
+    double midLat = regionFor.center.latitude;
+    double midLng = regionFor.center.longitude;
+
     double halfLat = regionFor.span.latitudeDelta / 2;
     double halfLng = regionFor.span.longitudeDelta / 2;
 
-    NSNumber *latMaxVal = [NSNumber numberWithDouble:(regionCenter.latitude + halfLat)];
-    NSNumber *latMinVal = [NSNumber numberWithDouble:(regionCenter.latitude - halfLat)];
-    NSNumber *lngMaxVal = [NSNumber numberWithDouble:(regionCenter.longitude + halfLng)];
-    NSNumber *lngMinVal = [NSNumber numberWithDouble:(regionCenter.longitude - halfLng)];
+    NSNumber *latMaxVal = [[NSNumber alloc] init];
+    NSNumber *latMinVal = [[NSNumber alloc] init];
+    NSNumber *lngMaxVal = [[NSNumber alloc] init];
+    NSNumber *lngMinVal = [[NSNumber alloc] init];
+
+    if (midLat > 0) {
+
+      latMaxVal = [NSNumber numberWithDouble:(regionCenter.latitude + halfLat)];
+      latMinVal = [NSNumber numberWithDouble:(regionCenter.latitude - halfLat)];
+
+    } else {
+
+      latMaxVal = [NSNumber numberWithDouble:(regionCenter.latitude - halfLat)];
+      latMinVal = [NSNumber numberWithDouble:(regionCenter.latitude + halfLat)];
+
+    }
+
+    if (midLng > 0) {
+
+      lngMaxVal = [NSNumber numberWithDouble:(regionCenter.longitude + halfLng)];
+      lngMinVal = [NSNumber numberWithDouble:(regionCenter.longitude - halfLng)];
+
+    } else {
+
+      lngMaxVal = [NSNumber numberWithDouble:(regionCenter.longitude - halfLng)];
+      lngMinVal = [NSNumber numberWithDouble:(regionCenter.longitude + halfLng)];
+
+    }
 
     self.latMax = [latMaxVal stringValue];
     self.latMin = [latMinVal stringValue];

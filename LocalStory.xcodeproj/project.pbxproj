@@ -23,6 +23,7 @@
 		16E713F71A1EB01100026285 /* StoryPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E713F61A1EB01100026285 /* StoryPin.m */; };
 		4365772C1A1AD55600335FA4 /* SearchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 4365772B1A1AD55600335FA4 /* SearchArea.m */; };
 		4365D63C1A1E749800D92E69 /* ICHObjectPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4365D63B1A1E749800D92E69 /* ICHObjectPrinter.m */; };
+		4365D6401A1EE0E700D92E69 /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4365D63F1A1EE0E700D92E69 /* avatar.jpg */; };
 		438564661A1947F100CE9413 /* Story.m in Sources */ = {isa = PBXBuildFile; fileRef = 438564651A1947F100CE9413 /* Story.m */; };
 		438564691A19483100CE9413 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438564681A19483100CE9413 /* NetworkController.m */; };
 		43C2211D1A1C1F7300B0A81E /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43C2211C1A1C1F7300B0A81E /* avatar.jpg */; };
@@ -73,6 +74,7 @@
 		4365772B1A1AD55600335FA4 /* SearchArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchArea.m; sourceTree = "<group>"; };
 		4365D63A1A1E749800D92E69 /* ICHObjectPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICHObjectPrinter.h; sourceTree = "<group>"; };
 		4365D63B1A1E749800D92E69 /* ICHObjectPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICHObjectPrinter.m; sourceTree = "<group>"; };
+		4365D63F1A1EE0E700D92E69 /* avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = avatar.jpg; sourceTree = "<group>"; };
 		436B308C1A1A80AE001AD904 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		436B308D1A1A80AE001AD904 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		438564641A1947F100CE9413 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Story.h; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 		16E08FCA1A16C36800579486 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4365D63F1A1EE0E700D92E69 /* avatar.jpg */,
 				16E08FCB1A16C36800579486 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -334,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4365D6401A1EE0E700D92E69 /* avatar.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
