@@ -198,6 +198,20 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
+-(void)generateThumbnail {
+    NSData *imgData = UIImageJPEGRepresentation(self.imageView.image, 0);
+    NSLog(@"Size of Image(bytes):%lu",(unsigned long)[imgData length]);
+    
+    CGSize destinationSize = CGSizeMake(500, 500);
+    UIGraphicsBeginImageContext(destinationSize);
+    [self.imageView.image drawInRect:CGRectMake(0,0,destinationSize.width,destinationSize.height)];
+    self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSData *newImgData = UIImageJPEGRepresentation(self.imageView.image, 0);
+    NSLog(@"Size of Image(bytes):%lu",(unsigned long)[newImgData length]);
+}
+
 - (IBAction)done:(id)sender {
     NSLog(@"Done");
     NSLog(@"TITLE: %@", self.titleField.text);
@@ -207,8 +221,9 @@
     
     //NEED USERID
     
+    [self generateThumbnail];
+    
     NSDictionary *newStoryDict = @{
-                                   @"userId": [NSNumber numberWithInteger:self.userId],
                                    @"storyBody": self.descTextView.text,
                                    @"title": self.titleField.text,
                                    @"lat": [[NSNumber alloc] initWithDouble:self.lat],
@@ -216,7 +231,7 @@
                                    };
     
     Story *newStory = [[Story alloc] init:newStoryDict];
-    //[self.networkController postNewStory:newStory];
+    [self.networkController postNewStoryToForm:newStory withImage:self.imageView.image];
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
