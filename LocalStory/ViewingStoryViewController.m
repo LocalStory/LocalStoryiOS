@@ -27,8 +27,13 @@
     
     self.lat = [self.storyObject.lat doubleValue];
     self.lon = [self.storyObject.lng doubleValue];
-    
     [self findLocationOnMap];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm a - MM/dd/yyyy"];
+    NSString *stringFromDate = [formatter stringFromDate:self.storyObject.date];
+    
+    self.date.text = stringFromDate;
 }
 
 -(void)downloadImage {

@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="activityIndicator" destination="vHM-ie-GPy" id="bdR-Oo-LRb"/>
                 <outlet property="backButton" destination="PgO-tl-p2U" id="JjB-c3-wWX"/>
+                <outlet property="date" destination="lOJ-H7-JzF" id="jWS-Dv-9Nf"/>
                 <outlet property="descLabel" destination="VU6-3U-gZA" id="5gh-Vf-mth"/>
                 <outlet property="imageView" destination="8DF-gz-lGY" id="1Zh-AR-8Xw"/>
                 <outlet property="mapView" destination="9Lx-Oz-v07" id="Oim-57-2cb"/>
@@ -51,6 +52,12 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8DF-gz-lGY">
                             <rect key="frame" x="0.0" y="124" width="600" height="300"/>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOJ-H7-JzF">
+                            <rect key="frame" x="561.5" y="432" width="30.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VU6-3U-gZA">
                             <rect key="frame" x="20" y="432" width="560" height="20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -60,23 +67,24 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="VU6-3U-gZA" secondAttribute="trailing" constant="20" id="2E7-2T-H0k"/>
                         <constraint firstItem="kUP-GS-wyo" firstAttribute="leading" secondItem="NB8-bF-iuK" secondAttribute="leading" id="31m-1E-SWe"/>
-                        <constraint firstAttribute="trailing" secondItem="VU6-3U-gZA" secondAttribute="trailing" constant="20" id="7aC-zq-PTC"/>
                         <constraint firstAttribute="trailing" secondItem="kUP-GS-wyo" secondAttribute="trailing" id="9uu-OD-eNA"/>
                         <constraint firstItem="8DF-gz-lGY" firstAttribute="leading" secondItem="NB8-bF-iuK" secondAttribute="leading" id="A8W-8y-viP"/>
+                        <constraint firstAttribute="trailing" secondItem="lOJ-H7-JzF" secondAttribute="trailing" constant="8" id="Bfn-rW-oa5"/>
                         <constraint firstAttribute="trailing" secondItem="9Lx-Oz-v07" secondAttribute="trailing" id="CTi-Bg-aro"/>
                         <constraint firstItem="Luh-hG-bg6" firstAttribute="height" secondItem="NB8-bF-iuK" secondAttribute="height" multiplier="0.1" id="DPl-KM-6WG"/>
                         <constraint firstItem="Luh-hG-bg6" firstAttribute="leading" secondItem="NB8-bF-iuK" secondAttribute="leading" constant="8" id="GsO-pI-MAx"/>
                         <constraint firstItem="8DF-gz-lGY" firstAttribute="top" secondItem="Luh-hG-bg6" secondAttribute="bottom" id="IMH-By-COE"/>
-                        <constraint firstItem="VU6-3U-gZA" firstAttribute="leading" secondItem="NB8-bF-iuK" secondAttribute="leading" constant="20" id="Nfe-JL-LOv"/>
+                        <constraint firstItem="VU6-3U-gZA" firstAttribute="leading" secondItem="NB8-bF-iuK" secondAttribute="leading" constant="20" id="KpD-SK-aIi"/>
+                        <constraint firstItem="VU6-3U-gZA" firstAttribute="top" secondItem="lOJ-H7-JzF" secondAttribute="bottom" constant="8" id="LY0-NE-HlV"/>
                         <constraint firstItem="9Lx-Oz-v07" firstAttribute="top" secondItem="Luh-hG-bg6" secondAttribute="bottom" id="NpG-FL-dF0"/>
                         <constraint firstItem="Luh-hG-bg6" firstAttribute="top" secondItem="kUP-GS-wyo" secondAttribute="bottom" id="OP8-EU-avx"/>
                         <constraint firstItem="9Lx-Oz-v07" firstAttribute="height" secondItem="NB8-bF-iuK" secondAttribute="height" multiplier="0.5" id="Rp3-3W-k31"/>
                         <constraint firstAttribute="trailing" secondItem="8DF-gz-lGY" secondAttribute="trailing" id="S3I-rC-aqS"/>
                         <constraint firstAttribute="trailing" secondItem="Luh-hG-bg6" secondAttribute="trailing" constant="8" id="U1i-XV-1gY"/>
+                        <constraint firstItem="lOJ-H7-JzF" firstAttribute="top" secondItem="8DF-gz-lGY" secondAttribute="bottom" constant="8" id="a7M-Nh-fvv"/>
                         <constraint firstItem="8DF-gz-lGY" firstAttribute="centerX" secondItem="vHM-ie-GPy" secondAttribute="centerX" id="hCZ-FC-H26"/>
-                        <constraint firstAttribute="centerX" secondItem="VU6-3U-gZA" secondAttribute="centerX" id="hFM-cL-yFn"/>
-                        <constraint firstItem="VU6-3U-gZA" firstAttribute="top" secondItem="8DF-gz-lGY" secondAttribute="bottom" constant="8" id="j15-GY-DUy"/>
                         <constraint firstItem="kUP-GS-wyo" firstAttribute="top" secondItem="NB8-bF-iuK" secondAttribute="top" constant="20" id="jTM-Te-2ig"/>
                         <constraint firstItem="9Lx-Oz-v07" firstAttribute="width" secondItem="8DF-gz-lGY" secondAttribute="width" id="kOX-m4-nO2"/>
                         <constraint firstItem="9Lx-Oz-v07" firstAttribute="height" secondItem="8DF-gz-lGY" secondAttribute="height" id="npV-zK-M1q"/>
