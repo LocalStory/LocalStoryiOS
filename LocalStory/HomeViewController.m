@@ -63,6 +63,13 @@
 - (void)viewWillAppear:(BOOL)animated {
   if (self.isFirstLaunch == NO) {
     [self fetchStoriesForCurrentRegion];
+
+    [[self howToAddStoryLabel] setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.5]];
+    [[self howToAddStoryLabel] setTextColor:[[UIColor whiteColor] colorWithAlphaComponent:0.8]];
+
+    self.howToAddStoryLabel.layer.masksToBounds = YES;
+    self.howToAddStoryLabel.layer.cornerRadius = 10.0;
+
   }
 }
 
