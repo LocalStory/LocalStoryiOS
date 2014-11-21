@@ -3,7 +3,7 @@
 //  LocalStory
 //
 //  Created by Nathan Birkholz on 11/16/14.
-//  Copyright (c) 2014 Jacob Hawken. All rights reserved.
+//  Copyright (c) 2014 Jacob Hawken. All rights reserved
 //
 
 // Lots of help from http://nthn.me/posts/2012/objc-multipart-forms.html
