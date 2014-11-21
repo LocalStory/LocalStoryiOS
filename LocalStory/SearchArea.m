@@ -29,33 +29,76 @@
     NSNumber *lngMinVal = [[NSNumber alloc] init];
 
     if (midLat > 0) {
+      NSLog(@"midLat > 0 : %f", midLat);
 
-      latMaxVal = [NSNumber numberWithDouble:(regionCenter.latitude + halfLat)];
-      latMinVal = [NSNumber numberWithDouble:(regionCenter.latitude - halfLat)];
+      NSLog(@"Value 1: %f", regionFor.center.latitude);
+      NSLog(@"Value 2: %f", midLat);
+
+      NSLog(@"halfLat = %f", halfLat);
+
+      latMaxVal = [NSNumber numberWithDouble:(midLat + halfLat)];
+      latMinVal = [NSNumber numberWithDouble:(midLat - halfLat)];
+
+      if (latMinVal < latMaxVal) {
+        NSLog(@"VALID VALUE CHECK: %@ < %@", latMinVal, latMaxVal);
+      } else {
+        NSLog(@"WARNING ------------------------ INVALID LATITUDE AREA");
+        NSLog(@"--------- CHECK: %@ !< %@", latMinVal, latMaxVal);
+
+      }
 
     } else {
+      NSLog(@"midLat < 0 : %f", midLat);
 
-      latMaxVal = [NSNumber numberWithDouble:(regionCenter.latitude - halfLat)];
-      latMinVal = [NSNumber numberWithDouble:(regionCenter.latitude + halfLat)];
+      latMaxVal = [NSNumber numberWithDouble:(midLat - halfLat)];
+      latMinVal = [NSNumber numberWithDouble:(midLat + halfLat)];
+
+      if (latMinVal < latMaxVal) {
+        NSLog(@"VALID VALUE CHECK: %@ < %@", latMinVal, latMaxVal);
+      } else {
+        NSLog(@"WARNING ------------------------ INVALID LATITUDE AREA");
+        NSLog(@"--------- CHECK: %@ !< %@", latMinVal, latMaxVal);
+
+      }
 
     }
 
-    if (midLng > 0) {
+    if (midLng < 0) {
+            NSLog(@"midLng < 0 : %f", midLng);
 
-      lngMaxVal = [NSNumber numberWithDouble:(regionCenter.longitude + halfLng)];
-      lngMinVal = [NSNumber numberWithDouble:(regionCenter.longitude - halfLng)];
+
+      lngMaxVal = [NSNumber numberWithDouble:(midLng + halfLng)];
+      lngMinVal = [NSNumber numberWithDouble:(midLng - halfLng)];
+
+      if (lngMinVal < lngMaxVal) {
+        NSLog(@"VALID VALUE CHECK: %@ < %@", lngMinVal, lngMaxVal);
+      } else {
+        NSLog(@"WARNING ------------------------ INVALID LONGITUDE AREA");
+        NSLog(@"--------- CHECK: %@ !< %@", lngMinVal, lngMaxVal);
+
+      }
+
 
     } else {
+      NSLog(@"midLng > 0 : %f", midLng);
 
-      lngMaxVal = [NSNumber numberWithDouble:(regionCenter.longitude - halfLng)];
+
+      lngMaxVal = [NSNumber numberWithDouble:(midLng - halfLng)];
       lngMinVal = [NSNumber numberWithDouble:(regionCenter.longitude + halfLng)];
 
-    }
+      if (lngMinVal < lngMaxVal) {
+        NSLog(@"VALID VALUE CHECK: %@ < %@", lngMinVal, lngMaxVal);
+      } else {
+        NSLog(@"WARNING ------------------------ INVALID LATITUDE AREA");
+        NSLog(@"--------- CHECK: %@ !< %@", lngMinVal, lngMaxVal);
 
-    self.latMax = @"50.0"; // [latMaxVal stringValue];
-    self.latMin = @"30.0"; //[latMinVal stringValue];
-    self.lngMax = @"0.0"; // [lngMaxVal stringValue];
-    self.lngMin = @"-140.0"; // [lngMinVal stringValue];
+      }
+
+    }
+    self.latMax = [latMaxVal stringValue]; // @"50.0";
+    self.latMin = [latMinVal stringValue]; // @"30.0";
+    self.lngMax = [lngMaxVal stringValue]; // @"0.0";
+    self.lngMin = [lngMinVal stringValue]; // @"-140.0";
   }
   return self;
 }

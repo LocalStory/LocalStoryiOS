@@ -239,7 +239,7 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
       completionHandler(arrayFrom);
       for (Story *item in arrayFrom) {
-//        NSLog(@"Title is %@ and latitude is %@", item.title, item.lat);
+        NSLog(@"Title is %@ and latitude is %@", item.title, item.lat);
       }
     }];
   }];
@@ -393,8 +393,6 @@
   
 }
 
-
-
 - (void) postAddNewUser:(NSString *)emailForUser withPassword:(NSString *)passwordForUser withConfirmedPassword:(NSString *)passwordConfirmForUser {
 
   NSString *urlString = [[NSString alloc]initWithString:[NSString stringWithFormat:@"%@/api/users",self.baseURL]];
@@ -459,120 +457,18 @@
 }
 
 // ########################################
+#pragma mark NETWORK ELEMENTS
+// ########################################
+
+
+
+
+
+// ########################################
 #pragma mark DEPRECATED
 // ########################################
 
-- (NSString *) generateAuthRequest {
-  NSString *returnForNow = @"RAWR, I say, RAWR!!!";
 
-  return returnForNow;
-}
-
-
-- (void)stubForPostMethod {
-  NSURL *callbackURL = [[NSURL alloc] init]; // will get callbackURL as a parameter eventually
-  NSString *query = callbackURL.query;
-
-  NSArray *components = [query componentsSeparatedByString:@"code="];
-  NSString *code = [components lastObject];
-  NSString *urlQuery = @"CLIENTID element of query";
-  urlQuery = [urlQuery stringByAppendingString:(NSString *)@"&"];
-  urlQuery = [urlQuery stringByAppendingString:(NSString *)@"CLIENTSECRET element goes here"];
-  urlQuery = [urlQuery stringByAppendingString:(NSString *)@"&"];
-  urlQuery = [urlQuery stringByAppendingString:code];
-  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"POST URL goes here"]];
-  [request setHTTPMethod:@"POST"];
-  NSData *postdata = [urlQuery dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-  [request addValue:@"TOKEN GOES HERE" forHTTPHeaderField:@"JWT"];
-  [request setHTTPBody:postdata];
-  request.HTTPBody = postdata;
-
-  NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-    if (error) {
-      NSLog(@"Error is: %@", error.localizedDescription);
-    } else if (response) {
-      if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-        switch (httpResponse.statusCode) {
-          case 200: {
-          [self saveTokenFromData:data];
-            break;
-          }
-          case 403:
-            NSLog(@"NOT AUTHORIZED");
-            break;
-
-          case 500:
-            NSLog(@"SERVER FAILURE");
-            break;
-
-          default:
-            break;
-        }
-
-      } else {
-        NSLog(@"Response is not HTTP");
-      }
-    } else {
-      NSLog(@"Response is NIL");
-    }
-  }];
-  [dataTask resume];
-}
-
-
-
-
-
-
-@import MobileCoreServices;    // only needed in iOS
-
-- (NSString *)mimeTypeForPath:(NSString *)path
-{
-  // get a mime type for an extension using MobileCoreServices.framework
-
-  CFStringRef extension = (__bridge CFStringRef)[path pathExtension];
-  CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, extension, NULL);
-  assert(UTI != NULL);
-
-  NSString *mimetype = CFBridgingRelease(UTTypeCopyPreferredTagWithClass(UTI, kUTTagClassMIMEType));
-  assert(mimetype != NULL);
-
-  CFRelease(UTI);
-
-  return mimetype;
-}
-
-- (NSData *)createBodyWithBoundary:(NSString *)boundary parameters:(NSDictionary *)parameters paths:(NSArray *)paths fieldName:(NSString *)fieldName
-{
-  NSMutableData *httpBody = [NSMutableData data];
-
-  // add params (all params are strings)
-
-  [parameters enumerateKeysAndObjectsUsingBlock:^(NSString *parameterKey, NSString *parameterValue, BOOL *stop) {
-    [httpBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [httpBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", parameterKey] dataUsingEncoding:NSUTF8StringEncoding]];
-    [httpBody appendData:[[NSString stringWithFormat:@"%@\r\n", parameterValue] dataUsingEncoding:NSUTF8StringEncoding]];
-  }];
-
-  // add image data
-
-  for (NSString *path in paths) {
-    NSString *filename  = [path lastPathComponent];
-    NSData   *data      = [NSData dataWithContentsOfFile:path];
-    NSString *mimetype  = [self mimeTypeForPath:path];
-
-    [httpBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [httpBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", fieldName, filename] dataUsingEncoding:NSUTF8StringEncoding]];
-    [httpBody appendData:[[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", mimetype] dataUsingEncoding:NSUTF8StringEncoding]];
-    [httpBody appendData:data];
-    [httpBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-  }
-
-  [httpBody appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-
-  return httpBody;
-}
 
 
 
