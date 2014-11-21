@@ -10,6 +10,7 @@
     <customFonts key="customFonts">
         <mutableArray key="typicons.ttf">
             <string>typicons</string>
+            <string>typicons</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -33,7 +34,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Hnp-AC-w4q" secondAttribute="height" multiplier="1:1" id="OOY-ZZ-8pb"/>
                                 </constraints>
-                                <state key="normal" title="" image="gps3">
+                                <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="45"/>
+                                <state key="normal" title="">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -135,7 +138,4 @@
             <point key="canvasLocation" x="735" y="-417"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="gps3" width="512" height="512"/>
-    </resources>
 </document>
