@@ -52,10 +52,10 @@
 
     }
 
-    self.latMax = [latMaxVal stringValue];
-    self.latMin = [latMinVal stringValue];
-    self.lngMax = [lngMaxVal stringValue];
-    self.lngMin = [lngMinVal stringValue];
+    self.latMax = @"50.0"; // [latMaxVal stringValue];
+    self.latMin = @"30.0"; //[latMinVal stringValue];
+    self.lngMax = @"0.0"; // [lngMaxVal stringValue];
+    self.lngMin = @"-140.0"; // [lngMinVal stringValue];
   }
   return self;
 }
