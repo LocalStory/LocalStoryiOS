@@ -29,11 +29,12 @@
 
 - (void)saveTokenFromData:(NSData *)data;
 - (NSString *) checkForAuthToken;
-- (void) getDataFromURL:(NSURL *)urlForGet withDictionary:(NSDictionary *)dictionaryForHeader completionHandler:(void (^)(NSData *dataFrom, NSError *networkError))completionHandler;
+- (void) getDataFromURL:(NSURL *)urlForGet withDictionary:(NSDictionary *)dictionaryForHeader withCompletionHandler:(void (^)(NSData *dataFrom, NSError *networkError))completionHandler;
+- (void)logHTTPHeaderFieldsFromHTTTPResponse:(NSHTTPURLResponse *)httpResponse;
 - (void) getStoriesInView:(SearchArea *)searchAreaFor completionHandler:(void (^)(NSArray *stories))completionHandler ;
 - (void) getStoriesForUserWithCompletionHandler:(void (^)(NSArray *stories))completionHandler;
 - (void) postAddNewUser:(NSString *)emailForUser withPassword:(NSString *)passwordForUser withConfirmedPassword:(NSString *)passwordConfirmForUser;
 - (void) postNewStoryToForm:(Story *)storyToPost withImage:(UIImage *)imageToPost;
--(void) getUIImageForStory:(Story *)selectedStory withCompletionHandler:(void (^)(UIImage *imageForStory))completionHandler;
+- (void) getUIImageForStory:(Story *)selectedStory withCompletionHandler:(void (^)(UIImage *imageForStory))completionHandler;
 
 @end
