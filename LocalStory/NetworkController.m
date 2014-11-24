@@ -24,7 +24,6 @@
 #pragma mark SINGLETON Methods
 // ########################################
 
-
 + (id)sharedNetworkController {
   static NetworkController *sharedNetworkController = nil;
   static dispatch_once_t onceToken;
@@ -71,7 +70,6 @@
   }
   return (NSString *)@"none"; // Calls to this function check for this specific value
 }
-
 
 // ########################################
 #pragma mark Data Methods
@@ -123,8 +121,6 @@
   [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-
-
 // ########################################
 #pragma mark GET Methods
 // ########################################
@@ -141,7 +137,7 @@
   NSDictionary *headersDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:checkToken, @"jwt", searchAreaFor.latMax, @"latMax", searchAreaFor.latMin, @"latMin", searchAreaFor.lngMax, @"lngMax", searchAreaFor.lngMin, @"lngMin",  nil];
 
   NSString *stringForGet = self.baseURL;
-  stringForGet = [stringForGet stringByAppendingString:@"/api/stories/location/"];
+  stringForGet = [stringForGet stringByAppendingString:@"/api/stories/location"];
 
   NSLog(@"getStoriesInView url is %@", [stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -153,9 +149,7 @@
       completionHandler(oversizeArray);
     } else {
       NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
-      NSLog(@"here");
       [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        NSLog(@"ADDING");
         completionHandler(arrayFrom);
         NSLog(@"Retrieved %lu items", (unsigned long)arrayFrom.count);
       }];
@@ -172,7 +166,7 @@
   }
   NSDictionary *headersDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:checkToken, @"jwt", nil];
   NSString *stringForGet = self.baseURL;
-  stringForGet = [stringForGet stringByAppendingString:@"/api/stories/user/"];
+  stringForGet = [stringForGet stringByAppendingString:@"/api/stories/user"];
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
   [self getDataFromURL:urlForGet withDictionary:headersDictionary withCompletionHandler:^(NSData *dataFrom, NSError *networkError) {
