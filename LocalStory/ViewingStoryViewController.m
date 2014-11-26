@@ -36,6 +36,8 @@
     self.date.text = stringFromDate;
 }
 
+#pragma mark - Image Functions
+
 -(void)downloadImage {
     [self.networkController getUIImageForStory:self.storyObject withCompletionHandler:^(UIImage *imageForStory) {
         [self.activityIndicator startAnimating];
@@ -45,6 +47,8 @@
     }];
     
 }
+
+#pragma mark - Location Functions
 
 -(void)findLocationOnMap {
     CLLocationDegrees latDelta = 0.01;
@@ -59,11 +63,10 @@
     [[self mapView] addAnnotation:annotation];
 }
 
+#pragma mark - Action Functions
 
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
-
-
 
 @end

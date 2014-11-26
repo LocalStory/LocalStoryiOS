@@ -41,18 +41,26 @@
 
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField*)textField {
-    [textField resignFirstResponder];
-    return YES;
-}
+#pragma mark Button Actions
 
 - (IBAction)createAccountButton:(id)sender {
     BOOL inputCorrect = [self checkInput];
-    if (inputCorrect == YES) {        
+    if (inputCorrect == YES) {
         [self.networkController postAddNewUser:self.userNameField.text withPassword:self.passwordField.text withConfirmedPassword:self.confirmPasswordField.text];
         HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
         [self presentViewController:homeVC animated:true completion:nil];
     }
+}
+
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+#pragma mark Form Helpers
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 -(BOOL)checkInput {
@@ -94,12 +102,5 @@
     [UIView commitAnimations];
     
 }
-
-- (IBAction)back:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
-}
-
-
-
 
 @end
