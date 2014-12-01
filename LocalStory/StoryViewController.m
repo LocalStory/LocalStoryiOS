@@ -17,12 +17,11 @@
 
 @end
 
-
 @implementation StoryViewController
 @synthesize coordinate;
 
-
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:true];
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.allowsEditing = true;
     self.imagePicker.delegate = self;
@@ -86,10 +85,7 @@
     }];
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return NO;
-}
+#pragma mark - Action Functions
 
 -(void)imageTouched:(UITapGestureRecognizer *)tapGestureRecongizer {
     NSLog(@"IMAGE TAPPED");
@@ -99,6 +95,10 @@
 -(void)cameraTouched:(UITapGestureRecognizer *)tapGestureRecongizer {
     NSLog(@"CAMERA TAPPED");
     [self openAlertController];
+}
+
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 -(void)openAlertController {
@@ -136,7 +136,35 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
+- (IBAction)done:(id)sender {
+    NSLog(@"Done");
+    NSLog(@"TITLE: %@", self.titleField.text);
+    NSLog(@"DESCRIPTION: %@", self.descTextView.text);
+    NSLog(@"LAT: %f", self.lat);
+    NSLog(@"LONG: %f", self.lon);
+    
+    //NEED USERID
+    
+    [self generateThumbnail];
+    
+    NSDictionary *newStoryDict = @{
+                                   @"storyBody": self.descTextView.text,
+                                   @"title": self.titleField.text,
+                                   @"lat": [[NSNumber alloc] initWithDouble:self.lat],
+                                   @"lng": [[NSNumber alloc] initWithDouble:self.lon]
+                                   };
+    
+    Story *newStory = [[Story alloc] init:newStoryDict];
+    [self.networkController postNewStoryToForm:newStory withImage:self.imageView.image];
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
 #pragma mark - Keyboard Interations
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     [UIView beginAnimations:nil context:NULL];
@@ -196,10 +224,6 @@
     [self.descTextView resignFirstResponder];
 }
 
-- (IBAction)back:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
-}
-
 -(void)generateThumbnail {
     NSData *imgData = UIImageJPEGRepresentation(self.imageView.image, 0);
     NSLog(@"Size of Image(bytes):%lu",(unsigned long)[imgData length]);
@@ -213,30 +237,5 @@
     NSData *newImgData = UIImageJPEGRepresentation(self.imageView.image, 0);
     NSLog(@"Size of Image(bytes):%lu",(unsigned long)[newImgData length]);
 }
-
-- (IBAction)done:(id)sender {
-    NSLog(@"Done");
-    NSLog(@"TITLE: %@", self.titleField.text);
-    NSLog(@"DESCRIPTION: %@", self.descTextView.text);
-    NSLog(@"LAT: %f", self.lat);
-    NSLog(@"LONG: %f", self.lon);
-    
-    //NEED USERID
-    
-    [self generateThumbnail];
-    
-    NSDictionary *newStoryDict = @{
-                                   @"storyBody": self.descTextView.text,
-                                   @"title": self.titleField.text,
-                                   @"lat": [[NSNumber alloc] initWithDouble:self.lat],
-                                   @"lng": [[NSNumber alloc] initWithDouble:self.lon]
-                                   };
-    
-    Story *newStory = [[Story alloc] init:newStoryDict];
-    [self.networkController postNewStoryToForm:newStory withImage:self.imageView.image];
-    [self dismissViewControllerAnimated:true completion:nil];
-}
-
-
 
 @end
