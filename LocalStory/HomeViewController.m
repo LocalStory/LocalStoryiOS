@@ -3,7 +3,7 @@
 //  LocalStory
 //
 //  Created by Jacob Hawken on 11/17/14.
-//  Copyright (c) 2014 Jacob Hawken. All rights reserved
+//  Copyright (c) 2014 Jacob Hawken. All rights reserved.
 //
 
 #import "HomeViewController.h"
@@ -68,8 +68,17 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+
+  [[self howToAddStoryLabel] setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.5]];
+  [[self howToAddStoryLabel] setTextColor:[[UIColor whiteColor] colorWithAlphaComponent:0.8]];
+
+  self.howToAddStoryLabel.layer.masksToBounds = YES;
+  self.howToAddStoryLabel.layer.cornerRadius = 10.0;
+
   if (self.isFirstLaunch == NO) {
     [self fetchStoriesForCurrentRegion];
+
+
   }
 }
 

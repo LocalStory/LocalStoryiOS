@@ -27,9 +27,16 @@
     
     self.lat = [self.storyObject.lat doubleValue];
     self.lon = [self.storyObject.lng doubleValue];
-    
     [self findLocationOnMap];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm a - MM/dd/yyyy"];
+    NSString *stringFromDate = [formatter stringFromDate:self.storyObject.date];
+    
+    self.date.text = stringFromDate;
 }
+
+#pragma mark - Image Functions
 
 -(void)downloadImage {
     [self.networkController getUIImageForStory:self.storyObject withCompletionHandler:^(UIImage *imageForStory) {
@@ -40,6 +47,8 @@
     }];
     
 }
+
+#pragma mark - Location Functions
 
 -(void)findLocationOnMap {
     CLLocationDegrees latDelta = 0.01;
@@ -54,11 +63,10 @@
     [[self mapView] addAnnotation:annotation];
 }
 
+#pragma mark - Action Functions
 
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
-
-
 
 @end

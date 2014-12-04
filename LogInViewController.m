@@ -23,7 +23,7 @@
     [super viewDidLoad];
     
     self.networkController = [NetworkController sharedNetworkController];
-    
+
     self.userNameField.delegate = self;
     self.passwordField.delegate = self;
     
@@ -32,24 +32,38 @@
     [self.view insertSubview:backgroundView atIndex:0];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField*)textField {
-    [textField resignFirstResponder];
-    return YES;
-}
+#pragma mark Action Methods
 
 - (IBAction)signInButton:(id)sender {
     BOOL inputCorrect = [self checkInput];
     if (inputCorrect == YES) {
-        //DO NETWORK CALL HERE TO CREATE AN ACCOUNT
-        
-        
-        //AFTER ACCOUNT, ROUTE TO HOMEVC
         HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
         [self presentViewController:homeVC animated:true completion:^{
             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Welcome! Discover Stories around you." message:nil delegate:self cancelButtonTitle:@"Got It!" otherButtonTitles:nil];
             [message show];
         }];
     }
+}
+
+- (IBAction)signUpButton:(id)sender {
+    SignUpViewController *loginVC = [[SignUpViewController alloc] initWithNibName:@"SignUpViewController" bundle:nil];
+    [self presentViewController:loginVC animated:true completion:nil];
+}
+
+- (IBAction)justBrowseButton:(id)sender {
+    HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
+    
+    [self presentViewController:homeVC animated:true completion:^{
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Just Browsing ..." message:@"Be sure to sign up to post your stories!" delegate:self cancelButtonTitle:@"Got It!" otherButtonTitles:nil];
+        [message show];
+    }];
+}
+
+#pragma mark Form Helpers
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 -(BOOL)checkInput {
@@ -69,19 +83,9 @@
     return YES;
 }
 
-- (IBAction)justBrowseButton:(id)sender {
-    HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
-    
-    [self presentViewController:homeVC animated:true completion:^{
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Just Browsing ..." message:@"Be sure to sign up to post your stories!" delegate:self cancelButtonTitle:@"Got It!" otherButtonTitles:nil];
-        [message show];
-    }];
-}
 
-- (IBAction)signUpButton:(id)sender {
-    SignUpViewController *loginVC = [[SignUpViewController alloc] initWithNibName:@"SignUpViewController" bundle:nil];
-    [self presentViewController:loginVC animated:true completion:nil];
-}
+
+
 
 
 @end
