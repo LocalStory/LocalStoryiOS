@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *signInToAddStoriesLabel;
 @property (nonatomic, strong) NSTimer* refreshTimer;
 @property (nonatomic) BOOL mapIsFollowingUser;
+@property (nonatomic) MKCoordinateSpan lastSpan;
 
 @end
 
@@ -50,8 +51,11 @@
   self.mapIsFollowingUser = NO;
   self.centeringButton.titleLabel.text = @"\uE0D8";
   
-  UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action: @selector(didLongPressOnMap)];
+  UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(didLongPressOnMap)];
   [self.homeMapView addGestureRecognizer: longPress];
+  
+  UIPanGestureRecognizer* mapPan = [[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(didPanOnMap)];
+  [self.homeMapView addGestureRecognizer: mapPan];
   
   self.appDelegate = [[UIApplication sharedApplication] delegate];
 
@@ -85,6 +89,24 @@
     CLLocation *newLoc = locations.lastObject;
     self.lat = newLoc.coordinate.latitude;
     self.lon = newLoc.coordinate.longitude;
+  }
+  
+  //set character for centering button based on map position
+  CLLocation* mapCenter = [[CLLocation alloc] initWithLatitude: self.homeMapView.centerCoordinate.latitude longitude: self.homeMapView.centerCoordinate.longitude];
+  CLLocation* userCenter = [[CLLocation alloc] initWithLatitude: self.homeMapView.userLocation.coordinate.latitude longitude:self.homeMapView.userLocation.coordinate.longitude];
+  CLLocationDistance mapOffsetFromUser = [mapCenter distanceFromLocation:userCenter];
+  NSLog(@"%f", mapOffsetFromUser);
+  
+    if (mapOffsetFromUser > 0) {
+      self.centeringButton.titleLabel.text = @"\uE0D8";
+      NSLog(@"Centering button should have changed to crosshair.");
+    } else {
+      self.centeringButton.titleLabel.text = @"\uE09D"; //
+      NSLog(@"Centering button should have changed to arrow.");
+    }
+  //conditionally turn on map following user
+  if (self.mapIsFollowingUser) {
+    [self.homeMapView setCenterCoordinate: self.homeMapView.userLocation.coordinate animated:true];
   }
 }
 
@@ -136,16 +158,7 @@
   } else {
     
   }
-  //set character for centering button based on map position
-  if (self.homeMapView.centerCoordinate.latitude == self.homeMapView.userLocation.coordinate.latitude && self.homeMapView.centerCoordinate.longitude == self.homeMapView.userLocation.coordinate.longitude) {
-    self.centeringButton.titleLabel.text = @"\uE0D8";
-  } else {
-    self.centeringButton.titleLabel.text = @"\uE09D";
-  }
-  //conditionally turn on map following user
-  if (self.mapIsFollowingUser) {
-    [self.homeMapView setCenterCoordinate: self.homeMapView.userLocation.coordinate animated:true];
-  }
+  
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
@@ -156,12 +169,22 @@
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-  [self.refreshTimer invalidate];
-  self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval: 1.5
-                                   target: self
-                                 selector: @selector(fetchStoriesForCurrentRegion)
-                                 userInfo: nil
-                                  repeats: NO];
+  CLLocation* mapCenter = [[CLLocation alloc] initWithLatitude: self.homeMapView.centerCoordinate.latitude longitude: self.homeMapView.centerCoordinate.longitude];
+  CLLocation* userCenter = [[CLLocation alloc] initWithLatitude: self.homeMapView.userLocation.coordinate.latitude longitude:self.homeMapView.userLocation.coordinate.longitude];
+  CLLocationDistance mapOffsetFromUser = [mapCenter distanceFromLocation:userCenter];
+  
+  
+  
+  if (mapOffsetFromUser > 600) {
+    [self.refreshTimer invalidate];
+    self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval: 1
+                                                         target: self
+                                                       selector: @selector(fetchStoriesForCurrentRegion)
+                                                       userInfo: nil
+                                                        repeats: NO];
+  }
+  
+  self.lastSpan = self.homeMapView.region.span;
 }
 
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
@@ -171,6 +194,10 @@
   renderer.lineWidth = 1.0;
   
   return renderer;
+}
+
+-(void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered {
+  [self fetchStoriesForCurrentRegion];
 }
 
 #pragma mark - other functions
@@ -303,6 +330,10 @@
   }
 }
 
+- (void) didPanOnMap {
+  self.mapIsFollowingUser = false;
+}
+
 #pragma mark - IBActions
 
 - (IBAction)centeringButtonPressed:(id)sender {
@@ -311,7 +342,7 @@
   if (self.homeMapView.centerCoordinate.latitude == self.homeMapView.userLocation.coordinate.latitude && self.homeMapView.centerCoordinate.longitude == self.homeMapView.userLocation.coordinate.longitude) {
     self.mapIsFollowingUser = true;
   } else {
-    self.mapIsFollowingUser = false;
+    //not really a need to do something here
   }
 }
 

@@ -18,11 +18,12 @@
 		16E08FB31A16C36800579486 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E08FB21A16C36800579486 /* AppDelegate.m */; };
 		16E08FB61A16C36800579486 /* LocalStory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 16E08FB41A16C36800579486 /* LocalStory.xcdatamodeld */; };
 		16E08FBC1A16C36800579486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16E08FBA1A16C36800579486 /* Main.storyboard */; };
-		16E08FBE1A16C36800579486 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16E08FBD1A16C36800579486 /* Images.xcassets */; };
 		16E08FC11A16C36800579486 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16E08FBF1A16C36800579486 /* LaunchScreen.xib */; };
 		16E08FCD1A16C36800579486 /* LocalStoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E08FCC1A16C36800579486 /* LocalStoryTests.m */; };
 		16E713F41A1D4B0900026285 /* gps3.png in Resources */ = {isa = PBXBuildFile; fileRef = 16E713F31A1D4B0900026285 /* gps3.png */; };
 		16E713F71A1EB01100026285 /* StoryPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E713F61A1EB01100026285 /* StoryPin.m */; };
+		16EAF4FE1A30F8B5007966C2 /* local story contrast.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 16EAF4FD1A30F8B5007966C2 /* local story contrast.jpg */; };
+		16EAF5041A30F95C007966C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16EAF5031A30F95C007966C2 /* Images.xcassets */; };
 		4365772C1A1AD55600335FA4 /* SearchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 4365772B1A1AD55600335FA4 /* SearchArea.m */; };
 		4365D63C1A1E749800D92E69 /* ICHObjectPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4365D63B1A1E749800D92E69 /* ICHObjectPrinter.m */; };
 		4365D6401A1EE0E700D92E69 /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4365D63F1A1EE0E700D92E69 /* avatar.jpg */; };
@@ -66,7 +67,6 @@
 		16E08FB21A16C36800579486 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		16E08FB51A16C36800579486 /* LocalStory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalStory.xcdatamodel; sourceTree = "<group>"; };
 		16E08FBB1A16C36800579486 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		16E08FBD1A16C36800579486 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		16E08FC01A16C36800579486 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		16E08FC61A16C36800579486 /* LocalStoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalStoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16E08FCB1A16C36800579486 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,6 +74,8 @@
 		16E713F31A1D4B0900026285 /* gps3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps3.png; sourceTree = "<group>"; };
 		16E713F51A1EB01100026285 /* StoryPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryPin.h; sourceTree = "<group>"; };
 		16E713F61A1EB01100026285 /* StoryPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryPin.m; sourceTree = "<group>"; };
+		16EAF4FD1A30F8B5007966C2 /* local story contrast.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "local story contrast.jpg"; sourceTree = "<group>"; };
+		16EAF5031A30F95C007966C2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4365772A1A1AD55600335FA4 /* SearchArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchArea.h; sourceTree = "<group>"; };
 		4365772B1A1AD55600335FA4 /* SearchArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchArea.m; sourceTree = "<group>"; };
 		4365D63A1A1E749800D92E69 /* ICHObjectPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICHObjectPrinter.h; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 		16E08FAD1A16C36800579486 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				16EAF4FD1A30F8B5007966C2 /* local story contrast.jpg */,
 				16164D461A1F16D7001F23C5 /* local story.png */,
 				16164D481A1F1CFC001F23C5 /* local story plain.png */,
 				16E713F31A1D4B0900026285 /* gps3.png */,
@@ -215,7 +218,7 @@
 				706428271A1D30A50023A4A6 /* SignUpViewController.xib */,
 				701150B41A1A70D9003F4F99 /* StoryViewController.xib */,
 				70DF14751A1C0FF2008436D6 /* ViewingStoryViewController.xib */,
-				16E08FBD1A16C36800579486 /* Images.xcassets */,
+				16EAF5031A30F95C007966C2 /* Images.xcassets */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -324,6 +327,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				16164D471A1F16D7001F23C5 /* local story.png in Resources */,
+				16EAF5041A30F95C007966C2 /* Images.xcassets in Resources */,
+				16EAF4FE1A30F8B5007966C2 /* local story contrast.jpg in Resources */,
 				70DF14771A1C0FF2008436D6 /* ViewingStoryViewController.xib in Resources */,
 				701150B61A1A70D9003F4F99 /* StoryViewController.xib in Resources */,
 				163ADF681A1AAC8200611B75 /* add46 (512).png in Resources */,
@@ -331,7 +336,6 @@
 				16E08FC11A16C36800579486 /* LaunchScreen.xib in Resources */,
 				706428291A1D30A50023A4A6 /* SignUpViewController.xib in Resources */,
 				706428241A1D1D700023A4A6 /* LogInViewController.xib in Resources */,
-				16E08FBE1A16C36800579486 /* Images.xcassets in Resources */,
 				43C2211D1A1C1F7300B0A81E /* avatar.jpg in Resources */,
 				16164D491A1F1CFC001F23C5 /* local story plain.png in Resources */,
 				16E713F41A1D4B0900026285 /* gps3.png in Resources */,
