@@ -105,7 +105,7 @@
       NSLog(@"Centering button should have changed to arrow.");
     }
   //conditionally turn on map following user
-  if (self.mapIsFollowingUser) {
+  if (self.mapIsFollowingUser == YES) {
     [self.homeMapView setCenterCoordinate: self.homeMapView.userLocation.coordinate animated:true];
   }
 }
@@ -331,7 +331,11 @@
 }
 
 - (void) didPanOnMap {
-  self.mapIsFollowingUser = false;
+  self.mapIsFollowingUser = NO;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+  return YES;
 }
 
 #pragma mark - IBActions
@@ -340,7 +344,7 @@
   //toggle whether or not map follows user based on map position
   [self.homeMapView setCenterCoordinate: self.homeMapView.userLocation.coordinate animated:true];
   if (self.homeMapView.centerCoordinate.latitude == self.homeMapView.userLocation.coordinate.latitude && self.homeMapView.centerCoordinate.longitude == self.homeMapView.userLocation.coordinate.longitude) {
-    self.mapIsFollowingUser = true;
+    self.mapIsFollowingUser = YES;
   } else {
     //not really a need to do something here
   }
