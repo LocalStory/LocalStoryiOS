@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Story.h"
 #import <MapKit/MapKit.h>
+#import "Constants.h"
 
 @interface ViewingStoryViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;

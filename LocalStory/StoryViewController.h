@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "Constants.h"
 
 @interface StoryViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextFieldDelegate,UITextViewDelegate, MKAnnotation, MKMapViewDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;

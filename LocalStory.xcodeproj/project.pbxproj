@@ -29,6 +29,7 @@
 		4365D6401A1EE0E700D92E69 /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4365D63F1A1EE0E700D92E69 /* avatar.jpg */; };
 		438564661A1947F100CE9413 /* Story.m in Sources */ = {isa = PBXBuildFile; fileRef = 438564651A1947F100CE9413 /* Story.m */; };
 		438564691A19483100CE9413 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438564681A19483100CE9413 /* NetworkController.m */; };
+		4395D2851A3754F100368CFA /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395D2841A3754F100368CFA /* Constants.m */; };
 		43C2211D1A1C1F7300B0A81E /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43C2211C1A1C1F7300B0A81E /* avatar.jpg */; };
 		701150B51A1A70D9003F4F99 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 701150B31A1A70D9003F4F99 /* StoryViewController.m */; };
 		701150B61A1A70D9003F4F99 /* StoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 701150B41A1A70D9003F4F99 /* StoryViewController.xib */; };
@@ -87,6 +88,8 @@
 		438564651A1947F100CE9413 /* Story.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Story.m; sourceTree = "<group>"; };
 		438564671A19483100CE9413 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
 		438564681A19483100CE9413 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
+		4395D2831A3754F100368CFA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		4395D2841A3754F100368CFA /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		43C2211C1A1C1F7300B0A81E /* avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = avatar.jpg; sourceTree = "<group>"; };
 		701150B21A1A70D9003F4F99 /* StoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
 		701150B31A1A70D9003F4F99 /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
@@ -205,6 +208,8 @@
 				701150B31A1A70D9003F4F99 /* StoryViewController.m */,
 				70DF14731A1C0FF2008436D6 /* ViewingStoryViewController.h */,
 				70DF14741A1C0FF2008436D6 /* ViewingStoryViewController.m */,
+				4395D2831A3754F100368CFA /* Constants.h */,
+				4395D2841A3754F100368CFA /* Constants.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 				706428281A1D30A50023A4A6 /* SignUpViewController.m in Sources */,
 				16E08FB31A16C36800579486 /* AppDelegate.m in Sources */,
 				438564661A1947F100CE9413 /* Story.m in Sources */,
+				4395D2851A3754F100368CFA /* Constants.m in Sources */,
 				16E713F71A1EB01100026285 /* StoryPin.m in Sources */,
 				438564691A19483100CE9413 /* NetworkController.m in Sources */,
 				4365772C1A1AD55600335FA4 /* SearchArea.m in Sources */,
@@ -522,6 +528,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -541,6 +548,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				INFOPLIST_FILE = LocalStoryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

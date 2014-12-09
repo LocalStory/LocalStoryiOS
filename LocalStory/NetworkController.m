@@ -75,18 +75,18 @@
 #pragma mark Data Methods
 // ########################################
 
-- (void) getDataFromURL:(NSURL *)urlForGet withDictionary:(NSDictionary *)dictionaryForHeader withCompletionHandler:(void (^)(NSData *dataFrom, NSError *networkError))completionHandler {
+- (void) getDataFromURL:(NSURL *)urlForGet withDictionary:(NSDictionary *)dictionaryForHeader withCompletionHandler:(void (^)(NSData *dataFrom, NSError *networkError, BOOL serverResponse))completionHandler {
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:urlForGet];
   [request setHTTPMethod:@"GET"];
 
   for (id key in dictionaryForHeader) {
     [request addValue:dictionaryForHeader[key] forHTTPHeaderField:key];
   }
-  NSLog(@"Values are %@", [dictionaryForHeader allValues]);
+//  NSLog(@"Values are %@", [dictionaryForHeader allValues]);
   NSURLSession *sessionForGet = [NSURLSession sharedSession];
   NSURLSessionDataTask *dataTask = [sessionForGet dataTaskWithRequest:request completionHandler:^(NSData *dataFrom, NSURLResponse *responseFrom, NSError *error) {
     if (error != nil) {
-      completionHandler(nil, error);
+      completionHandler(nil, error, NO);
     } else {
       NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)responseFrom;
       NSInteger statusCode = [httpResponse statusCode];
@@ -94,17 +94,19 @@
       switch (statusCode) {
         case 200:
           NSLog(@"Success");
-          completionHandler(dataFrom, nil);
+          completionHandler(dataFrom, nil, YES);
           break;
         case 403:
           NSLog(@"Server code 403: Most likely bad/missing JWT");
+          completionHandler(nil, nil, NO);
           break;
         case 500:
           NSLog(@"Server code 500: Server doesn't recognize the request");
+          completionHandler(nil, nil, NO);
           break;
         default:
           NSLog(@"Fell through to default: Response code is %ld", (long)httpResponse.statusCode);
-          completionHandler(dataFrom, nil);
+          completionHandler(dataFrom, nil, NO);
       }
     }
   }];
@@ -125,7 +127,7 @@
 #pragma mark GET Methods
 // ########################################
 
-- (void) getStoriesInView:(SearchArea *)searchAreaFor completionHandler:(void (^)(NSArray *stories))completionHandler  {
+- (void) getStoriesInView:(SearchArea *)searchAreaFor completionHandler:(void (^)(NSArray *stories, BOOL serverResponse))completionHandler  {
 
   NSString *checkToken = self.checkForAuthToken;
   if ([checkToken isEqual: @"none"]) {
@@ -142,22 +144,27 @@
   NSLog(@"getStoriesInView url is %@", [stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
-  [self getDataFromURL:urlForGet withDictionary:headersDictionary withCompletionHandler:^(NSData *dataFrom, NSError *networkError){
+  [self getDataFromURL:urlForGet withDictionary:headersDictionary withCompletionHandler:^(NSData *dataFrom, NSError *networkError, BOOL serverResponse){
+    if (serverResponse == NO) {
+      NSArray *noArray = [[NSArray alloc] initWithObjects:@"serverFail", nil]; // Should test this return isEqual: @"tooMany" to prompt the user to zoom in
+      completionHandler(noArray, serverResponse);
+    } else {
     id dataToTest = [NSJSONSerialization JSONObjectWithData:dataFrom options:NSJSONReadingAllowFragments error:&networkError];
     if([dataToTest isKindOfClass:[NSDictionary class]]) {
       NSArray *oversizeArray = [[NSArray alloc] initWithObjects:@"tooMany", nil]; // Should test this return isEqual: @"tooMany" to prompt the user to zoom in
-      completionHandler(oversizeArray);
+      completionHandler(oversizeArray, serverResponse);
     } else {
       NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
       [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        completionHandler(arrayFrom);
+        completionHandler(arrayFrom, serverResponse);
         NSLog(@"Retrieved %lu items", (unsigned long)arrayFrom.count);
       }];
     }
+  }
   }];
 }
 
-- (void) getStoriesForUserWithCompletionHandler:(void (^)(NSArray *stories))completionHandler  {
+- (void) getStoriesForUserWithCompletionHandler:(void (^)(NSArray *stories, BOOL serverResponse))completionHandler  {
   NSString *checkToken = self.checkForAuthToken;
   if ([checkToken isEqual: @"none"]) {
     NSLog(@"NO TOKEN FOUND");
@@ -169,16 +176,20 @@
   stringForGet = [stringForGet stringByAppendingString:@"/api/stories/user"];
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
-  [self getDataFromURL:urlForGet withDictionary:headersDictionary withCompletionHandler:^(NSData *dataFrom, NSError *networkError) {
+  [self getDataFromURL:urlForGet withDictionary:headersDictionary withCompletionHandler:^(NSData *dataFrom, NSError *networkError, BOOL serverResponse) {
+    if (serverResponse == NO) {
+      completionHandler(nil, NO);
+    } else {
     NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-      completionHandler(arrayFrom);
+      completionHandler(arrayFrom, serverResponse);
       NSLog(@"Retrieved %lu items", (unsigned long)arrayFrom.count);
     }];
+    }
   }];
 }
 
-- (void) getUIImageForStory:(Story *)selectedStory withCompletionHandler:(void (^)(UIImage *imageForStory))completionHandler {
+- (void) getUIImageForStory:(Story *)selectedStory withCompletionHandler:(void (^)(UIImage *imageForStory, BOOL serverResponse))completionHandler {
   NSString *checkToken = self.checkForAuthToken;
   if ([checkToken isEqual: @"none"]) {
     NSLog(@"NO TOKEN FOUND");
@@ -189,10 +200,10 @@
   NSString *stringForGet = [NSString stringWithFormat:@"http://dry-atoll-3756.herokuapp.com/api/stories/single/image/%@", selectedStory.underscoreid];
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
-  [self getDataFromURL:urlForGet withDictionary:headersDictionary withCompletionHandler:^(NSData *dataFrom, NSError *networkError){
+  [self getDataFromURL:urlForGet withDictionary:headersDictionary withCompletionHandler:^(NSData *dataFrom, NSError *networkError, BOOL serverResponse){
     UIImage *imageFrom = [UIImage imageWithData:dataFrom];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-      completionHandler(imageFrom);
+      completionHandler(imageFrom, serverResponse);
     }];
   }];
 }
@@ -202,7 +213,8 @@
 #pragma mark POST Methods
 // ########################################
 
-- (void) postNewStoryToForm:(Story *)storyToPost withImage:(UIImage *)imageToPost {
+- (BOOL) postNewStoryToForm:(Story *)storyToPost withImage:(UIImage *)imageToPost withCompletionHandler:(void (^)(BOOL serverResponse))completionHandler {
+  __block BOOL returnValue = NO;
 
   NSString *checkToken = self.checkForAuthToken;
   if ([checkToken isEqual: @"none"]) {
@@ -256,36 +268,44 @@
 
   NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     if (error) {
-      NSLog(@"Error is: %@", error.localizedDescription);
+      NSLog(@"Error in Post new story is: %@", error.localizedDescription);
+      completionHandler(NO);
     } else if (response) {
       if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
         switch (httpResponse.statusCode) {
           case 200:
             NSLog(@"Server code 200: Success!");
+            completionHandler(YES);
+            returnValue = YES;
             break;
           case 403:
             NSLog(@"Server code 403: Most likely bad/missing JWT");
+            completionHandler(NO);
             break;
           case 500:
             NSLog(@"Server code 500: Server doesn't recognize the request");
+            completionHandler(NO);
             break;
           default:
             NSLog(@"Fell through to default: Response code is %ld", (long)httpResponse.statusCode);
+            completionHandler(NO);
             break;
         }
       } else {
         NSLog(@"Response is not HTTP");
+        completionHandler(NO);
       }
     } else {
       NSLog(@"Response is NIL");
+      completionHandler(NO);
     }
   }];
   [dataTask resume];
-  
+  return returnValue;
 }
 
-- (void) postAddNewUser:(NSString *)emailForUser withPassword:(NSString *)passwordForUser withConfirmedPassword:(NSString *)passwordConfirmForUser {
+- (void) postAddNewUser:(NSString *)emailForUser withPassword:(NSString *)passwordForUser withConfirmedPassword:(NSString *)passwordConfirmForUser withCompletionHandler:(void (^)(BOOL serverResponse))completionHandler {
   NSString *urlString = [[NSString alloc]initWithString:[NSString stringWithFormat:@"%@/api/users",self.baseURL]];
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
   [request setURL:[NSURL URLWithString:urlString]];
@@ -307,30 +327,37 @@
 
   NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     if (error) {
-      NSLog(@"Error is: %@", error.localizedDescription);
+      NSLog(@"Error in post new user is: %@", error.localizedDescription);
+      completionHandler(NO);
     } else if (response) {
       if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
         switch (httpResponse.statusCode) {
           case 200:
             [self saveTokenFromData:data];
+            completionHandler(YES);
             break;
           case 403:
             NSLog(@"Server code 403: Most likely bad/missing JWT");
+            completionHandler(NO);
             break;
           case 500:
             NSLog(@"Server code 500: Server doesn't recognize the request");
+            completionHandler(NO);
             break;
           default:
             NSLog(@"Fell through to default: Response code is %ld", (long)httpResponse.statusCode);
+            completionHandler(NO);
             break;
         }
 
       } else {
         NSLog(@"Response is not HTTP");
+        completionHandler(NO);
       }
     } else {
       NSLog(@"Response is NIL");
+      completionHandler(NO);
     }
   }];
   [dataTask resume];
@@ -360,7 +387,7 @@
   NSString *stringForGet = self.baseURL;
   stringForGet = [stringForGet stringByAppendingString:@"/api/users"];
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-  [self getDataFromURL:urlForGet withDictionary:headersDictionary withCompletionHandler:^(NSData *dataFrom, NSError *networkError){
+  [self getDataFromURL:urlForGet withDictionary:headersDictionary withCompletionHandler:^(NSData *dataFrom, NSError *networkError, BOOL serverResponse){
     NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
     NSString *jwt = arrayFrom.firstObject;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{

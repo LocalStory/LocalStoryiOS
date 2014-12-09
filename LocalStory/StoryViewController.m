@@ -12,6 +12,8 @@
 
 @interface StoryViewController ()
 
+@property (nonatomic) BOOL shouldDismiss;
+
 @property (nonatomic,strong) UIImagePickerController *imagePicker;
 @property (nonatomic,weak) NetworkController *networkController;
 
@@ -155,8 +157,21 @@
                                    };
     
     Story *newStory = [[Story alloc] init:newStoryDict];
-    [self.networkController postNewStoryToForm:newStory withImage:self.imageView.image];
-    [self dismissViewControllerAnimated:true completion:nil];
+    BOOL aBool = [self.networkController postNewStoryToForm:newStory withImage:self.imageView.image withCompletionHandler:^(BOOL serverResponse) {
+      NSLog(@"Server response is %d: ", serverResponse);
+
+    }];
+  NSLog(@"aBool is: %d", aBool);
+  if (aBool == NO) {
+    NSLog(@"Show net error");
+    [self networkError];
+//    if (self.shouldDismiss == NO) {
+//      self.shouldDismiss = YES;
+//      return;
+//    } else {
+//      [self dismissViewControllerAnimated:true completion:nil];
+//    }
+  }
 }
 
 #pragma mark - Keyboard Interations
@@ -225,17 +240,44 @@
 }
 
 -(void)generateThumbnail {
+#ifdef DEBUG
     NSData *imgData = UIImageJPEGRepresentation(self.imageView.image, 0);
     NSLog(@"Size of Image(bytes):%lu",(unsigned long)[imgData length]);
-    
+#endif
+
     CGSize destinationSize = CGSizeMake(500, 500);
     UIGraphicsBeginImageContext(destinationSize);
     [self.imageView.image drawInRect:CGRectMake(0,0,destinationSize.width,destinationSize.height)];
     self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
+#ifdef DEBUG
     NSData *newImgData = UIImageJPEGRepresentation(self.imageView.image, 0);
     NSLog(@"Size of Image(bytes):%lu",(unsigned long)[newImgData length]);
+#endif
+}
+
+- (void) networkError {
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:@"An error was encountered while attempting to reach the server. Would you like to continue without saving?" preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+    NSLog(@"CONTINUE, the action is %@", action.debugDescription);
+    [alert dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"Gonna dismiss");
+    [self dismissTheVC];
+  }];
+  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    NSLog(@"don't continue");
+  }];
+
+  [alert addAction:defaultAction];
+  [alert addAction:cancelAction];
+
+  [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void) dismissTheVC {
+  NSLog(@"HERE");
+  [self dismissViewControllerAnimated:true completion:nil];
 }
 
 @end

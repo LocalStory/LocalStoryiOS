@@ -39,11 +39,16 @@
 #pragma mark - Image Functions
 
 -(void)downloadImage {
-    [self.networkController getUIImageForStory:self.storyObject withCompletionHandler:^(UIImage *imageForStory) {
+    [self.networkController getUIImageForStory:self.storyObject withCompletionHandler:^(UIImage *imageForStory, BOOL serverResponse) {
+      if (serverResponse == NO) {
+        [self networkError];
+        self.imageView.image = [UIImage imageNamed:@"imagePlaceholder"];
+      } else {
         [self.activityIndicator startAnimating];
         self.imageView.image = imageForStory;
         [self.activityIndicator stopAnimating];
         self.activityIndicator.hidden = true;
+      }
     }];
     
 }
@@ -67,6 +72,14 @@
 
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (void) networkError {
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:@"An error was encountered while attempting to reach the server. Please check your data connection and try again later." preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"Got it" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}];
+  [alert addAction:defaultAction];
+
+  [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

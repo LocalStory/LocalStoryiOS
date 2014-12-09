@@ -36,7 +36,7 @@
   NSError *error;
 
   NSDictionary *topLevelItemFromJSON = [NSJSONSerialization JSONObjectWithData:rawJSONData options:NSJSONReadingAllowFragments error:&error];
-  NSLog(@"Error is: %@", error.localizedDescription);
+  NSLog(@"Error in Story parse is: %@", error.localizedDescription);
 
   if ([topLevelItemFromJSON isKindOfClass: [NSArray class]]) {
     NSLog(@"Found object as array");

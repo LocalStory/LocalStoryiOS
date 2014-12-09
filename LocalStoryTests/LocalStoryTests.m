@@ -81,13 +81,13 @@
 
 - (void)testMakeUserWithImage {
   NSLog(@"testMakeUserWithImage");
-  XCTAssertNoThrow([self.networkController postAddNewUser:self.username withPassword:self.pwd1 withConfirmedPassword:self.pwd2]);
+  XCTAssertNoThrow([self.networkController postAddNewUser:self.username withPassword:self.pwd1 withConfirmedPassword:self.pwd2 withCompletionHandler:nil]);
 }
 
 - (void)testUserList {
   NSLog(@"TESTING USER LIST");
 
-  [self.networkController getStoriesForUserWithCompletionHandler:^(NSArray *stories) {
+  [self.networkController getStoriesForUserWithCompletionHandler:^(NSArray *stories, BOOL serverResponse) {
     XCTAssertTrue(stories);
   }];
 }
@@ -95,7 +95,7 @@
 - (void)testUserArea {
   NSLog(@"TESTING USER AREA");
 
-  [self.networkController getStoriesInView:self.searchArea completionHandler:^(NSArray *stories) {
+  [self.networkController getStoriesInView:self.searchArea completionHandler:^(NSArray *stories, BOOL serverResponse) {
     XCTAssertTrue(stories);
   }];
   
@@ -107,12 +107,12 @@
 
 - (void)testMakeStoryWithImage {
   NSLog(@"testMakeStoryWithImage");
-  XCTAssertNoThrow([self.networkController postNewStoryToForm:self.story withImage:self.image]);
+  XCTAssertNoThrow([self.networkController postNewStoryToForm:self.story withImage:self.image withCompletionHandler:nil]);
 }
 
 - (void)testMakeStoryNoImage {
   NSLog(@"testMakeStoryNoImage");
-  XCTAssertNoThrow([self.networkController postNewStoryToForm:self.story withImage:nil]);
+  XCTAssertNoThrow([self.networkController postNewStoryToForm:self.story withImage:nil withCompletionHandler:nil]);
 }
 
 //- (void)testExpectation {
@@ -127,7 +127,7 @@
 - (void)testGetImage {
   NSLog(@"TESTING USER IMAGE");
 
-  [self.networkController getUIImageForStory:self.story withCompletionHandler:^(UIImage *imageForStory) {
+  [self.networkController getUIImageForStory:self.story withCompletionHandler:^(UIImage *imageForStory, BOOL serverResponse) {
     UIImage *imageFrom = imageForStory;
     NSLog(@"Length is %@", imageFrom.imageAsset.description);
     XCTAssertTrue(imageForStory);

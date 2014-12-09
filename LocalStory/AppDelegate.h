@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Jacob Hawken. All rights reserved.
 //
 
+#import "Constants.h"
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "SignUpViewController.h"
@@ -17,6 +18,8 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
