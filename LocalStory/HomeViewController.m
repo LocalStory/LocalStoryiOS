@@ -279,7 +279,7 @@
   
   if (self.stories.count == 0) {
     MKCircle* tooManyStories = [MKCircle circleWithCenterCoordinate:self.homeMapView.centerCoordinate radius:self.homeMapView.region.span.longitudeDelta];
-    tooManyStories.title = @"Too many stories to view. Zoom in to view individual stories.";
+    tooManyStories.title = @"Too many stories to display. Zoom in to view individual stories.";
     [self.homeMapView addOverlay: tooManyStories];
   }
   else {
