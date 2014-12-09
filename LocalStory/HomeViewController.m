@@ -95,14 +95,14 @@
   CLLocation* mapCenter = [[CLLocation alloc] initWithLatitude: self.homeMapView.centerCoordinate.latitude longitude: self.homeMapView.centerCoordinate.longitude];
   CLLocation* userCenter = [[CLLocation alloc] initWithLatitude: self.homeMapView.userLocation.coordinate.latitude longitude:self.homeMapView.userLocation.coordinate.longitude];
   CLLocationDistance mapOffsetFromUser = [mapCenter distanceFromLocation:userCenter];
-  NSLog(@"%f", mapOffsetFromUser);
-  
+//  NSLog(@"%f", mapOffsetFromUser);
+
     if (mapOffsetFromUser > 0) {
       self.centeringButton.titleLabel.text = @"\uE0D8";
-      NSLog(@"Centering button should have changed to crosshair.");
+//      NSLog(@"Centering button should have changed to crosshair.");
     } else {
       self.centeringButton.titleLabel.text = @"\uE09D"; //
-      NSLog(@"Centering button should have changed to arrow.");
+//      NSLog(@"Centering button should have changed to arrow.");
     }
   //conditionally turn on map following user
   if (self.mapIsFollowingUser == YES) {
@@ -226,16 +226,20 @@
   self.refreshTimer = nil;
   SearchArea* searchArea = [[SearchArea alloc] init: self.homeMapView.region];
   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-  [self.networkController getStoriesInView:searchArea completionHandler:^(NSArray *stories) {
-    if ([[stories firstObject]  isEqual: @"tooMany"]) {
-      [self.stories removeAllObjects];
-      [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    }
-    else {
-      NSMutableArray* tempArray = [[NSMutableArray alloc] initWithArray:stories];
-      [self.stories removeAllObjects];
-      self.stories = tempArray;
-      [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+  [self.networkController getStoriesInView:searchArea completionHandler:^(NSArray *stories, BOOL serverResponse) {
+    if (serverResponse == NO) {
+      [self networkError];
+    }  else {
+      if ([[stories firstObject]  isEqual: @"tooMany"]) {
+        [self.stories removeAllObjects];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+      }
+      else {
+        NSMutableArray* tempArray = [[NSMutableArray alloc] initWithArray:stories];
+        [self.stories removeAllObjects];
+        self.stories = tempArray;
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+      }
     }
   }];
   [self addStoryAnnotationsToMapForDate: [NSDate date] andOnlyLoadStoriesAfterDate: false];
@@ -336,6 +340,14 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
   return YES;
+}
+
+- (void) networkError {
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:@"An error was encountered while attempting to reach the server. Please check your data connection and try again later." preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"Got it" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}];
+  [alert addAction:defaultAction];
+
+  [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - IBActions

@@ -46,9 +46,16 @@
 - (IBAction)createAccountButton:(id)sender {
     BOOL inputCorrect = [self checkInput];
     if (inputCorrect == YES) {
-        [self.networkController postAddNewUser:self.userNameField.text withPassword:self.passwordField.text withConfirmedPassword:self.confirmPasswordField.text];
-        HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
-        [self presentViewController:homeVC animated:true completion:nil];
+        [self.networkController postAddNewUser:self.userNameField.text withPassword:self.passwordField.text withConfirmedPassword:self.confirmPasswordField.text withCompletionHandler:^(BOOL serverResponse) {
+          if (serverResponse == NO) {
+            [self networkError];
+            return;
+          } else {
+            HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
+            [self presentViewController:homeVC animated:true completion:nil];
+          }
+        }];
+
     }
 }
 
@@ -101,6 +108,16 @@
     self.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
     [UIView commitAnimations];
     
+}
+
+#pragma mark Alert
+
+- (void) networkError {
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:@"An error was encountered while attempting to reach the server. Please check your data connection and try again later." preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"Got it" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}];
+  [alert addAction:defaultAction];
+
+  [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

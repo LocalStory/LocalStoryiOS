@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 
 @interface SignUpViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *contentView;
