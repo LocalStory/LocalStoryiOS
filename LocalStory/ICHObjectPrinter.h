@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 
 @interface ICHObjectPrinter : NSObject
 +(NSString *)descriptionForObject:(id)objct;

@@ -17,6 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+
+
+
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
   NSString *keyOne = @"hasLaunched";
