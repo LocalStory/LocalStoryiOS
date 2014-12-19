@@ -31,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *howToAddStoryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *signInToAddStoriesLabel;
 @property (nonatomic, strong) NSTimer* refreshTimer;
-@property (nonatomic) BOOL mapIsFollowingUser;
+//@property (nonatomic) BOOL mapIsFollowingUser;
 @property (nonatomic) MKCoordinateSpan lastSpan;
 
 @end
@@ -41,21 +41,21 @@
 #pragma mark - lifecycle methods
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
+  [super viewDidLoad];
+  
   self.locationManager = [[CLLocationManager alloc] init];
   self.locationManager.delegate = self;
   self.homeMapView.delegate = self;
   self.networkController = [NetworkController sharedNetworkController];
   self.isFirstLaunch = YES;
-  self.mapIsFollowingUser = NO;
-  self.centeringButton.titleLabel.text = @"\uE0D8";
+//  self.mapIsFollowingUser = NO;
+  self.centeringButton.titleLabel.text = @"\uE09D";
   
   UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(didLongPressOnMap)];
   [self.homeMapView addGestureRecognizer: longPress];
   
-  UIPanGestureRecognizer* mapPan = [[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(didPanOnMap)];
-  [self.homeMapView addGestureRecognizer: mapPan];
+//  UIPanGestureRecognizer* mapPan = [[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(didPanOnMap)];
+//  [self.homeMapView addGestureRecognizer: mapPan];
   
   self.appDelegate = [[UIApplication sharedApplication] delegate];
 
@@ -77,9 +77,11 @@
 
   if (self.isFirstLaunch == NO) {
     [self fetchStoriesForCurrentRegion];
-
-
   }
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+  [self countdownToRefresh: 3];
 }
 
 #pragma mark - location manager delegate methods
@@ -89,24 +91,6 @@
     CLLocation *newLoc = locations.lastObject;
     self.lat = newLoc.coordinate.latitude;
     self.lon = newLoc.coordinate.longitude;
-  }
-  
-  //set character for centering button based on map position
-  CLLocation* mapCenter = [[CLLocation alloc] initWithLatitude: self.homeMapView.centerCoordinate.latitude longitude: self.homeMapView.centerCoordinate.longitude];
-  CLLocation* userCenter = [[CLLocation alloc] initWithLatitude: self.homeMapView.userLocation.coordinate.latitude longitude:self.homeMapView.userLocation.coordinate.longitude];
-  CLLocationDistance mapOffsetFromUser = [mapCenter distanceFromLocation:userCenter];
-//  NSLog(@"%f", mapOffsetFromUser);
-
-    if (mapOffsetFromUser > 0) {
-      self.centeringButton.titleLabel.text = @"\uE0D8";
-//      NSLog(@"Centering button should have changed to crosshair.");
-    } else {
-      self.centeringButton.titleLabel.text = @"\uE09D"; //
-//      NSLog(@"Centering button should have changed to arrow.");
-    }
-  //conditionally turn on map following user
-  if (self.mapIsFollowingUser == YES) {
-    [self.homeMapView setCenterCoordinate: self.homeMapView.userLocation.coordinate animated:true];
   }
 }
 
@@ -118,7 +102,7 @@
   }
   else {
     MKPinAnnotationView* annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"STORY"];
-    annotationView.animatesDrop = true;
+    annotationView.animatesDrop = NO;
     annotationView.canShowCallout = true;
     UIButton* viewStoryButton = [UIButton buttonWithType: UIButtonTypeDetailDisclosure];
     annotationView.rightCalloutAccessoryView = viewStoryButton;
@@ -147,7 +131,7 @@
     CLLocationDegrees startLong = self.homeMapView.region.span.longitudeDelta / 3000;
     MKCoordinateSpan startSpan = MKCoordinateSpanMake(startLat, startLong);
     MKCoordinateRegion startRegion = MKCoordinateRegionMake(self.homeMapView.userLocation.coordinate, startSpan);
-    [self.homeMapView setRegion: startRegion animated:true];
+    [self.homeMapView setRegion: startRegion animated: YES];
     self.howToAddStoryLabel.alpha = 0;
     self.howToAddStoryLabel.hidden = false;
     [UIView animateWithDuration: 1 animations:^{
@@ -156,7 +140,24 @@
     [self fetchStoriesForCurrentRegion];
     self.isFirstLaunch = NO;
   } else {
+    if (self.refreshTimer == nil) {
+      [self countdownToRefresh: 15];
+    }
+//    //set character for centering button based on map position
+//    CLLocation* mapCenter = [[CLLocation alloc] initWithLatitude: self.homeMapView.centerCoordinate.latitude longitude: self.homeMapView.centerCoordinate.longitude];
+//    CLLocation* userCenter = [[CLLocation alloc] initWithLatitude: self.homeMapView.userLocation.coordinate.latitude longitude:self.homeMapView.userLocation.coordinate.longitude];
+//    CLLocationDistance mapOffsetFromUser = [mapCenter distanceFromLocation:userCenter];
+//    //  NSLog(@"%f", mapOffsetFromUser);
     
+//    if (mapOffsetFromUser > 0 ) {
+//      self.centeringButton.titleLabel.text = @"\uE0D8";
+//    } else {
+//      self.centeringButton.titleLabel.text = @"\uE09D";
+//    }
+//    //conditionally turn on map following user
+//    if (self.mapIsFollowingUser == YES) {
+//      [self.homeMapView setCenterCoordinate: self.homeMapView.userLocation.coordinate animated:true];
+//    }
   }
   
 }
@@ -175,13 +176,9 @@
   
   
   
-  if (mapOffsetFromUser > 600) {
+  if (mapOffsetFromUser > self.homeMapView.region.span.longitudeDelta / 2) {
     [self.refreshTimer invalidate];
-    self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval: 1
-                                                         target: self
-                                                       selector: @selector(fetchStoriesForCurrentRegion)
-                                                       userInfo: nil
-                                                        repeats: NO];
+    self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval: 1 target: self selector: @selector(fetchStoriesForCurrentRegion) userInfo: nil repeats: NO];
   }
   
   self.lastSpan = self.homeMapView.region.span;
@@ -205,18 +202,16 @@
 - (void) statusSwitcher {
   switch ([CLLocationManager authorizationStatus]) {
     case kCLAuthorizationStatusAuthorizedAlways:
-      NSLog(@"Authorized");
       [self.locationManager startUpdatingLocation];
       [self.homeMapView showsUserLocation];
       self.homeMapView.centerCoordinate = self.homeMapView.userLocation.coordinate;
       break;
     case kCLAuthorizationStatusNotDetermined:
-      NSLog(@"Location not determined");
-      [self.locationManager requestAlwaysAuthorization];
+      [self.locationManager requestWhenInUseAuthorization];
     case kCLAuthorizationStatusRestricted:
-      NSLog(@"Location restricted.");
+      //
     case kCLAuthorizationStatusDenied:
-      NSLog(@"Location denied.");
+      //
     default:
       break;
   }
@@ -334,9 +329,9 @@
   }
 }
 
-- (void) didPanOnMap {
-  self.mapIsFollowingUser = NO;
-}
+//- (void) didPanOnMap {
+//  self.mapIsFollowingUser = NO;
+//}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
   return YES;
@@ -350,16 +345,22 @@
   [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (void) countdownToRefresh: (float) seconds {
+  if (self.stories.count == 0) {
+    self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval: seconds target: self selector: @selector(fetchStoriesForCurrentRegion) userInfo: nil repeats: NO];
+  }
+}
+
 #pragma mark - IBActions
 
 - (IBAction)centeringButtonPressed:(id)sender {
-  //toggle whether or not map follows user based on map position
   [self.homeMapView setCenterCoordinate: self.homeMapView.userLocation.coordinate animated:true];
-  if (self.homeMapView.centerCoordinate.latitude == self.homeMapView.userLocation.coordinate.latitude && self.homeMapView.centerCoordinate.longitude == self.homeMapView.userLocation.coordinate.longitude) {
-    self.mapIsFollowingUser = YES;
-  } else {
-    //not really a need to do something here
-  }
+  
+//  if (self.homeMapView.centerCoordinate.latitude == self.homeMapView.userLocation.coordinate.latitude && self.homeMapView.centerCoordinate.longitude == self.homeMapView.userLocation.coordinate.longitude) {
+//    self.mapIsFollowingUser = YES;
+//  } else {
+//    //not really a need to do something here
+//  }
 }
 
 - (IBAction)refreshStoriesButtonPressed:(id)sender {

@@ -78,10 +78,10 @@
     CLGeocoder *geoCode = [[CLGeocoder alloc] init];
     [geoCode reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error != nil) {
-            NSLog(@"%@", error);
+//            NSLog(@"%@", error);
         } else {
             CLPlacemark * p = [[CLPlacemark alloc] initWithPlacemark:placemarks[0]];
-            NSLog(@"%@", p);
+//            NSLog(@"%@", p);
             self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", p.subAdministrativeArea, p.subLocality];
         }
     }];
@@ -90,12 +90,12 @@
 #pragma mark - Action Functions
 
 -(void)imageTouched:(UITapGestureRecognizer *)tapGestureRecongizer {
-    NSLog(@"IMAGE TAPPED");
+//    NSLog(@"IMAGE TAPPED");
     [self openAlertController];
 }
 
 -(void)cameraTouched:(UITapGestureRecognizer *)tapGestureRecongizer {
-    NSLog(@"CAMERA TAPPED");
+//    NSLog(@"CAMERA TAPPED");
     [self openAlertController];
 }
 
@@ -139,12 +139,12 @@
 }
 
 - (IBAction)done:(id)sender {
-    NSLog(@"Done");
-    NSLog(@"TITLE: %@", self.titleField.text);
-    NSLog(@"DESCRIPTION: %@", self.descTextView.text);
-    NSLog(@"LAT: %f", self.lat);
-    NSLog(@"LONG: %f", self.lon);
-    
+//    NSLog(@"Done");
+//    NSLog(@"TITLE: %@", self.titleField.text);
+//    NSLog(@"DESCRIPTION: %@", self.descTextView.text);
+//    NSLog(@"LAT: %f", self.lat);
+//    NSLog(@"LONG: %f", self.lon);
+  
     //NEED USERID
     
     [self generateThumbnail];
@@ -158,12 +158,12 @@
     
     Story *newStory = [[Story alloc] init:newStoryDict];
     BOOL aBool = [self.networkController postNewStoryToForm:newStory withImage:self.imageView.image withCompletionHandler:^(BOOL serverResponse) {
-      NSLog(@"Server response is %d: ", serverResponse);
+//      NSLog(@"Server response is %d: ", serverResponse);
 
     }];
-  NSLog(@"aBool is: %d", aBool);
+//  NSLog(@"aBool is: %d", aBool);
   if (aBool == NO) {
-    NSLog(@"Show net error");
+//    NSLog(@"Show net error");
     [self networkError];
 //    if (self.shouldDismiss == NO) {
 //      self.shouldDismiss = YES;
@@ -241,8 +241,7 @@
 
 -(void)generateThumbnail {
 #ifdef DEBUG
-    NSData *imgData = UIImageJPEGRepresentation(self.imageView.image, 0);
-    NSLog(@"Size of Image(bytes):%lu",(unsigned long)[imgData length]);
+//    NSData *imgData = UIImageJPEGRepresentation(self.imageView.image, 0);
 #endif
 
     CGSize destinationSize = CGSizeMake(500, 500);
@@ -252,21 +251,20 @@
     UIGraphicsEndImageContext();
     
 #ifdef DEBUG
-    NSData *newImgData = UIImageJPEGRepresentation(self.imageView.image, 0);
-    NSLog(@"Size of Image(bytes):%lu",(unsigned long)[newImgData length]);
+//    NSData *newImgData = UIImageJPEGRepresentation(self.imageView.image, 0);
 #endif
 }
 
 - (void) networkError {
   UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:@"An error was encountered while attempting to reach the server. Would you like to continue without saving?" preferredStyle:UIAlertControllerStyleAlert];
   UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-    NSLog(@"CONTINUE, the action is %@", action.debugDescription);
+//    NSLog(@"CONTINUE, the action is %@", action.debugDescription);
     [alert dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"Gonna dismiss");
+//    NSLog(@"Gonna dismiss");
     [self dismissTheVC];
   }];
   UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-    NSLog(@"don't continue");
+//    NSLog(@"don't continue");
   }];
 
   [alert addAction:defaultAction];
@@ -276,7 +274,6 @@
 }
 
 - (void) dismissTheVC {
-  NSLog(@"HERE");
   [self dismissViewControllerAnimated:true completion:nil];
 }
 

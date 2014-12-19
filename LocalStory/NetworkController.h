@@ -31,7 +31,7 @@
 - (void)saveTokenFromData:(NSData *)data;
 - (NSString *) checkForAuthToken;
 - (void) getDataFromURL:(NSURL *)urlForGet withDictionary:(NSDictionary *)dictionaryForHeader withCompletionHandler:(void (^)(NSData *dataFrom, NSError *networkError, BOOL serverResponse))completionHandler;
-- (void)logHTTPHeaderFieldsFromHTTTPResponse:(NSHTTPURLResponse *)httpResponse;
+//- (void)logHTTPHeaderFieldsFromHTTTPResponse:(NSHTTPURLResponse *)httpResponse;
 - (void) getStoriesInView:(SearchArea *)searchAreaFor completionHandler:(void (^)(NSArray *stories, BOOL serverResponse))completionHandler ;
 - (void) getStoriesForUserWithCompletionHandler:(void (^)(NSArray *stories, BOOL serverResponse))completionHandler;
 - (void) postAddNewUser:(NSString *)emailForUser withPassword:(NSString *)passwordForUser withConfirmedPassword:(NSString *)passwordConfirmForUser withCompletionHandler:(void (^)(BOOL serverResponse))completionHandler;

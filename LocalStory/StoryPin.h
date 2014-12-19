@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "Story.h"
 
-@interface StoryPin : MKPointAnnotation
+@interface StoryPin : MKPointAnnotation <MKAnnotation>
 
 @property (nonatomic, strong) Story* story;
 
