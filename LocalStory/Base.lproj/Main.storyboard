@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ZMq-Sl-xSZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HJ5-6M-UsA">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -27,10 +27,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hbe-yA-SoC">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hnp-AC-w4q" userLabel="Location Button">
-                                <rect key="frame" x="16" y="477" width="60" height="60"/>
+                                <rect key="frame" x="16" y="526" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Hnp-AC-w4q" secondAttribute="height" multiplier="1:1" id="OOY-ZZ-8pb"/>
                                 </constraints>
@@ -44,7 +44,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjz-cy-sLL" userLabel="Refresh Button">
-                                <rect key="frame" x="553" y="477" width="31" height="59"/>
+                                <rect key="frame" x="553" y="526.5" width="31" height="59"/>
                                 <fontDescription key="fontDescription" name="typicons" family="Typicons" pointSize="45"/>
                                 <state key="normal" title="">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -103,44 +103,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Fx-bf-S1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1546" y="-750"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="DQn-lE-3we">
-            <objects>
-                <viewController id="eoa-NQ-0wR" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AkM-dl-CvS"/>
-                        <viewControllerLayoutGuide type="bottom" id="hyi-cd-Mux"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Bjt-4w-yWb">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="ZMW-xb-w9M"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KAb-19-kAQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1547" y="-83"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="uu1-Vd-6pX">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ZMq-Sl-xSZ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="k0G-hu-vlT">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="HJ5-6M-UsA" kind="relationship" relationship="viewControllers" id="wG7-lS-OiZ"/>
-                        <segue destination="eoa-NQ-0wR" kind="relationship" relationship="viewControllers" id="wKV-9j-o7h"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ptn-rn-syJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="735" y="-417"/>
         </scene>
     </scenes>
 </document>

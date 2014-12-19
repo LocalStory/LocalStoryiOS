@@ -65,7 +65,6 @@
 - (NSString *) checkForAuthToken {
   if ([[NSUserDefaults standardUserDefaults] boolForKey:@"hasLaunched"] == YES) {
     NSString *jwt = [[NSUserDefaults standardUserDefaults] objectForKey:@"jwt"];
-    NSLog(@"Value of JWT is %@", jwt);
     return jwt;
   }
   return (NSString *)@"none"; // Calls to this function check for this specific value
@@ -82,7 +81,6 @@
   for (id key in dictionaryForHeader) {
     [request addValue:dictionaryForHeader[key] forHTTPHeaderField:key];
   }
-//  NSLog(@"Values are %@", [dictionaryForHeader allValues]);
   NSURLSession *sessionForGet = [NSURLSession sharedSession];
   NSURLSessionDataTask *dataTask = [sessionForGet dataTaskWithRequest:request completionHandler:^(NSData *dataFrom, NSURLResponse *responseFrom, NSError *error) {
     if (error != nil) {
@@ -90,22 +88,17 @@
     } else {
       NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)responseFrom;
       NSInteger statusCode = [httpResponse statusCode];
-            NSLog(@"Status code in getDataFromURL is: %ld", (long)statusCode);
       switch (statusCode) {
         case 200:
-          NSLog(@"Success");
           completionHandler(dataFrom, nil, YES);
           break;
         case 403:
-          NSLog(@"Server code 403: Most likely bad/missing JWT");
           completionHandler(nil, nil, NO);
           break;
         case 500:
-          NSLog(@"Server code 500: Server doesn't recognize the request");
           completionHandler(nil, nil, NO);
           break;
         default:
-          NSLog(@"Fell through to default: Response code is %ld", (long)httpResponse.statusCode);
           completionHandler(dataFrom, nil, NO);
       }
     }
@@ -130,18 +123,17 @@
 - (void) getStoriesInView:(SearchArea *)searchAreaFor completionHandler:(void (^)(NSArray *stories, BOOL serverResponse))completionHandler  {
 
   NSString *checkToken = self.checkForAuthToken;
-  if ([checkToken isEqual: @"none"]) {
-    NSLog(@"NO TOKEN FOUND");
-  } else {
-    NSLog(@"Token found");
-  }
+//  if ([checkToken isEqual: @"none"]) {
+//    NSLog(@"NO TOKEN FOUND");
+//  } else {
+//    NSLog(@"Token found");
+//  }
 
   NSDictionary *headersDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:checkToken, @"jwt", searchAreaFor.latMax, @"latMax", searchAreaFor.latMin, @"latMin", searchAreaFor.lngMax, @"lngMax", searchAreaFor.lngMin, @"lngMin",  nil];
 
   NSString *stringForGet = self.baseURL;
   stringForGet = [stringForGet stringByAppendingString:@"/api/stories/location"];
 
-  NSLog(@"getStoriesInView url is %@", [stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
   [self getDataFromURL:urlForGet withDictionary:headersDictionary withCompletionHandler:^(NSData *dataFrom, NSError *networkError, BOOL serverResponse){
@@ -157,7 +149,6 @@
       NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
       [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         completionHandler(arrayFrom, serverResponse);
-        NSLog(@"Retrieved %lu items", (unsigned long)arrayFrom.count);
       }];
     }
   }
@@ -166,11 +157,11 @@
 
 - (void) getStoriesForUserWithCompletionHandler:(void (^)(NSArray *stories, BOOL serverResponse))completionHandler  {
   NSString *checkToken = self.checkForAuthToken;
-  if ([checkToken isEqual: @"none"]) {
-    NSLog(@"NO TOKEN FOUND");
-  } else {
-    NSLog(@"Token found");
-  }
+//  if ([checkToken isEqual: @"none"]) {
+//    NSLog(@"NO TOKEN FOUND");
+//  } else {
+//    NSLog(@"Token found");
+//  }
   NSDictionary *headersDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:checkToken, @"jwt", nil];
   NSString *stringForGet = self.baseURL;
   stringForGet = [stringForGet stringByAppendingString:@"/api/stories/user"];
@@ -183,7 +174,6 @@
     NSArray *arrayFrom = [Story parseJsonIntoStories:dataFrom];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
       completionHandler(arrayFrom, serverResponse);
-      NSLog(@"Retrieved %lu items", (unsigned long)arrayFrom.count);
     }];
     }
   }];
@@ -191,11 +181,11 @@
 
 - (void) getUIImageForStory:(Story *)selectedStory withCompletionHandler:(void (^)(UIImage *imageForStory, BOOL serverResponse))completionHandler {
   NSString *checkToken = self.checkForAuthToken;
-  if ([checkToken isEqual: @"none"]) {
-    NSLog(@"NO TOKEN FOUND");
-  } else {
-    NSLog(@"Token found");
-  }
+//  if ([checkToken isEqual: @"none"]) {
+//    NSLog(@"NO TOKEN FOUND");
+//  } else {
+//    NSLog(@"Token found");
+//  }
   NSDictionary *headersDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:checkToken, @"jwt", nil];
   NSString *stringForGet = [NSString stringWithFormat:@"http://dry-atoll-3756.herokuapp.com/api/stories/single/image/%@", selectedStory.underscoreid];
   NSURL *urlForGet = [NSURL URLWithString:[stringForGet stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -217,11 +207,11 @@
   __block BOOL returnValue = NO;
 
   NSString *checkToken = self.checkForAuthToken;
-  if ([checkToken isEqual: @"none"]) {
-    NSLog(@"NO TOKEN FOUND");
-  } else {
-    NSLog(@"Token found");
-  }
+//  if ([checkToken isEqual: @"none"]) {
+//    NSLog(@"NO TOKEN FOUND");
+//  } else {
+//    NSLog(@"Token found");
+//  }
   NSDictionary *headersDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:checkToken, @"jwt", nil];
   NSString *urlString = @"http://dry-atoll-3756.herokuapp.com";
   urlString = [urlString stringByAppendingString:@"/api/stories/"];
@@ -231,7 +221,6 @@
   for (id key in headersDictionary) {
     [request addValue:headersDictionary[key] forHTTPHeaderField:key];
   }
-  NSLog(@"Header values are %@", [headersDictionary allValues]);
   NSString *boundary = @"0xF!5Hm0nG3r";
   NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
   [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
@@ -268,36 +257,29 @@
 
   NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     if (error) {
-      NSLog(@"Error in Post new story is: %@", error.localizedDescription);
       completionHandler(NO);
     } else if (response) {
       if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
         switch (httpResponse.statusCode) {
           case 200:
-            NSLog(@"Server code 200: Success!");
             completionHandler(YES);
             returnValue = YES;
             break;
           case 403:
-            NSLog(@"Server code 403: Most likely bad/missing JWT");
             completionHandler(NO);
             break;
           case 500:
-            NSLog(@"Server code 500: Server doesn't recognize the request");
             completionHandler(NO);
             break;
           default:
-            NSLog(@"Fell through to default: Response code is %ld", (long)httpResponse.statusCode);
             completionHandler(NO);
             break;
         }
       } else {
-        NSLog(@"Response is not HTTP");
         completionHandler(NO);
       }
     } else {
-      NSLog(@"Response is NIL");
       completionHandler(NO);
     }
   }];
@@ -327,7 +309,6 @@
 
   NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     if (error) {
-      NSLog(@"Error in post new user is: %@", error.localizedDescription);
       completionHandler(NO);
     } else if (response) {
       if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
@@ -338,25 +319,20 @@
             completionHandler(YES);
             break;
           case 403:
-            NSLog(@"Server code 403: Most likely bad/missing JWT");
             completionHandler(NO);
             break;
           case 500:
-            NSLog(@"Server code 500: Server doesn't recognize the request");
             completionHandler(NO);
             break;
           default:
-            NSLog(@"Fell through to default: Response code is %ld", (long)httpResponse.statusCode);
             completionHandler(NO);
             break;
         }
 
       } else {
-        NSLog(@"Response is not HTTP");
         completionHandler(NO);
       }
     } else {
-      NSLog(@"Response is NIL");
       completionHandler(NO);
     }
   }];
@@ -378,11 +354,11 @@
 
 - (void) signInToServerWithCompletionHandler:(void (^)(NSString *jwt))completionHandler { // Deprecated, may add login but currently unnecessary
   NSString *checkToken = self.checkForAuthToken;
-  if ([checkToken isEqual: @"none"]) {
-    NSLog(@"NO TOKEN FOUND");
-  } else {
-    NSLog(@"Token found");
-  }
+//  if ([checkToken isEqual: @"none"]) {
+//    NSLog(@"NO TOKEN FOUND");
+//  } else {
+//    NSLog(@"Token found");
+//  }
   NSDictionary *headersDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:checkToken, @"jwt",  nil];
   NSString *stringForGet = self.baseURL;
   stringForGet = [stringForGet stringByAppendingString:@"/api/users"];
@@ -396,12 +372,12 @@
   }];
 }
 
-- (void)logHTTPHeaderFieldsFromHTTTPResponse:(NSHTTPURLResponse *)httpResponse { // Nice to have around for logging problems
-  NSDictionary *headerStrings = [httpResponse allHeaderFields];
-  [headerStrings enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
-    NSLog(@"The key is %@", key);
-    NSLog(@"The value is %@", object);
-  }];
-}
+//- (void)logHTTPHeaderFieldsFromHTTTPResponse:(NSHTTPURLResponse *)httpResponse { // Nice to have around for logging problems
+//  NSDictionary *headerStrings = [httpResponse allHeaderFields];
+//  [headerStrings enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
+//    NSLog(@"The key is %@", key);
+//    NSLog(@"The value is %@", object);
+//  }];
+//}
 
 @end
