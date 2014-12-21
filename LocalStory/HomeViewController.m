@@ -60,7 +60,7 @@
   self.appDelegate = [[UIApplication sharedApplication] delegate];
 
   [self.locationManager requestWhenInUseAuthorization];
-  [self statusSwitcher];
+  // [self statusSwitcher];
   [self.locationManager startUpdatingLocation];
   self.homeMapView.showsUserLocation = true;
   
@@ -81,6 +81,8 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self statusSwitcher];
   [self countdownToRefresh: 3];
 }
 
@@ -200,14 +202,17 @@
 #pragma mark - other functions
 
 - (void) statusSwitcher {
+        NSLog(@"STATUS IS ---------------------------------------- %d", [CLLocationManager authorizationStatus]);
   switch ([CLLocationManager authorizationStatus]) {
+    case kCLAuthorizationStatusNotDetermined:
+      NSLog(@"Not determined");
+      [self.locationManager requestWhenInUseAuthorization];
     case kCLAuthorizationStatusAuthorizedAlways:
       [self.locationManager startUpdatingLocation];
       [self.homeMapView showsUserLocation];
       self.homeMapView.centerCoordinate = self.homeMapView.userLocation.coordinate;
       break;
-    case kCLAuthorizationStatusNotDetermined:
-      [self.locationManager requestWhenInUseAuthorization];
+
     case kCLAuthorizationStatusRestricted:
       //
     case kCLAuthorizationStatusDenied:

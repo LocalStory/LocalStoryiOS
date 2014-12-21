@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>The app needs this access in order to function properly.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>LocalStory needs to access your location while you are using the application.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

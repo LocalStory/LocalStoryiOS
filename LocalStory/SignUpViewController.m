@@ -51,10 +51,12 @@
             [self networkError];
             return;
           } else {
-            HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
-            [self presentViewController:homeVC animated:true completion:nil];
+            NSLog(@"All is well");
           }
         }];
+
+      HomeViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
+      [self presentViewController:homeVC animated:true completion:nil];
 
     }
 }
