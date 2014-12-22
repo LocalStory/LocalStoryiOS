@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -34,8 +35,11 @@
                                 <action selector="createAccountButton:" destination="-1" eventType="touchUpInside" id="9uc-oS-FPh"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="local story plain.png" translatesAutoresizingMaskIntoConstraints="NO" id="YFj-ag-wCr">
-                            <rect key="frame" x="211" y="84" width="180" height="96"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="local story plain.png" translatesAutoresizingMaskIntoConstraints="NO" id="YFj-ag-wCr">
+                            <rect key="frame" x="210" y="48" width="180" height="180"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="YFj-ag-wCr" secondAttribute="height" multiplier="1:1" id="epf-0e-VPj"/>
+                            </constraints>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JR2-Pj-gYx">
                             <rect key="frame" x="75" y="276" width="450" height="48"/>
@@ -56,7 +60,6 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="YFj-ag-wCr" firstAttribute="width" secondItem="a7x-ww-r8u" secondAttribute="width" multiplier="0.3" id="0eM-fE-TP3"/>
-                        <constraint firstItem="YFj-ag-wCr" firstAttribute="height" secondItem="JR2-Pj-gYx" secondAttribute="height" multiplier="2" id="2JV-aR-jLV"/>
                         <constraint firstAttribute="centerY" secondItem="4uC-qE-plU" secondAttribute="centerY" constant="-56" id="AQl-kZ-ljm"/>
                         <constraint firstAttribute="centerX" secondItem="YFj-ag-wCr" secondAttribute="centerX" id="CVN-gG-k0T"/>
                         <constraint firstAttribute="centerX" secondItem="dor-hg-Fcr" secondAttribute="centerX" id="D4K-eB-WTa"/>
@@ -70,7 +73,7 @@
                         <constraint firstItem="kgx-2H-I9j" firstAttribute="top" secondItem="4uC-qE-plU" secondAttribute="bottom" constant="8" id="drY-9F-rQs"/>
                         <constraint firstAttribute="centerX" secondItem="JR2-Pj-gYx" secondAttribute="centerX" id="eu2-e9-Xdn"/>
                         <constraint firstItem="JR2-Pj-gYx" firstAttribute="height" secondItem="4uC-qE-plU" secondAttribute="height" id="kkN-Uh-rbL"/>
-                        <constraint firstItem="JR2-Pj-gYx" firstAttribute="top" secondItem="YFj-ag-wCr" secondAttribute="bottom" constant="96" id="nxt-2Q-7WT"/>
+                        <constraint firstItem="JR2-Pj-gYx" firstAttribute="top" secondItem="YFj-ag-wCr" secondAttribute="bottom" constant="48" id="nxt-2Q-7WT"/>
                         <constraint firstItem="JR2-Pj-gYx" firstAttribute="width" secondItem="4uC-qE-plU" secondAttribute="width" id="q5Z-d3-tK7"/>
                         <constraint firstItem="kgx-2H-I9j" firstAttribute="height" secondItem="4uC-qE-plU" secondAttribute="height" id="tFT-ho-3VT"/>
                         <constraint firstAttribute="centerX" secondItem="4uC-qE-plU" secondAttribute="centerX" id="uIa-vh-0pW"/>

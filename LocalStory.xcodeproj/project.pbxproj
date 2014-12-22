@@ -12,6 +12,7 @@
 		163ADF661A1AAA2700611B75 /* add46.png in Resources */ = {isa = PBXBuildFile; fileRef = 163ADF651A1AAA2700611B75 /* add46.png */; };
 		163ADF681A1AAC8200611B75 /* add46 (512).png in Resources */ = {isa = PBXBuildFile; fileRef = 163ADF671A1AAC8200611B75 /* add46 (512).png */; };
 		163ADF6A1A1AAEE700611B75 /* addButton.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 163ADF691A1AAEE700611B75 /* addButton.pdf */; };
+		16C36F2C1A44D08900030C21 /* SLU .gpx in Resources */ = {isa = PBXBuildFile; fileRef = 16C36F2B1A44D08900030C21 /* SLU .gpx */; };
 		16C6AE711A1A996200BB21E1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6AE6F1A1A996200BB21E1 /* HomeViewController.m */; };
 		16C6AE761A1A9B1200BB21E1 /* typicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C6AE751A1A9B1200BB21E1 /* typicons.ttf */; };
 		16E08FB01A16C36800579486 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E08FAF1A16C36800579486 /* main.m */; };
@@ -58,6 +59,7 @@
 		163ADF651A1AAA2700611B75 /* add46.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add46.png; sourceTree = "<group>"; };
 		163ADF671A1AAC8200611B75 /* add46 (512).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add46 (512).png"; sourceTree = "<group>"; };
 		163ADF691A1AAEE700611B75 /* addButton.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = addButton.pdf; sourceTree = "<group>"; };
+		16C36F2B1A44D08900030C21 /* SLU .gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "SLU .gpx"; sourceTree = "<group>"; };
 		16C6AE6E1A1A996200BB21E1 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		16C6AE6F1A1A996200BB21E1 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		16C6AE751A1A9B1200BB21E1 /* typicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = typicons.ttf; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		16E08FA11A16C36800579486 = {
 			isa = PBXGroup;
 			children = (
+				16C36F2B1A44D08900030C21 /* SLU .gpx */,
 				701150B71A1A7B40003F4F99 /* MapKit.framework */,
 				16E08FAC1A16C36800579486 /* LocalStory */,
 				16E08FC91A16C36800579486 /* LocalStoryTests */,
@@ -342,6 +345,7 @@
 				706428291A1D30A50023A4A6 /* SignUpViewController.xib in Resources */,
 				706428241A1D1D700023A4A6 /* LogInViewController.xib in Resources */,
 				43C2211D1A1C1F7300B0A81E /* avatar.jpg in Resources */,
+				16C36F2C1A44D08900030C21 /* SLU .gpx in Resources */,
 				16164D491A1F1CFC001F23C5 /* local story plain.png in Resources */,
 				16E713F41A1D4B0900026285 /* gps3.png in Resources */,
 				163ADF6A1A1AAEE700611B75 /* addButton.pdf in Resources */,

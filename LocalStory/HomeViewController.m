@@ -54,9 +54,6 @@
   UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(didLongPressOnMap)];
   [self.homeMapView addGestureRecognizer: longPress];
   
-//  UIPanGestureRecognizer* mapPan = [[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(didPanOnMap)];
-//  [self.homeMapView addGestureRecognizer: mapPan];
-  
   self.appDelegate = [[UIApplication sharedApplication] delegate];
 
   [self.locationManager requestWhenInUseAuthorization];
@@ -328,10 +325,6 @@
     }];
   }
 }
-
-//- (void) didPanOnMap {
-//  self.mapIsFollowingUser = NO;
-//}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
   return YES;
